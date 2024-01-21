@@ -25,7 +25,7 @@ void Game::Tick(float dt)
 		world.TickInEditor();
 		return;
 	}
-	world.Tick();
+	world.Tick(dt);
 }
 
 void Game::Render()

@@ -22,7 +22,7 @@ public:
 	void Start();
 	void DeleteDestroyedEntities();
 
-	void Tick();
+	void Tick(float deltaTime);
 	void TickInEditor();
 
 	void Destroy(Entity& entity);

@@ -37,7 +37,7 @@ public:
     Transform& GetTransform() const;
 
     virtual void Start();
-    virtual void Update();
+    virtual void Update(float deltaTime);
     virtual void OnDestroy();
 
     virtual ~Component();
@@ -122,7 +122,7 @@ public:
 
         if constexpr (HasToString<T>)
         {
-            return std::to_string(value);
+            stringStream >> value;
         }
     }
 

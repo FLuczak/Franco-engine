@@ -32,7 +32,7 @@ public:
 	void OnDestroy() const;
 	void RemoveComponent(Component& component);
 
-	void Update(bool isGame);
+	void Update(float deltaTime, bool isGame);
 	nlohmann::json Serialize();
 	void Deserialize(nlohmann::json& json);
 

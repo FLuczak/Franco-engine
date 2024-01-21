@@ -26,7 +26,7 @@ void Entity::RemoveComponent(Component& component)
 	componentsToRemove.push(find - components.begin());
 }
 
-void Entity::Update(bool isGame)
+void Entity::Update(float deltaTime,bool isGame)
 {
 	int removed = 0;
 
@@ -40,7 +40,7 @@ void Entity::Update(bool isGame)
 	for (const auto& component : components)
 	{
 		if (!isGame && !component->tickInEditor)continue;
-		component->Update();
+		component->Update(deltaTime);
 	}
 }
 

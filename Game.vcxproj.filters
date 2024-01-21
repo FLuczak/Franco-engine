@@ -69,6 +69,9 @@
     <ClCompile Include="Source\Engine\EntityInspector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\PlayerMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\SFML\include\SFML\Audio\AlResource.hpp">
@@ -576,6 +579,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="External\nlohmann\ordered_map.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\PlayerMovement.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\SFML\include\SFML\SFMLMath.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

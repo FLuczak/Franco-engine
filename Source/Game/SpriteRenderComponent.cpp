@@ -15,9 +15,9 @@ void SpriteRenderComponent::Start()
 	oldSpritePath = spritePath;
 }
 
-void SpriteRenderComponent::Update()
+void SpriteRenderComponent::Update(float deltaTime)
 {
-	Component::Update();
+	Component::Update(deltaTime);
 
 	if(oldSpritePath != spritePath)
 	{

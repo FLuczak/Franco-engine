@@ -14,7 +14,7 @@ public:
 	}
 
 	void Start() override;
-	void Update() override;
+	void Update(float deltaTime) override;
 	void OnDestroy() override;
 	void RegisterDrawCall(sf::Sprite& sprite);
 	static CameraComponent* GetMainCamera() { return main; }

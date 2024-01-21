@@ -13,9 +13,9 @@ void CameraComponent::Start()
 	}
 }
 
-void CameraComponent::Update()
+void CameraComponent::Update(float deltaTime)
 {
-	Component::Update();
+	Component::Update(deltaTime);
 	if (myWindow == nullptr)return;
 	for (auto& element : drawCalls)
 	{
@@ -28,10 +28,6 @@ void CameraComponent::Update()
 
 void CameraComponent::OnDestroy()
 {
-	if(main == this)
-	{
-		main = nullptr;
-	}
 	Component::OnDestroy();
 }
 
@@ -42,4 +38,8 @@ void CameraComponent::RegisterDrawCall(sf::Sprite& sprite)
 
 CameraComponent::~CameraComponent()
 {
+	if (main == this)
+	{
+		main = nullptr;
+	}
 }

@@ -46,7 +46,6 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 		{
 			auto str = std::to_string(value);
 			serializedField.second->Deserialize(str);
-			component->GetSerializedFields()[serializedField.first]->Deserialize(serializedValue);
 			return;
 		}
 	}
@@ -59,7 +58,6 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 		{
 			auto str = std::to_string(value);
 			serializedField.second->Deserialize(str);
-			component->GetSerializedFields()[serializedField.first]->Deserialize(serializedValue);
 			return;
 		}
 	}
@@ -71,7 +69,6 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 		ImGui::Checkbox(std::string("##" + serializedField.first).c_str(), &value);
 		auto str = std::to_string(value == true ? 1 : 0);
 		serializedField.second->Deserialize(str);
-		component->GetSerializedFields()[serializedField.first]->Deserialize(serializedValue);
 		return;
 	}
 

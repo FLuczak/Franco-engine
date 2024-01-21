@@ -3,14 +3,10 @@
   {
    "Components": [
     {
-     "ComponentName": "class SpriteRenderComponent",
-     "SerializedValues": {
-      "spritePath": "Assets/Basic4x.png",
-      "spriteSize": "left:0 top:0 width:64 height:64 "
-     }
+     "ComponentName": "class CameraComponent"
     }
    ],
-   "Name": "Entity",
+   "Name": "MainCamera",
    "Transform": {
     "Rotation": [
      0.0
@@ -20,8 +16,39 @@
      1.0
     ],
     "Translation": [
-     320.0,
-     160.0
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "spritePath": "Assets/Basic4x.png",
+      "spriteSize": "left:0 top:0 width:64 height:64 "
+     }
+    },
+    {
+     "ComponentName": "class PlayerMovement",
+     "SerializedValues": {
+      "moveSpeed": "200.000000"
+     }
+    }
+   ],
+   "Name": "Player",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     686.1280517578125,
+     327.202392578125
     ]
    }
   },

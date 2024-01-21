@@ -67,13 +67,13 @@ void World::DeleteDestroyedEntities()
 	}
 }
 
-void World::Tick()
+void World::Tick(float deltaTime)
 {
     DeleteDestroyedEntities();
 
     for (auto& element : entities)
     {
-        element.Update(true);
+        element.Update(deltaTime, true);
     }
 }
 
@@ -83,7 +83,7 @@ void World::TickInEditor()
 
     for (auto& element : entities)
     {
-        element.Update(false);
+        element.Update(0, false);
     }
 }
 
@@ -134,6 +134,8 @@ nlohmann::json World::Serialize()
 
 void World::Deserialize(nlohmann::json& json)
 {
+    entities.clear();
+
 	for (auto& element : json["Entities"])
 	{
        auto& temp = Instantiate("entity");

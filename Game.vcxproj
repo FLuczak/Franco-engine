@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\PlayerMovement.cpp" />
     <ClCompile Include="Source\Engine\EntityInspector.cpp" />
     <ClCompile Include="imgui\imgui-SFML.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="External\nlohmann\ordered_map.hpp" />
     <ClInclude Include="External\nlohmann\thirdparty\hedley\hedley.hpp" />
     <ClInclude Include="External\nlohmann\thirdparty\hedley\hedley_undef.hpp" />
+    <ClInclude Include="External\SFML\include\SFML\SFMLMath.hpp" />
     <ClInclude Include="External\Visit struct\visit_struct.hpp" />
     <ClInclude Include="External\Visit struct\visit_struct_intrusive.hpp" />
     <ClInclude Include="Include\Engine\EntityInspector.hpp" />
@@ -332,6 +334,7 @@
     <ClInclude Include="Include\SimpleDelegates.h" />
     <ClInclude Include="Include\Engine\Inspector.hpp" />
     <ClInclude Include="Include\Engine\Inspectable.hpp" />
+    <ClInclude Include="Include\Game\PlayerMovement.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="External\SFML\include\SFML\Audio\SoundFileFactory.inl" />
