@@ -46,6 +46,14 @@ public:
     ////////////////////////////////////////////////////////////
     Vector2();
 
+    T operator[](int index) const
+    {
+        index %= 2;
+        if (index == 0)return x;
+        if (index == 1)return y;
+        return x;
+    }
+
     ////////////////////////////////////////////////////////////
     /// \brief Construct the vector from its coordinates
     ///
@@ -87,6 +95,7 @@ public:
 ////////////////////////////////////////////////////////////
 template <typename T>
 Vector2<T> operator -(const Vector2<T>& right);
+
 
 ////////////////////////////////////////////////////////////
 /// \relates Vector2

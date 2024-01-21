@@ -72,6 +72,18 @@
     <ClCompile Include="Source\Game\PlayerMovement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\BVH.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\geometry2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Physics\PhysicsUtility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\SFML\include\SFML\Audio\AlResource.hpp">
@@ -585,6 +597,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="External\SFML\include\SFML\SFMLMath.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Physics\BVH.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Physics\Collision.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Physics\geometry2d.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Physics\PhysicsUtility.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

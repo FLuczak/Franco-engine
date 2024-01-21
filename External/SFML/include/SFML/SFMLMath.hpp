@@ -80,6 +80,12 @@ namespace sf
         return vec1.x * vec2.x + vec1.y * vec2.y;
     }
 
+    template <VectorLike T>
+    float dot(const T& vec1, const T& vec2)
+    {
+        return vec1.x * vec2.x + vec1.y * vec2.y;
+    }
+
     /*
      * Returns the square of a given value
      */
@@ -154,13 +160,25 @@ namespace sf
      * Normalizes a given vector in-place
      */
     template <VectorLike T>
-    inline T& normalize( T& vec )
+    inline T& normalize( T& vec ) 
     {
         const double length = getLength( vec );
         vec.x /= length;
         vec.y /= length;
 
         return vec;
+    }
+
+    template <VectorLike T>
+    T min(const T& point1, const T& point2)
+	{
+        return T(std::min(point1.x, point2.x), std::min(point1.y, point2.y));
+    }
+
+    template <VectorLike T>
+    T max(const T& point1, const T& point2)
+    {
+        return T(std::max(point1.x, point2.x), std::max(point1.y, point2.y));
     }
 
     /*
@@ -171,6 +189,16 @@ namespace sf
         float dx = point2.x - point1.x;
         float dy = point2.y - point1.y;
         return std::sqrt(dx * dx + dy * dy);
+    }
+
+    /*
+	 * Returns the distance between two given points
+	*/
+    template <VectorLike T>
+    float distance2(const T& point1, const T& point2) {
+        float dx = point2.x - point1.x;
+        float dy = point2.y - point1.y;
+        return dx * dx + dy * dy;
     }
 
 
