@@ -6,10 +6,12 @@
 *.lo
 *.o
 *.obj
+*x64
 
 # Precompiled Headers
 *.gch
 *.pch
+.vs
 
 # Compiled Dynamic libraries
 *.so
