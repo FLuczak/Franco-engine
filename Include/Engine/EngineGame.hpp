@@ -1,9 +1,8 @@
 #pragma once
-#include <iostream>
 
 #include "Application.hpp"
 #include "Game/World.hpp"
-#include "SFML/Graphics/RenderWindow.hpp"
+#include "Physics/PhysicsWorld.h"
 
 class Game final : public Application
 {
@@ -20,6 +19,7 @@ public:
 	static Game& GetCurrentGame() { return *currentGame; }
 	sf::RenderWindow& gameWindow;
 private:
+	PhysicsWorld physicsWorld;
 	bool started = false;
 	static inline Game* currentGame = nullptr;
 	World& world;

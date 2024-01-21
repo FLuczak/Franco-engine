@@ -27,11 +27,6 @@ class BVH
             {
             }
 
-            BVHElement(BVHElement& other) : entityID(other.entityID), shape(other.shape), aabb(other.aabb)
-            {
-	            
-            }
-
         	size_t entityID;
             ColliderShape shape;
             geometry2d::AABB aabb;

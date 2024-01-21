@@ -25,6 +25,8 @@ void Game::Tick(float dt)
 		world.TickInEditor();
 		return;
 	}
+
+	physicsWorld.Simulate(dt);
 	world.Tick(dt);
 }
 

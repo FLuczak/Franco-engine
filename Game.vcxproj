@@ -143,6 +143,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\Physics\PhysicsBody.cpp" />
+    <ClCompile Include="Source\Engine\Physics\PhysicsWorld.cpp" />
     <ClCompile Include="Source\Engine\Physics\BVH.cpp" />
     <ClCompile Include="Source\Engine\Physics\Collision.cpp" />
     <ClCompile Include="Source\Engine\Physics\geometry2d.cpp" />
@@ -343,6 +345,8 @@
     <ClInclude Include="Include\Engine\Inspector.hpp" />
     <ClInclude Include="Include\Engine\Inspectable.hpp" />
     <ClInclude Include="Include\Game\PlayerMovement.hpp" />
+    <ClInclude Include="Include\Engine\Physics\PhysicsBody.hpp" />
+    <ClInclude Include="Include\Engine\Physics\PhysicsWorld.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="External\SFML\include\SFML\Audio\SoundFileFactory.inl" />
