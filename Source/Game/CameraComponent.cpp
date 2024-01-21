@@ -3,14 +3,19 @@
 #include "Engine/EngineGame.hpp"
 #include "Engine/Entity.hpp"
 
-void CameraComponent::Start()
+CameraComponent::CameraComponent(Entity& entityToSet): Component(entityToSet)
 {
-	Component::Start();
-	myWindow = &Game::GetCurrentGame().gameWindow;
-	if(main == nullptr)
+	if (main == nullptr)
 	{
 		main = this;
 	}
+	myWindow = &Game::GetCurrentGame().gameWindow;
+	tickInEditor = true;
+}
+
+void CameraComponent::Start()
+{
+	Component::Start();
 }
 
 void CameraComponent::Update(float deltaTime)

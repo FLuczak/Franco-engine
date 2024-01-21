@@ -8,10 +8,7 @@
 class CameraComponent : public Component
 {
 public:
-	CameraComponent(Entity& entityToSet) : Component(entityToSet)
-	{
-		tickInEditor = true;
-	}
+	CameraComponent(Entity& entityToSet);
 
 	void Start() override;
 	void Update(float deltaTime) override;
