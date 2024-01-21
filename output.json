@@ -1,0 +1,54 @@
+{
+ "Entities": [
+  {
+   "Components": [
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "spritePath": "Assets/Basic4x.png",
+      "spriteSize": "left:0 top:0 width:64 height:64 "
+     }
+    }
+   ],
+   "Name": "Entity",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     320.0,
+     160.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "spritePath": "Assets/Basic4x.png",
+      "spriteSize": "left:72 top:81 width:64 height:70 "
+     }
+    }
+   ],
+   "Name": "Entity",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     0.0,
+     100.0
+    ]
+   }
+  }
+ ]
+}
