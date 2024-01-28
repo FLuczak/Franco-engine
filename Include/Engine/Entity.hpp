@@ -29,6 +29,10 @@ public:
 	template<typename ComponentType, typename ...Args>
 	ComponentType& AddComponent(Args& ... args);
 
+
+	template<typename ComponentType>
+	ComponentType* GetComponent();
+
 	void OnDestroy() const;
 	void RemoveComponent(Component& component);
 
@@ -52,3 +56,17 @@ ComponentType& Entity::AddComponent(Args& ... args)
 	return dynamic_cast<ComponentType&>(*components[components.size() - 1]);
 }
 
+template <typename ComponentType>
+ComponentType* Entity::GetComponent()
+{
+	for (auto& component : components) 
+	{
+		auto derivedComponent = dynamic_cast<ComponentType*>(component.get());
+		if (derivedComponent == nullptr) 
+		{
+			return derivedComponent;
+		}
+	}
+
+	return nullptr; 
+}

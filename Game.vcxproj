@@ -143,6 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\BaseCollider.cpp" />
+    <ClCompile Include="Source\Game\BoxCollider.cpp" />
+    <ClCompile Include="Source\Engine\DebugRenderer.cpp" />
     <ClCompile Include="Source\Engine\Physics\PhysicsBody.cpp" />
     <ClCompile Include="Source\Engine\Physics\PhysicsWorld.cpp" />
     <ClCompile Include="Source\Engine\Physics\BVH.cpp" />
@@ -170,6 +173,9 @@
     <ClCompile Include="Source\Game\SpriteRenderComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Game\BaseCollider.h" />
+    <ClInclude Include="Include\Game\BoxCollider.h" />
+    <ClInclude Include="Include\Engine\DebugRenderer.hpp" />
     <ClInclude Include="External\nlohmann\adl_serializer.hpp" />
     <ClInclude Include="External\nlohmann\byte_container_with_subtype.hpp" />
     <ClInclude Include="External\nlohmann\detail\abi_macros.hpp" />
