@@ -5,6 +5,7 @@
 #include "GenericFactory.hpp"
 #include "Visit struct/visit_struct.hpp"
 #include "nlohmann/json.hpp"
+#include "magic_enum/magic_enum.hpp"
 
 struct Transform;
 class Entity;
@@ -22,6 +23,7 @@ public:
     virtual std::string ToString() const = 0;
     virtual std::type_index GetTypeInfo() const = 0;
     virtual void Deserialize(const std::string& serializedValue) = 0;
+    virtual std::vector<std::string> GetEnumNames() = 0;
 };
 
 class Component
@@ -75,6 +77,11 @@ public:
 
     std::string ToString() const override
     {
+        if constexpr (std::is_enum_v<T>)
+        {
+            return std::string(magic_enum::enum_name(value));
+        }
+
         if constexpr (std::is_same<T, std::string>::value)
         {
 	        return value;
@@ -94,6 +101,8 @@ public:
             });
             return ss.str();
         }
+
+        return "";
     }
 
     void Deserialize(const std::string& serializedValue) override
@@ -120,6 +129,15 @@ public:
             stringStream >> value;
         }
 
+        if constexpr (std::is_enum_v<T>)
+        {
+            auto temp = magic_enum::enum_cast<T>(stringStream.str());
+            if(temp.has_value())
+            {
+                value = temp.value();
+            }
+        }
+
         if constexpr (HasToString<T>)
         {
             stringStream >> value;
@@ -130,6 +148,24 @@ public:
     {
         return typeid(T);
     }
+
+    std::vector<std::string> GetEnumNames() override
+    {
+        assert(std::is_enum_v<T>);
+        std::vector<std::string> toReturn;
+        if constexpr (std::is_enum_v<T>)
+        {
+            constexpr auto names = magic_enum::enum_names<T>();
+            for (auto name : names)
+            {
+                toReturn.emplace_back(name);
+            }
+            return toReturn;
+        }
+        
+        return {};
+    }
+
 private:
     T& value;
 };

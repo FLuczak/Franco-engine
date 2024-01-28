@@ -4,6 +4,7 @@
 
 #include "GenericFactory.hpp"
 #include "imgui.h"
+#include "magic_enum/magic_enum_utility.hpp"
 #include "Visit struct/visit_struct.hpp"
 
 void EntityInspector::InspectEntity(Entity* entity)
@@ -100,6 +101,30 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 
 		serializedField.second->Deserialize(deserializeStream.str());
 		return;
+	}
+
+	if (typeName.find("enum") != std::string::npos)
+	{
+		ImGui::SameLine();
+		if (ImGui::BeginCombo("EnumDropdown", serializedValue.c_str()))
+		{
+			for (const auto& value : serializedField.second->GetEnumNames())
+			{
+				bool isSelected = false;
+				if (ImGui::Selectable(value.c_str(), isSelected))
+				{
+					 isSelected = true;
+				}
+
+				if (isSelected)
+				{
+					serializedField.second->Deserialize(value);
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+
+			ImGui::EndCombo();
+		}
 	}
 }
 

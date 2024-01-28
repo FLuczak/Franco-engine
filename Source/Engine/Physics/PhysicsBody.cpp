@@ -15,7 +15,7 @@ void PhysicsBody::OnDestroy()
 	Component::OnDestroy();
 }
 
-void PhysicsBody::RegisterCollider(BaseCollider& collider, const PhysicsBody& body)
+void PhysicsBody::RegisterCollider(BaseCollider& collider,  PhysicsBody& body)
 {
 	if (&body != this)return;
 	colliders.emplace_back(collider);

@@ -641,6 +641,33 @@
     <ClInclude Include="Include\Game\BaseCollider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="External\magic_enum\magic_enum.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\magic_enum\magic_enum_all.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\magic_enum\magic_enum_containers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\magic_enum\magic_enum_flags.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\magic_enum\magic_enum_format.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\magic_enum\magic_enum_fuse.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\magic_enum\magic_enum_iostream.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\magic_enum\magic_enum_switch.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\magic_enum\magic_enum_utility.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="External\SFML\include\SFML\Audio\SoundFileFactory.inl">

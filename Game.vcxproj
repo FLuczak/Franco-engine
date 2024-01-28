@@ -173,6 +173,15 @@
     <ClCompile Include="Source\Game\SpriteRenderComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="External\magic_enum\magic_enum.hpp" />
+    <ClInclude Include="External\magic_enum\magic_enum_all.hpp" />
+    <ClInclude Include="External\magic_enum\magic_enum_containers.hpp" />
+    <ClInclude Include="External\magic_enum\magic_enum_flags.hpp" />
+    <ClInclude Include="External\magic_enum\magic_enum_format.hpp" />
+    <ClInclude Include="External\magic_enum\magic_enum_fuse.hpp" />
+    <ClInclude Include="External\magic_enum\magic_enum_iostream.hpp" />
+    <ClInclude Include="External\magic_enum\magic_enum_switch.hpp" />
+    <ClInclude Include="External\magic_enum\magic_enum_utility.hpp" />
     <ClInclude Include="Include\Game\BaseCollider.h" />
     <ClInclude Include="Include\Game\BoxCollider.h" />
     <ClInclude Include="Include\Engine\DebugRenderer.hpp" />

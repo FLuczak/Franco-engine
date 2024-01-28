@@ -30,8 +30,7 @@ public:
 
 	SERIALIZE_FIELD(float, mass)
 	SERIALIZE_FIELD(float, restitution)
-
-	PhysicsBodyType bodyType = PhysicsBodyType::DYNAMIC;
+	SERIALIZE_FIELD(PhysicsBodyType, bodyType);
 
 	explicit PhysicsBody(Entity& entityToSet) : Component(entityToSet)
 	{
