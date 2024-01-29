@@ -49,7 +49,8 @@ public:
 		OnPhysicsBodyRemoved(*this);
 	}
 private:
-	bool physicsTickedThisFrame = false;
+	void HandleCollisionEvents();
+
 	std::vector<std::reference_wrapper<BaseCollider>> colliders;
 	std::unordered_map<entity_id, CollisionEvent> collisionEvents;
 

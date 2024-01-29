@@ -16,6 +16,12 @@ void PhysicsWorld::HandlePhysicsBodyAdded(PhysicsBody& toAdd)
 
 void PhysicsWorld::HandlePhysicsBodyRemove(PhysicsBody& toRemove)
 {
+    for (auto& body : physicsBodies)
+    {
+        if (!body.get().collisionEvents.contains(toRemove.GetEntity().GetId()))continue;
+        body.get().collisionEvents.erase(toRemove.GetEntity().GetId());
+    }
+
 	erase_if(physicsBodies, [&toRemove](const std::reference_wrapper<PhysicsBody>& ref)
 	{
 		return &ref.get() == &toRemove;
@@ -150,11 +156,14 @@ void PhysicsWorld::CheckAndResolveCollisionForDiskDisk(BaseCollider& disk1, Base
     if (Collision::DisksIntersects(disk1.GetTransform().position + sf::Vector2f(aCollider.offset.x, aCollider.offset.y), aCollider.radius, disk2.GetTransform().position + sf::Vector2f(bCollider.offset.x, bCollider.offset.y), bCollider.radius, &collisionInfo))
     {
         HandleEnterOngoingCollisionEvents(disk1, disk2, collisionInfo);
+
         ResolveCollision(*disk1.physicsBody, *disk2.physicsBody, collisionInfo);
+        ResolveCollision(*disk2.physicsBody, *disk1.physicsBody, collisionInfo);
     }
 	else
     {
         HandleCollisionTrackingLeaveEvent(disk1, disk2);
+        HandleCollisionTrackingLeaveEvent(disk2, disk1);
     }
 }
 
@@ -287,7 +296,7 @@ void PhysicsWorld::Simulate(float dt)
 
         for (auto& body : physicsBodies)
         {
-            body.get().physicsTickedThisFrame = true;
+            body.get().HandleCollisionEvents();
         }
 
     	m_executedFrame = true;

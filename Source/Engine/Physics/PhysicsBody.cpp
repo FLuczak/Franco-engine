@@ -8,15 +8,23 @@ void PhysicsBody::Start()
 void PhysicsBody::Update(float deltaTime)
 {
 	Component::Update(deltaTime);
-    if (!physicsTickedThisFrame)return;
+}
+
+void PhysicsBody::OnDestroy()
+{
+	Component::OnDestroy();
+}
+
+void PhysicsBody::HandleCollisionEvents()
+{
     for (auto it = collisionEvents.begin(); it != collisionEvents.end();)
     {
-        if(it->second.type == CollisionEventType::Entering)
+        if (it->second.type == CollisionEventType::Entering)
         {
             GetEntity().OnCollisionEnter(it->second);
         }
 
-        if(it->second.type == CollisionEventType::Colliding)
+        if (it->second.type == CollisionEventType::Colliding)
         {
             GetEntity().OnCollisionStay(it->second);
         }
@@ -30,12 +38,6 @@ void PhysicsBody::Update(float deltaTime)
 
         ++it;
     }
-    physicsTickedThisFrame = false;
-}
-
-void PhysicsBody::OnDestroy()
-{
-	Component::OnDestroy();
 }
 
 void PhysicsBody::RegisterCollider(BaseCollider& collider,  PhysicsBody& body)

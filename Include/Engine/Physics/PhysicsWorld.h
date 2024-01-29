@@ -22,10 +22,11 @@ struct BroadPhaseCollisionPair
 class PhysicsWorld
 {
 public:
+	PhysicsWorld();
+
 	sf::Vector2f gravity = { 0,0 };
 	void HandlePhysicsBodyAdded(PhysicsBody& toAdd);
 	void HandlePhysicsBodyRemove(PhysicsBody& toRemove);
-	PhysicsWorld();
 	void IntegrateForces(float dt) const;
 	void GetCollisionBroadPhaseBVH(unsigned index, const geometry2d::AABB& aabb, BaseCollider& collider, std::list<BroadPhaseCollisionPair>& list);
 	std::list<BroadPhaseCollisionPair> GetBroadPhaseCollisionPairs();
