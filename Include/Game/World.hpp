@@ -25,6 +25,7 @@ public:
 
 	void Destroy(Entity& entity);
 	void Inspect() override;
+
 	nlohmann::json Serialize();
 	void Deserialize(nlohmann::json& json);
 private:

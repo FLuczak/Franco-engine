@@ -16,6 +16,9 @@ struct Transform
 	float rotation = 0.0f;
 };
 
+
+using entity_id = size_t;
+
 class Entity
 {
 public:
@@ -23,7 +26,7 @@ public:
 	Entity(unsigned int idToSet) : id(idToSet) {}
 	Entity(Entity&& other) { other.components = std::move(components); }
 
-	unsigned int GetId() const { return id; }
+	entity_id GetId() const { return id; }
 	Transform& GetTransform(){return transform;}
 
 	template<typename ComponentType, typename ...Args>
@@ -45,7 +48,7 @@ public:
 private:
 	std::queue<int> componentsToRemove{};
 	Transform transform;
-	unsigned int id = 0u;
+	entity_id id = 0u;
 };
 
 template <typename ComponentType, typename ... Args>
@@ -62,9 +65,9 @@ ComponentType* Entity::GetComponent()
 	for (auto& component : components) 
 	{
 		auto derivedComponent = dynamic_cast<ComponentType*>(component.get());
-		if (derivedComponent == nullptr) 
+		if (derivedComponent != nullptr) 
 		{
-			return derivedComponent;
+			return static_cast<ComponentType*>(component.get());
 		}
 	}
 

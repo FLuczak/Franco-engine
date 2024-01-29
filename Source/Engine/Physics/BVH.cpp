@@ -2,6 +2,24 @@
 
 #include "SFML/SFMLMath.hpp"
 
+void Physics::BVH::DebugDraw(unsigned index, DebugRenderer& debugRenderer)
+{
+    if (nodes.empty()) return;
+    BVHNode& node = nodes[index];
+
+    const auto& tempPolygon = node.aabb.ComputeBoundary();
+
+    for (size_t i = 0; i < tempPolygon.size(); i++)
+    {
+        debugRenderer.AddLine(DebugCategory::Physics, tempPolygon[i], tempPolygon[(i + 1) % tempPolygon.size()], sf::Color::Green);
+    }
+
+    if (node.IsLeaf()) return;
+
+    DebugDraw(node.leftChildIndex, debugRenderer);
+    DebugDraw(node.rightChildIndex, debugRenderer);
+}
+
 /**
  * \brief Given an array of BVHElement vector, build and subdivide the bvh
  * \param allElements - a vector of bvh element structs
@@ -25,31 +43,6 @@ void Physics::BVH::BuildBVH(std::vector<BVHElement>& allElements)
     UpdateBounds(rootNodeIndex);
     Subdivide(rootNodeIndex);
 }
-
-/**
- * \brief Provided a debug renderer and a starting index of a node to start from - draw all child nodes-
- * to draw the whole bvh, the index should be root's index
- * \param index - index of a node drawing should start from
- * \param debugRenderer - engine's debug renderer
- */
-/*void Physics::BVH::DebugDraw(const unsigned int index,bee::DebugRenderer& debugRenderer)
-{
-    if (nodes.empty()) return;
-   BVHNode& node = nodes[index];
-    
-    const auto& tempPolygon = node.aabb.ComputeBoundary();
-
-    for (size_t i =0;i <  tempPolygon.size();i++)
-    {
-        //debugRenderer.AddLine(bee::DebugCategory::Physics, tempPolygon[i], tempPolygon[(i+1)%tempPolygon.size()],glm::vec4(1,0,0,1));
-    }
-
-    if (node.IsLeaf()) return;
-
-    DebugDraw(node.leftChildIndex, debugRenderer);
-    DebugDraw(node.rightChildIndex, debugRenderer);
-}*/
-
 
 /**
  * \brief Given a node's index. Calculate its bounds based on all the elements that are in the node

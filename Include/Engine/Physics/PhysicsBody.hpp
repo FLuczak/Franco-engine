@@ -37,7 +37,7 @@ public:
 		OnPhysicsBodyAdded(*this);
 		BaseCollider::OnColliderCreated.bind(this, &PhysicsBody::RegisterCollider);
 	}
-
+	const std::vector<std::reference_wrapper<BaseCollider>>& GetColliders(){ return colliders; }
 	void Start() override;
 	void Update(float deltaTime) override;
 	void OnDestroy() override;

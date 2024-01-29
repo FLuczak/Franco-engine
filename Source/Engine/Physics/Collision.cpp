@@ -14,7 +14,7 @@
  * or its normal. Can be a nullptr.
  * \return - a bool if two disks of given centers and radii intersect
  */
-bool Physics::Collision::DisksIntersects(const sf::Vector2f oneCenter, const float oneRadius, const sf::Vector2f twoCenter, const float twoRadius, CollisionInfo* collisionInfo)
+bool Collision::DisksIntersects(const sf::Vector2f oneCenter, const float oneRadius, const sf::Vector2f twoCenter, const float twoRadius, CollisionInfo* collisionInfo)
 {
     const float distance = sf::distance(oneCenter, twoCenter);
 
@@ -50,7 +50,7 @@ bool Physics::Collision::DisksIntersects(const sf::Vector2f oneCenter, const flo
  * \param collisionInfo - collision info reference
  * \return - whether or not the polygon collides with the disk
  */
-bool Physics::Collision::DiskIntersectsPolygonNormalDepth(sf::Vector2f diskCenter, const float diskRadius, const geometry2d::Polygon& polygon, CollisionInfo& collisionInfo)
+bool Collision::DiskIntersectsPolygonNormalDepth(sf::Vector2f diskCenter, const float diskRadius, const geometry2d::Polygon& polygon, CollisionInfo& collisionInfo)
 {
     collisionInfo.normal = {0, 0};
     collisionInfo.depth = std::numeric_limits<float>::max();
@@ -88,7 +88,7 @@ bool Physics::Collision::DiskIntersectsPolygonNormalDepth(sf::Vector2f diskCente
 
     //Handle the case where the center is inside the polygon or very close to it
     {
-        const sf::Vector2f closestPoint = PhysicsUtility::FindClosestPolygonVertexToPoint(diskCenter, polygon);
+        const sf::Vector2f closestPoint = Physics::PhysicsUtility::FindClosestPolygonVertexToPoint(diskCenter, polygon);
 
         axis = closestPoint - diskCenter;
         axis = sf::normalize(axis);
@@ -129,7 +129,7 @@ bool Physics::Collision::DiskIntersectsPolygonNormalDepth(sf::Vector2f diskCente
  * or its normal. Can be a nullptr.
  * \return - a bool whether a disk intersects with polygon
  */
-bool Physics::Collision::DiskIntersectsPolygon(sf::Vector2f diskCenter, const float radius, const geometry2d::Polygon& polygon, CollisionInfo* collisionInfo)
+bool Collision::DiskIntersectsPolygon(sf::Vector2f diskCenter, const float radius, const geometry2d::Polygon& polygon, CollisionInfo* collisionInfo)
 {
     const bool centerInside = geometry2d::IsPointInsidePolygon(diskCenter, polygon);
 
@@ -154,7 +154,7 @@ bool Physics::Collision::DiskIntersectsPolygon(sf::Vector2f diskCenter, const fl
     return centerInside;
 }
 
-bool Physics::Collision::AABBIntersect(geometry2d::AABB a, geometry2d::AABB b)
+bool Collision::AABBIntersect(geometry2d::AABB a, geometry2d::AABB b)
 {
     return !(a.GetMax().x < b.GetMin().x || a.GetMax().y < b.GetMin().y || a.GetMin().x > b.GetMax().x ||a.GetMin().y > b.GetMax().y);
 }
@@ -166,7 +166,7 @@ bool Physics::Collision::AABBIntersect(geometry2d::AABB a, geometry2d::AABB b)
  * \param axis - An axis the disk is projected on
  * \return - Axis projection of the disk onto the axis
  */
-Physics::Collision::AxisProjection Physics::Collision::ProjectDisk(const sf::Vector2f diskCenter, const float radius, sf::Vector2f axis)
+AxisProjection Collision::ProjectDisk(const sf::Vector2f diskCenter, const float radius, sf::Vector2f axis)
 {
     const sf::Vector2f directionAndRadius = sf::normalize(axis)*radius;
     const sf::Vector2f p1 = diskCenter + directionAndRadius;
@@ -194,7 +194,7 @@ Physics::Collision::AxisProjection Physics::Collision::ProjectDisk(const sf::Vec
  * or its normal. Can be a nullptr.
  * \return - a bool whether or not these 2 polygons intersect
  */
-bool Physics::Collision::CheckSATIntersection(const geometry2d::Polygon& polygon, const geometry2d::Polygon& other,CollisionInfo* collisionInfo)
+bool Collision::CheckSATIntersection(const geometry2d::Polygon& polygon, const geometry2d::Polygon& other,CollisionInfo* collisionInfo)
 {
     sf::Vector2f normal = sf::Vector2f(0, 0);
     float depth = std::numeric_limits<float>::max();
@@ -282,7 +282,7 @@ bool Physics::Collision::CheckSATIntersection(const geometry2d::Polygon& polygon
  * or its normal. Can be a nullptr.
  * \return - A bool whether or not these 2 polygons intersect
  */
-bool Physics::Collision::PolygonsIntersect(const geometry2d::Polygon& one, const geometry2d::Polygon& two, CollisionInfo* collisionInfo)
+bool Collision::PolygonsIntersect(const geometry2d::Polygon& one, const geometry2d::Polygon& two, CollisionInfo* collisionInfo)
 {
     if (!CheckSATIntersection(two, one, collisionInfo))
     {
@@ -298,7 +298,7 @@ bool Physics::Collision::PolygonsIntersect(const geometry2d::Polygon& one, const
  * \param axis - an axis that a polygon is being projected onto (a vec2)
  * \return - an axisprojection struct which is 
  */
-Physics::Collision::AxisProjection Physics::Collision::ProjectVertices(const geometry2d::Polygon& polygon,const sf::Vector2f axis)
+AxisProjection Collision::ProjectVertices(const geometry2d::Polygon& polygon,const sf::Vector2f axis)
 {
     float min = std::numeric_limits<float>::max();
     float max = std::numeric_limits<float>::min();

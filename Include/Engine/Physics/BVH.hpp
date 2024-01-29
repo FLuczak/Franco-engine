@@ -1,15 +1,11 @@
 #pragma once
 #include "geometry2d.hpp"
+#include "Engine/DebugRenderer.hpp"
 #include "Engine/Entity.hpp"
+#include "Game/BaseCollider.h"
 
 namespace Physics
 {
-
-    enum class ColliderShape
-    {
-        Polygon = (1 << 0),
-        Disk = (1 << 1)
-    };
 
 /**
  * \brief Bvh implementation based on Jacco Bikker's tutorial: https://jacco.ompf2.com/2022/04/13/how-to-build-a-bvh-part-1-basics/
@@ -23,11 +19,11 @@ class BVH
          */
         struct BVHElement
         {
-            BVHElement(const Entity& entityToSet, const ColliderShape shapeToSet, const geometry2d::AABB& aabbToSet): entityID(entityToSet.GetId()), shape(shapeToSet), aabb(aabbToSet)
+            BVHElement(BaseCollider& colliderToSet, const ColliderShape shapeToSet, const geometry2d::AABB& aabbToSet): collider({ colliderToSet }), shape(shapeToSet), aabb(aabbToSet)
             {
             }
 
-        	size_t entityID;
+        	std::reference_wrapper<BaseCollider> collider;
             ColliderShape shape;
             geometry2d::AABB aabb;
         };
@@ -59,7 +55,7 @@ class BVH
         const std::vector<BVHNode>& GetNodes() const { return nodes; }
         const std::vector<BVHElement>& GetElements() const { return elements; }
         const unsigned int GetRootIndex() const { return rootNodeIndex; }
-        
+        void DebugDraw(unsigned index, DebugRenderer& debugRenderer);
         void BuildBVH(std::vector<BVHElement>& allElements);
     private:
         std::vector<BVHNode> nodes;

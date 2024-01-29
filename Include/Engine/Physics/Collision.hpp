@@ -2,17 +2,31 @@
 #include "geometry2d.hpp"
 #include "SFML/System/Vector2.hpp"
 
-namespace Physics
-{
 
+class BaseCollider;
 /**
  * \brief An object holding additional collision information, such as a collision normal
  * and its depth. Used for collision resolution
  */
 struct CollisionInfo
 {
-    sf::Vector2f normal;
-    float depth;
+	CollisionInfo(BaseCollider& collider_a, BaseCollider& collider_b): colliderA(collider_a),colliderB(collider_b)
+	{
+	}
+
+	BaseCollider& colliderA;
+    BaseCollider& colliderB;
+    sf::Vector2f normal = {};
+    float depth = 0.0f;
+};
+
+/**
+ * \brief A struct for Separate axis theorem based collision detection with minimal and maximal projection values
+ */
+struct AxisProjection
+{
+    float min;
+    float max;
 };
 
 class Collision
@@ -23,20 +37,9 @@ public:
     static bool DiskIntersectsPolygon(sf::Vector2f diskCenter, const float radius, const geometry2d::Polygon& polygon, CollisionInfo* collisionInfo = nullptr);
     static bool AABBIntersect(geometry2d::AABB a, geometry2d::AABB b);
 private:
-    /**
-     * \brief A struct for Separate axis theorem based collision detection with minimal and maximal projection values
-     */
-    struct AxisProjection
-    {
-        float min;
-        float max;
-    };
-
     static bool DiskIntersectsPolygonNormalDepth(sf::Vector2f diskCenter, float diskRadius, const geometry2d::Polygon& polygon, CollisionInfo& collisionInfo);
     static AxisProjection ProjectDisk(const sf::Vector2f diskCenter, const float radius, sf::Vector2f axis);
     static bool CheckSATIntersection(const geometry2d::Polygon& polygon, const geometry2d::Polygon& other,
     CollisionInfo* collisionInfo = nullptr);
     static AxisProjection ProjectVertices(const geometry2d::Polygon& polygon, sf::Vector2f axis);
 };
-
-}  // namespace Physics
