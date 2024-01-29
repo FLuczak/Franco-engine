@@ -1,22 +1,11 @@
 #include "Game/World.hpp"
 #include "Engine/Entity.hpp"
 
-std::unique_ptr<World>  World::instance = nullptr;
-
 World::World() : Inspectable()
 {
-
+    
 }
 
-World& World::GetInstance()
-{
-    if (instance == nullptr)
-    {
-        instance = std::make_unique<World>();
-    }
-
-    return *instance;
-}
 
 unsigned World::GetId()
 {

@@ -128,7 +128,7 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 	}
 }
 
-void EntityInspector::DisplayComponents()
+void EntityInspector::DisplayComponents() const
 {
 	ImGui::Text("Components");
 	auto components = GenericFactory<Component>::Instance().GetKeys();

@@ -14,8 +14,6 @@ class World : public Inspectable
 {
 public:
 	World();
-	static World& GetInstance();
-
 	unsigned int GetId();
 	Entity& Instantiate(std::string nameToSet);
 
@@ -33,7 +31,6 @@ private:
 	EntityInspector entityInspector{};
 	std::queue<unsigned int> entitiesToRemove{};
 	int nextId = 0;
-	static std::unique_ptr<World> instance;
 	std::list<Entity> entities{};
 	std::vector<int> idsToSet{};
 };

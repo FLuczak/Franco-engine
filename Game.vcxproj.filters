@@ -99,6 +99,9 @@
     <ClCompile Include="Source\Game\BaseCollider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\SFML\include\SFML\Audio\AlResource.hpp">
@@ -666,6 +669,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="External\magic_enum\magic_enum_utility.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\Engine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

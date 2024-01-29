@@ -7,7 +7,7 @@
 class Game final : public Application
 {
 public:
-	explicit Game(sf::RenderWindow& window);
+	explicit Game();
 
 	void Tick(float dt) override;
 	void Render() override;

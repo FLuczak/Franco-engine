@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Engine\Engine.cpp" />
     <ClCompile Include="Source\Game\BaseCollider.cpp" />
     <ClCompile Include="Source\Game\BoxCollider.cpp" />
     <ClCompile Include="Source\Engine\DebugRenderer.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Source\Game\SpriteRenderComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Engine\Engine.hpp" />
     <ClInclude Include="External\magic_enum\magic_enum.hpp" />
     <ClInclude Include="External\magic_enum\magic_enum_all.hpp" />
     <ClInclude Include="External\magic_enum\magic_enum_containers.hpp" />

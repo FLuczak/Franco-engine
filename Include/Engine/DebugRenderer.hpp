@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
 
+#include "Game/CameraComponent.hpp"
 #include "SFML/Graphics/Color.hpp"
+#include "SFML/Graphics/Font.hpp"
 #include "SFML/System/Vector2.hpp"
 
 struct DebugCategory
@@ -37,10 +39,13 @@ public:
 
     void AddSquare(DebugCategory::Enum category, const sf::Vector2f& center, float size, const sf::Color& color);
 
-    void SetCategoryFlags(unsigned int flags) { m_categoryFlags = flags; }
-    unsigned int GetCategoryFlags() const { return m_categoryFlags; }
+    void SetCategoryFlags(unsigned int flags) { categoryFlags = flags; }
+    unsigned int GetCategoryFlags() const { return categoryFlags; }
 
 private:
-    unsigned int m_categoryFlags;
+    sf::Font debugFont;
+    sf::RenderWindow& window;
+    CameraComponent* mainCam;
+    unsigned int categoryFlags;
 };
 

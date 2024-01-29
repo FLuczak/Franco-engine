@@ -13,6 +13,11 @@ void Inspector::InspectAll() const
 	}
 }
 
+void Inspector::RegisterInspectable(Inspectable& inspectable)
+{
+	inspectables.emplace_back(inspectable);
+}
+
 void Inspector::RegisterInspectable(std::reference_wrapper<Inspectable> inspectable)
 {
 	inspectables.push_back(inspectable);

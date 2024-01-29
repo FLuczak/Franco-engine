@@ -1,6 +1,7 @@
 #include <Engine/EngineGame.hpp>
 
 #include "SimpleDelegates.h"
+#include "Engine/Engine.hpp"
 #include "Game/CameraComponent.hpp"
 #include "Game/SpriteRenderComponent.hpp"
 #include "Game/World.hpp"
@@ -11,7 +12,7 @@ void Game::Start()
 	world.Start();
 }
 
-Game::Game(sf::RenderWindow& window) : gameWindow(window), world(World::GetInstance())
+Game::Game() : gameWindow(Engine.window), world(Engine.world)
 {
 	currentGame = this;
 	auto& camera = world.Instantiate("MainCamera");
