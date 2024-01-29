@@ -50,9 +50,16 @@
       "mass": "1.000000",
       "restitution": "0.000000"
      }
+    },
+    {
+     "ComponentName": "class PlayerShooting",
+     "SerializedValues": {
+      "bulletSpeed": "450.000000",
+      "shootingSpeed": "1.000000"
+     }
     }
    ],
-   "Name": "Entity",
+   "Name": "Player",
    "Transform": {
     "Rotation": [
      0.0

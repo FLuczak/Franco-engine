@@ -108,6 +108,12 @@
     <ClCompile Include="Source\Engine\Physics\PolygonCollider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\PlayerShooting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\SFML\include\SFML\Audio\AlResource.hpp">
@@ -684,6 +690,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\Physics\PolygonCollider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Bullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\PlayerShooting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

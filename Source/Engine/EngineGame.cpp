@@ -16,7 +16,7 @@ Game::Game() : gameWindow(Engine.window), world(Engine.world)
 {
 	currentGame = this;
 	auto& camera = world.Instantiate("MainCamera");
-	camera.AddComponent<CameraComponent>(camera);
+	camera.AddComponent<CameraComponent>();
 }
 
 void Game::Tick(float dt)

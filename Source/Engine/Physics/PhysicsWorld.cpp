@@ -33,8 +33,7 @@ void PhysicsWorld::IntegrateForces(float dt) const
     for (auto& physicsBody : physicsBodies)
     {
 	    auto& body = physicsBody.get();
-        body.forces = sf::Vector2f(0, 9.81f);
-    	if (body.bodyType == PhysicsBodyType::STATIC) return;
+    	if (body.bodyType == PhysicsBodyType::STATIC) continue;;
         if (body.bodyType == PhysicsBodyType::DYNAMIC)
         {
             const sf::Vector2f acceleration = body.forces / body.mass;
@@ -121,7 +120,8 @@ void PhysicsWorld::ResolveCollision(PhysicsBody& bodyA, PhysicsBody& bodyB, cons
         impulseMagnitude /= (massA + massB);
         const sf::Vector2f impulse = (impulseMagnitude)*collisionInfo.normal;
 
-        bodyB.velocity -= impulse * massA;
+        bodyA.velocity -= impulse * massB;
+        bodyB.velocity += impulse * massA;
     }
 }
 

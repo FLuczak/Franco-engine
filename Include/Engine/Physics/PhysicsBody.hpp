@@ -18,6 +18,12 @@ enum class PhysicsBodyType
 class PhysicsBody final : public Component
 {
 public:
+	explicit PhysicsBody(Entity& entityToSet) : Component(entityToSet)
+	{
+		OnPhysicsBodyAdded(*this);
+		BaseCollider::OnColliderCreated.bind(this, &PhysicsBody::RegisterCollider);
+	}
+
 	static inline fluczak::sdel::Delegate<void(PhysicsBody&)> OnPhysicsBodyAdded;
 	static inline fluczak::sdel::Delegate<void(PhysicsBody&)> OnPhysicsBodyRemoved; 
 
@@ -34,11 +40,6 @@ public:
 	SERIALIZE_FIELD(float, restitution)
 	SERIALIZE_FIELD(PhysicsBodyType, bodyType);
 
-	explicit PhysicsBody(Entity& entityToSet) : Component(entityToSet)
-	{
-		OnPhysicsBodyAdded(*this);
-		BaseCollider::OnColliderCreated.bind(this, &PhysicsBody::RegisterCollider);
-	}
 	const std::vector<std::reference_wrapper<BaseCollider>>& GetColliders(){ return colliders; }
 	void Start() override;
 	void Update(float deltaTime) override;
