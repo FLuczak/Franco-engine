@@ -7,6 +7,7 @@
 #include "nlohmann/json.hpp"
 #include "magic_enum/magic_enum.hpp"
 
+struct CollisionEvent;
 struct Transform;
 class Entity;
 
@@ -41,6 +42,10 @@ public:
     virtual void Start();
     virtual void Update(float deltaTime);
     virtual void OnDestroy();
+
+    virtual void OnCollisionEnter(CollisionEvent& event){};
+    virtual void OnCollisionStay(CollisionEvent& event){};
+    virtual void OnCollisionLeave(CollisionEvent& event){};
 
     virtual ~Component();
 

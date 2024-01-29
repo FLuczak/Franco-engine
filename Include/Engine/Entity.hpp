@@ -6,6 +6,7 @@
 #include "Component.hpp"
 #include "SFML/System/Vector2.hpp"
 #include "nlohmann/json.hpp"
+#include "Physics/Collision.hpp"
 
 class Component;
 
@@ -40,6 +41,11 @@ public:
 	void RemoveComponent(Component& component);
 
 	void Update(float deltaTime, bool isGame);
+
+	void OnCollisionEnter(CollisionEvent& event) const;
+	void OnCollisionStay(CollisionEvent& event) const;
+	void OnCollisionLeave(CollisionEvent& event) const;
+
 	nlohmann::json Serialize();
 	void Deserialize(nlohmann::json& json);
 

@@ -1,6 +1,8 @@
 #pragma once
+#include "Collision.hpp"
 #include "SimpleDelegates.h"
 #include "Engine/Component.hpp"
+#include "Engine/Entity.hpp"
 #include "Game/BaseCollider.h"
 #include "SFML/System/Vector2.hpp"
 
@@ -46,8 +48,12 @@ public:
 		OnPhysicsBodyRemoved(*this);
 	}
 private:
+	bool physicsTickedThisFrame = false;
 	std::vector<std::reference_wrapper<BaseCollider>> colliders;
+	std::unordered_map<entity_id, CollisionEvent> collisionEvents;
+
 	void RegisterCollider(BaseCollider& collider, PhysicsBody& body);
+	friend class PhysicsWorld;
 };
 
 REGISTER_COMPONENT(PhysicsBody);

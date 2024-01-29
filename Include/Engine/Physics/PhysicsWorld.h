@@ -30,10 +30,14 @@ public:
 	void GetCollisionBroadPhaseBVH(unsigned index, const geometry2d::AABB& aabb, BaseCollider& collider, std::list<BroadPhaseCollisionPair>& list);
 	std::list<BroadPhaseCollisionPair> GetBroadPhaseCollisionPairs();
 
-	static void CheckAndResolveCollisionForPolygonDisk(BaseCollider& polygon, BaseCollider& disk);
 	static void ResolveCollision(PhysicsBody& bodyA, PhysicsBody& bodyB, const CollisionInfo& collisionInfo);
+	static void CheckAndResolveCollisionForPolygonDisk(BaseCollider& polygon, BaseCollider& disk);
 	static void CheckAndResolveCollisionForDiskDisk(BaseCollider& disk1, BaseCollider& disk2);
 	static void CheckAndResolveCollisionForPolygonPolygon(BaseCollider& polygon1, BaseCollider& polygon2);
+
+	static void HandleEnterOngoingCollisionEvents(const BaseCollider& trackingCollider, BaseCollider& collidingCollider, const CollisionInfo& collisionInfo);
+	static void HandleCollisionTrackingLeaveEvent(const BaseCollider& trackingCollider, const BaseCollider& collidingEntity);
+	void HandleLeavingEventsForBroadPhase(const std::list<BroadPhaseCollisionPair>& broadPhasePairs) const;
 
 	static void DetectAndResolveNarrowPhaseCollisions(const std::list<BroadPhaseCollisionPair>& list);
 	void CheckAndResolveCollisions();
@@ -44,7 +48,7 @@ public:
 private:
 	std::vector<Physics::BVH::BVHElement> bvhElements;
 	std::vector<std::reference_wrapper<PhysicsBody>> physicsBodies{};
-	float m_timesPerSecond = 60.0f;
+	float m_timesPerSecond = 50.0f;
 	float m_tick_timer = 0.0f;
 	float m_timeThreshold = 0.0f;
 	bool m_executedFrame = false;

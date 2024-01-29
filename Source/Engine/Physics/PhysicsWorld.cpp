@@ -83,21 +83,7 @@ std::list<BroadPhaseCollisionPair> PhysicsWorld::GetBroadPhaseCollisionPairs()
     return toReturn;
 }
 
-void PhysicsWorld::CheckAndResolveCollisionForPolygonDisk(BaseCollider& polygon, BaseCollider& disk)
-{
-    const PolygonCollider& aCollider = dynamic_cast<PolygonCollider&>(polygon);
-
-    CollisionInfo collisionInfo(polygon,disk);
-
-    const DiskCollider& bCollider = dynamic_cast<DiskCollider&>(disk);
-
-    if (Collision::DiskIntersectsPolygon(disk.GetTransform().position + sf::Vector2f(bCollider.offset.x,-bCollider.offset.y), bCollider.radius, aCollider.GetTransformedPolygon(), &collisionInfo))
-    {
-        ResolveCollision(*polygon.physicsBody, *disk.physicsBody, collisionInfo);
-    }
-}
-
-void PhysicsWorld::ResolveCollision( PhysicsBody& bodyA,  PhysicsBody& bodyB,const CollisionInfo& collisionInfo)
+void PhysicsWorld::ResolveCollision(PhysicsBody& bodyA, PhysicsBody& bodyB, const CollisionInfo& collisionInfo)
 {
     if (bodyA.bodyType == PhysicsBodyType::STATIC && bodyB.bodyType == PhysicsBodyType::STATIC)return;
 
@@ -106,7 +92,7 @@ void PhysicsWorld::ResolveCollision( PhysicsBody& bodyA,  PhysicsBody& bodyB,con
     const float massA = bodyA.InverseMass();
     const float massB = bodyB.InverseMass();
 
-	const sf::Vector2f temp = normalTimesDepth / (massA + massB);
+    const sf::Vector2f temp = normalTimesDepth / (massA + massB);
 
     bodyA.GetTransform().position += (-temp * massA);
     bodyB.GetTransform().position += (temp * massB);
@@ -122,12 +108,12 @@ void PhysicsWorld::ResolveCollision( PhysicsBody& bodyA,  PhysicsBody& bodyB,con
 
     if (bodyA.bodyType == PhysicsBodyType::STATIC)
     {
-	    const sf::Vector2f impulse = impulseMagnitude * collisionInfo.normal;
+        const sf::Vector2f impulse = impulseMagnitude * collisionInfo.normal;
         bodyB.velocity += impulse;
     }
     else if (bodyB.bodyType == PhysicsBodyType::STATIC)
     {
-	    const sf::Vector2f impulse = impulseMagnitude * collisionInfo.normal;
+        const sf::Vector2f impulse = impulseMagnitude * collisionInfo.normal;
         bodyA.velocity -= impulse;
     }
     else
@@ -136,6 +122,20 @@ void PhysicsWorld::ResolveCollision( PhysicsBody& bodyA,  PhysicsBody& bodyB,con
         const sf::Vector2f impulse = (impulseMagnitude)*collisionInfo.normal;
 
         bodyB.velocity -= impulse * massA;
+    }
+}
+
+void PhysicsWorld::CheckAndResolveCollisionForPolygonDisk(BaseCollider& polygon, BaseCollider& disk)
+{
+    const PolygonCollider& aCollider = dynamic_cast<PolygonCollider&>(polygon);
+
+    CollisionInfo collisionInfo(polygon,disk);
+
+    const DiskCollider& bCollider = dynamic_cast<DiskCollider&>(disk);
+
+    if (Collision::DiskIntersectsPolygon(disk.GetTransform().position + sf::Vector2f(bCollider.offset.x,-bCollider.offset.y), bCollider.radius, aCollider.GetTransformedPolygon(), &collisionInfo))
+    {
+        ResolveCollision(*polygon.physicsBody, *disk.physicsBody, collisionInfo);
     }
 }
 
@@ -149,7 +149,12 @@ void PhysicsWorld::CheckAndResolveCollisionForDiskDisk(BaseCollider& disk1, Base
 
     if (Collision::DisksIntersects(disk1.GetTransform().position + sf::Vector2f(aCollider.offset.x, aCollider.offset.y), aCollider.radius, disk2.GetTransform().position + sf::Vector2f(bCollider.offset.x, bCollider.offset.y), bCollider.radius, &collisionInfo))
     {
+        HandleEnterOngoingCollisionEvents(disk1, disk2, collisionInfo);
         ResolveCollision(*disk1.physicsBody, *disk2.physicsBody, collisionInfo);
+    }
+	else
+    {
+        HandleCollisionTrackingLeaveEvent(disk1, disk2);
     }
 }
 
@@ -165,6 +170,55 @@ void PhysicsWorld::CheckAndResolveCollisionForPolygonPolygon(BaseCollider& polyg
     {
         ResolveCollision(*polygon1.physicsBody, *polygon2.physicsBody, collisionInfo);
     }
+}
+
+void PhysicsWorld::HandleEnterOngoingCollisionEvents(const BaseCollider& trackingCollider,BaseCollider& collidingCollider, const CollisionInfo& collisionInfo)
+{
+	std::unordered_map<entity_id, CollisionEvent>& events = trackingCollider.physicsBody->collisionEvents;
+	size_t id = collidingCollider.GetEntity().GetId();
+    if (!events.contains(id))
+    {
+      events.insert(std::pair(id, CollisionEvent(CollisionEventType::Entering, collidingCollider, collisionInfo.depth, collisionInfo.normal)));
+    }
+    else
+    {
+    	events.at(id).type = CollisionEventType::Colliding;
+    }
+}
+
+void PhysicsWorld::HandleCollisionTrackingLeaveEvent(const BaseCollider& trackingCollider, const BaseCollider& collidingEntity)
+{
+    std::unordered_map<entity_id, CollisionEvent>& events = trackingCollider.physicsBody->collisionEvents;
+    size_t id = collidingEntity.GetEntity().GetId();
+    if (events.contains(id))
+    {
+        events.at(id).type = CollisionEventType::Leaving;
+    }
+}
+
+void PhysicsWorld::HandleLeavingEventsForBroadPhase(const std::list<BroadPhaseCollisionPair>& broadPhasePairs) const
+{
+	for (auto& element : physicsBodies)
+	{
+		auto& events = element.get().collisionEvents;
+        auto copyEvents = events;
+
+        for (auto& event : events)
+        {
+            for (auto& pair : broadPhasePairs)
+            {
+                if (event.first == pair.colliders.first.get().GetEntity().GetId() || event.first == pair.colliders.second.get().GetEntity().GetId())
+                {
+                    copyEvents.erase(event.first);
+                }
+            }
+        }
+
+        for (auto& leavingEvents : copyEvents)
+        {
+            events.at(leavingEvents.first).type = CollisionEventType::Leaving;
+        }
+	}
 }
 
 void PhysicsWorld::DetectAndResolveNarrowPhaseCollisions(const std::list<BroadPhaseCollisionPair>& list)
@@ -201,6 +255,7 @@ void PhysicsWorld::CheckAndResolveCollisions()
 	const std::list<BroadPhaseCollisionPair>& broadPhasePairs = GetBroadPhaseCollisionPairs();
     if (broadPhasePairs.empty())return;
     DetectAndResolveNarrowPhaseCollisions( broadPhasePairs);
+    HandleLeavingEventsForBroadPhase( broadPhasePairs);
 }
 
 void PhysicsWorld::UpdateBvhElements()
@@ -217,14 +272,9 @@ void PhysicsWorld::UpdateBvhElements()
 
 void PhysicsWorld::Simulate(float dt)
 {
-
     m_tick_timer += dt;
     m_timeThreshold = 1.0f / m_timesPerSecond;
-
-    if (m_tick_timer >= m_timeThreshold)
-    {
-        m_executedFrame = false;
-    }
+	m_executedFrame = false;
 
     while (m_tick_timer >= m_timeThreshold)
     {
@@ -234,7 +284,13 @@ void PhysicsWorld::Simulate(float dt)
         IntegrateForces(m_timeThreshold);
         CheckAndResolveCollisions();
         m_tick_timer -= m_timeThreshold;
-        m_executedFrame = true;
+
+        for (auto& body : physicsBodies)
+        {
+            body.get().physicsTickedThisFrame = true;
+        }
+
+    	m_executedFrame = true;
     }
 
     bvh.DebugDraw(bvh.GetRootIndex(),Engine.debugRenderer);

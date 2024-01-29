@@ -1,4 +1,7 @@
 #include "Engine/Entity.hpp"
+
+#include <iostream>
+
 #include "Engine/Component.hpp"
 
 
@@ -41,6 +44,30 @@ void Entity::Update(float deltaTime,bool isGame)
 	{
 		if (!isGame && !component->tickInEditor)continue;
 		component->Update(deltaTime);
+	}
+}
+
+void Entity::OnCollisionEnter(CollisionEvent& event) const
+{
+	for (const auto& element : components)
+	{
+		element->OnCollisionEnter(event);
+	}
+}
+
+void Entity::OnCollisionStay(CollisionEvent& event) const
+{
+	for (const auto& element : components)
+	{
+		element->OnCollisionStay(event);
+	}
+}
+
+void Entity::OnCollisionLeave(CollisionEvent& event) const
+{
+	for (const auto& element : components)
+	{
+		element->OnCollisionLeave(event);
 	}
 }
 

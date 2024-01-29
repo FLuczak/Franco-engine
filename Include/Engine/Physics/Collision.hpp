@@ -2,6 +2,29 @@
 #include "geometry2d.hpp"
 #include "SFML/System/Vector2.hpp"
 
+class BaseCollider;
+/**
+ * \brief The type of collision event that could possibly happen
+ * entering- for if the collision just began
+ * colliding- for an ongoing collision
+ * leaving -for an collision that is ending this frame
+ */
+enum class CollisionEventType
+{
+    Entering,
+    Colliding,
+    Leaving
+};
+
+struct CollisionEvent
+{
+    CollisionEvent(CollisionEventType typeToSet,BaseCollider& colliderToSet, float depthToSet, sf::Vector2f normalToSet) : type(typeToSet), otherCollider(colliderToSet), depth(depthToSet), normal(normalToSet) {}
+    CollisionEvent() = default;
+    CollisionEventType type;
+    BaseCollider& otherCollider;
+    float depth;
+    sf::Vector2f normal;
+};
 
 class BaseCollider;
 /**

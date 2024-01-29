@@ -8,6 +8,29 @@ void PhysicsBody::Start()
 void PhysicsBody::Update(float deltaTime)
 {
 	Component::Update(deltaTime);
+    if (!physicsTickedThisFrame)return;
+    for (auto it = collisionEvents.begin(); it != collisionEvents.end();)
+    {
+        if(it->second.type == CollisionEventType::Entering)
+        {
+            GetEntity().OnCollisionEnter(it->second);
+        }
+
+        if(it->second.type == CollisionEventType::Colliding)
+        {
+            GetEntity().OnCollisionStay(it->second);
+        }
+
+        if (it->second.type == CollisionEventType::Leaving)
+        {
+            GetEntity().OnCollisionLeave(it->second);
+            it = collisionEvents.erase(it);
+            continue;
+        }
+
+        ++it;
+    }
+    physicsTickedThisFrame = false;
 }
 
 void PhysicsBody::OnDestroy()
