@@ -106,6 +106,39 @@
      0.0
     ]
    }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "STATIC",
+      "mass": "5.000000",
+      "restitution": "1.000000"
+     }
+    },
+    {
+     "ComponentName": "class DiskCollider",
+     "SerializedValues": {
+      "offset": "x:0 y:0 ",
+      "radius": "50.000000"
+     }
+    }
+   ],
+   "Name": "Entity",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     400.0,
+     600.0
+    ]
+   }
   }
  ]
 }

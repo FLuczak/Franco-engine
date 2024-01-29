@@ -44,7 +44,7 @@ public:
 private:
 	std::vector<Physics::BVH::BVHElement> bvhElements;
 	std::vector<std::reference_wrapper<PhysicsBody>> physicsBodies{};
-	float m_timesPerSecond = 50.0f;
+	float m_timesPerSecond = 60.0f;
 	float m_tick_timer = 0.0f;
 	float m_timeThreshold = 0.0f;
 	bool m_executedFrame = false;

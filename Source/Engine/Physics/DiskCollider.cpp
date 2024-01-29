@@ -22,5 +22,5 @@ void DiskCollider::OnDestroy()
 
 geometry2d::AABB DiskCollider::AABB()
 {
-	return { GetEntity().GetTransform().position - sf::Vector2f(radius,radius), GetEntity().GetTransform().position + sf::Vector2f(radius,radius)};
+	return { GetEntity().GetTransform().position - sf::Vector2f(radius,radius) + offset, GetEntity().GetTransform().position + sf::Vector2f(radius,radius) + offset};
 }

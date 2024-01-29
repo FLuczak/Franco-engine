@@ -27,7 +27,7 @@ geometry2d::Polygon PolygonCollider::GetTransformedPolygon()const
 
     for (const auto& vertex : polygon) 
     {
-	    const sf::Vector2f translatedVertex = vertex + translation;
+	    const sf::Vector2f translatedVertex = vertex + translation+ offset;
 
 	    const float rotatedX = translatedVertex.x * cos(rotation) - translatedVertex.y * sin(rotation);
 	    const float rotatedY = translatedVertex.x * sin(rotation) + translatedVertex.y * cos(rotation);

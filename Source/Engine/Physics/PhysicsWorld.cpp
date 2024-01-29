@@ -91,7 +91,7 @@ void PhysicsWorld::CheckAndResolveCollisionForPolygonDisk(BaseCollider& polygon,
 
     const DiskCollider& bCollider = dynamic_cast<DiskCollider&>(disk);
 
-    if (Collision::DiskIntersectsPolygon(disk.GetTransform().position + bCollider.offset, bCollider.radius, aCollider.GetTransformedPolygon(), &collisionInfo))
+    if (Collision::DiskIntersectsPolygon(disk.GetTransform().position + sf::Vector2f(bCollider.offset.x,-bCollider.offset.y), bCollider.radius, aCollider.GetTransformedPolygon(), &collisionInfo))
     {
         ResolveCollision(*polygon.physicsBody, *disk.physicsBody, collisionInfo);
     }
@@ -99,10 +99,17 @@ void PhysicsWorld::CheckAndResolveCollisionForPolygonDisk(BaseCollider& polygon,
 
 void PhysicsWorld::ResolveCollision( PhysicsBody& bodyA,  PhysicsBody& bodyB,const CollisionInfo& collisionInfo)
 {
-    const sf::Vector2f normalTimesDepth = collisionInfo.normal * collisionInfo.depth;
-    const sf::Vector2f temp = normalTimesDepth / (bodyA.InverseMass() + bodyB.InverseMass());
+    if (bodyA.bodyType == PhysicsBodyType::STATIC && bodyB.bodyType == PhysicsBodyType::STATIC)return;
 
-    bodyA.GetTransform().position += (-temp * bodyA.InverseMass());
+    const sf::Vector2f normalTimesDepth = collisionInfo.normal * collisionInfo.depth;
+
+    const float massA = bodyA.InverseMass();
+    const float massB = bodyB.InverseMass();
+
+	const sf::Vector2f temp = normalTimesDepth / (massA + massB);
+
+    bodyA.GetTransform().position += (-temp * massA);
+    bodyB.GetTransform().position += (temp * massB);
 
     const sf::Vector2f relativeVelocity = bodyB.velocity - bodyA.velocity;
     const float restitutionCoefficient = std::min(bodyA.restitution, bodyB.restitution);
@@ -125,10 +132,10 @@ void PhysicsWorld::ResolveCollision( PhysicsBody& bodyA,  PhysicsBody& bodyB,con
     }
     else
     {
-        impulseMagnitude /= (bodyA.InverseMass() + bodyB.InverseMass());
+        impulseMagnitude /= (massA + massB);
         const sf::Vector2f impulse = (impulseMagnitude)*collisionInfo.normal;
 
-        bodyB.velocity -= impulse * bodyA.InverseMass();
+        bodyB.velocity -= impulse * massA;
     }
 }
 
@@ -140,9 +147,9 @@ void PhysicsWorld::CheckAndResolveCollisionForDiskDisk(BaseCollider& disk1, Base
 
     const DiskCollider& bCollider = dynamic_cast<DiskCollider&>(disk2);
 
-    if (Collision::DisksIntersects(disk1.GetTransform().position + aCollider.offset, aCollider.radius, disk2.GetTransform().position + bCollider.offset, bCollider.radius, &collisionInfo))
+    if (Collision::DisksIntersects(disk1.GetTransform().position + sf::Vector2f(aCollider.offset.x, aCollider.offset.y), aCollider.radius, disk2.GetTransform().position + sf::Vector2f(bCollider.offset.x, bCollider.offset.y), bCollider.radius, &collisionInfo))
     {
-        ResolveCollision(*disk1.physicsBody, *disk1.physicsBody, collisionInfo);
+        ResolveCollision(*disk1.physicsBody, *disk2.physicsBody, collisionInfo);
     }
 }
 
