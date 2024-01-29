@@ -29,13 +29,12 @@ public:
     DebugRenderer();
     ~DebugRenderer();
 
+    void GetMainCamera();
     void AddLine(DebugCategory::Enum category, const sf::Vector2f& from, const sf::Vector2f& to, const sf::Color& color);
 
     void AddText(DebugCategory::Enum category, const sf::Vector2f& position, const std::string& text, const sf::Color& color);
 
     void AddCircle(DebugCategory::Enum category, const sf::Vector2f& center, float radius, const sf::Color& color);
-
-    void AddSphere(DebugCategory::Enum category, const sf::Vector2f& center, float radius, const sf::Color& color);
 
     void AddSquare(DebugCategory::Enum category, const sf::Vector2f& center, float size, const sf::Color& color);
 
@@ -45,7 +44,7 @@ public:
 private:
     sf::Font debugFont;
     sf::RenderWindow& window;
-    CameraComponent* mainCam;
+    CameraComponent* mainCam = nullptr;
     unsigned int categoryFlags;
 };
 
