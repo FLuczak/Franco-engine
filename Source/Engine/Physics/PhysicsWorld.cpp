@@ -39,7 +39,7 @@ void PhysicsWorld::IntegrateForces(float dt) const
     for (auto& physicsBody : physicsBodies)
     {
 	    auto& body = physicsBody.get();
-    	if (body.bodyType == PhysicsBodyType::STATIC) continue;;
+    	if (body.bodyType == PhysicsBodyType::STATIC) continue;
         if (body.bodyType == PhysicsBodyType::DYNAMIC)
         {
             const sf::Vector2f acceleration = body.forces / body.mass;
@@ -100,6 +100,7 @@ void PhysicsWorld::ResolveCollision(PhysicsBody& bodyA, PhysicsBody& bodyB, cons
     const sf::Vector2f temp = normalTimesDepth / (massA + massB);
 
     bodyA.GetTransform().position += (-temp * massA);
+    bodyB.GetTransform().position += (temp * massB);
 
     const sf::Vector2f relativeVelocity = bodyB.velocity - bodyA.velocity;
     const float restitutionCoefficient = std::min(bodyA.restitution, bodyB.restitution);
@@ -155,14 +156,12 @@ void PhysicsWorld::CheckAndResolveCollisionForDiskDisk(BaseCollider& disk1, Base
     if (Collision::DisksIntersects(disk1.GetTransform().position + sf::Vector2f(aCollider.offset.x, aCollider.offset.y), aCollider.radius, disk2.GetTransform().position + sf::Vector2f(bCollider.offset.x, bCollider.offset.y), bCollider.radius, &collisionInfo))
     {
         HandleEnterOngoingCollisionEvents(disk1, disk2, collisionInfo);
-
+        HandleEnterOngoingCollisionEvents(disk2, disk1, collisionInfo);
         ResolveCollision(*disk1.physicsBody, *disk2.physicsBody, collisionInfo);
-        ResolveCollision(*disk2.physicsBody, *disk1.physicsBody, collisionInfo);
     }
 	else
     {
         HandleCollisionTrackingLeaveEvent(disk1, disk2);
-        HandleCollisionTrackingLeaveEvent(disk2, disk1);
     }
 }
 
