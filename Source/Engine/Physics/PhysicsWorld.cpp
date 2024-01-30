@@ -141,7 +141,13 @@ void PhysicsWorld::CheckAndResolveCollisionForPolygonDisk(BaseCollider& polygon,
 
     if (Collision::DiskIntersectsPolygon(disk.GetTransform().position + sf::Vector2f(bCollider.offset.x,-bCollider.offset.y), bCollider.radius, aCollider.GetTransformedPolygon(), &collisionInfo))
     {
+        HandleEnterOngoingCollisionEvents(polygon, disk, collisionInfo);
+        HandleEnterOngoingCollisionEvents(disk, polygon, collisionInfo);
         ResolveCollision(*polygon.physicsBody, *disk.physicsBody, collisionInfo);
+    }
+	else
+    {
+        HandleCollisionTrackingLeaveEvent(polygon, disk);
     }
 }
 
@@ -175,7 +181,13 @@ void PhysicsWorld::CheckAndResolveCollisionForPolygonPolygon(BaseCollider& polyg
 
     if (Collision::PolygonsIntersect( aCollider.GetTransformedPolygon(),bCollider.GetTransformedPolygon(), &collisionInfo))
     {
+        HandleEnterOngoingCollisionEvents(polygon1, polygon2, collisionInfo);
+        HandleEnterOngoingCollisionEvents(polygon2, polygon1, collisionInfo);
         ResolveCollision(*polygon1.physicsBody, *polygon2.physicsBody, collisionInfo);
+    }
+	else
+    {
+        HandleCollisionTrackingLeaveEvent(polygon1, polygon2);
     }
 }
 
