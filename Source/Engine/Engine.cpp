@@ -11,6 +11,7 @@ Engine::Engine() :Inspectable() , window(sf::VideoMode(1280, 720), "Game")
 {
     game = std::make_unique<Game>();
     inspector.RegisterInspectable(*this);
+    debugRenderer.SetCategoryFlags(0);
 }
 
 void Engine::Inspect()
@@ -62,6 +63,28 @@ void Engine::Inspect()
         {
             std::cerr << "Error opening the file." << std::endl;
         }
+    }
+
+    ImGui::SameLine();
+
+    if (ImGui::BeginMenu("Debug Render",true))
+    {
+        auto debugRenderFlags = debugRenderer.GetCategoryFlags();
+        bool changed = false;
+        changed |= ImGui::CheckboxFlags("General", &debugRenderFlags, DebugCategory::General);
+        changed |= ImGui::CheckboxFlags("Gameplay", &debugRenderFlags, DebugCategory::Gameplay);
+        changed |= ImGui::CheckboxFlags("Physics", &debugRenderFlags, DebugCategory::Physics);
+        changed |= ImGui::CheckboxFlags("AI Navigation", &debugRenderFlags, DebugCategory::AINavigation);
+        changed |= ImGui::CheckboxFlags("AI Decision Making", &debugRenderFlags, DebugCategory::AIDecision);
+        changed |= ImGui::CheckboxFlags("Sound", &debugRenderFlags, DebugCategory::Sound);
+        changed |= ImGui::CheckboxFlags("Rendering", &debugRenderFlags, DebugCategory::Rendering);
+        changed |= ImGui::CheckboxFlags("Editor", &debugRenderFlags, DebugCategory::Editor);
+        changed |= ImGui::CheckboxFlags("Acceleration Struct", &debugRenderFlags, DebugCategory::AccelStructs);
+        if (changed)
+        {
+            debugRenderer.SetCategoryFlags(debugRenderFlags);
+        }
+        ImGui::EndMenu();
     }
 
     ImGui::End();
