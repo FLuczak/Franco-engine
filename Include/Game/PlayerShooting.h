@@ -6,6 +6,7 @@ class PlayerShooting : public Component
 public:
 	SERIALIZE_FIELD(float, shootingSpeed);
 	SERIALIZE_FIELD(float, bulletSpeed);
+	SERIALIZE_FIELD(float, distanceFromPlayer);
 
 	explicit PlayerShooting(Entity& entityToSet): Component(entityToSet)
 	{

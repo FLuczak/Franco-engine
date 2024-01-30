@@ -24,8 +24,11 @@ void CameraComponent::Update(float deltaTime)
 	if (myWindow == nullptr)return;
 	for (auto& element : drawCalls)
 	{
-		element.setPosition(GetTransform().position + element.getPosition());
-		myWindow->draw(element);
+		for (auto call : element.second)
+		{
+			call .setPosition(GetTransform().position + call.getPosition());
+			myWindow->draw(call);
+		}
 	}
 
 	drawCalls.clear();
@@ -36,9 +39,9 @@ void CameraComponent::OnDestroy()
 	Component::OnDestroy();
 }
 
-void CameraComponent::RegisterDrawCall(sf::Sprite& sprite)
+void CameraComponent::RegisterDrawCall(const sf::Sprite& sprite, int layer)
 {
-	drawCalls.push_back(sprite);
+	drawCalls[layer].push_back(sprite);
 }
 
 CameraComponent::~CameraComponent()

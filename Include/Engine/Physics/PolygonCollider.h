@@ -6,6 +6,7 @@ class PolygonCollider : public BaseCollider
 public:
 	explicit PolygonCollider(Entity& entityToSet): BaseCollider(entityToSet)
 	{
+		tickInEditor = true;
 	}
 
 	void Start() override;

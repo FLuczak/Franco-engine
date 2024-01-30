@@ -139,7 +139,7 @@ void PhysicsWorld::CheckAndResolveCollisionForPolygonDisk(BaseCollider& polygon,
 
     const DiskCollider& bCollider = dynamic_cast<DiskCollider&>(disk);
 
-    if (Collision::DiskIntersectsPolygon(disk.GetTransform().position + sf::Vector2f(bCollider.offset.x,-bCollider.offset.y), bCollider.radius, aCollider.GetTransformedPolygon(), &collisionInfo))
+    if (Collision::DiskIntersectsPolygon(disk.GetTransform().position + disk.offset, bCollider.radius, aCollider.GetTransformedPolygon(), &collisionInfo))
     {
         HandleEnterOngoingCollisionEvents(polygon, disk, collisionInfo);
         HandleEnterOngoingCollisionEvents(disk, polygon, collisionInfo);

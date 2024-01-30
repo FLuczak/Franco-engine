@@ -13,11 +13,11 @@ public:
 	void Start() override;
 	void Update(float deltaTime) override;
 	void OnDestroy() override;
-	void RegisterDrawCall(sf::Sprite& sprite);
+	void RegisterDrawCall(const sf::Sprite& sprite,int layer);
 	static CameraComponent* GetMainCamera() { return main; }
 	~CameraComponent() override;
 private:
-	std::vector<sf::Sprite> drawCalls{};
+	std::map<int,std::vector<sf::Sprite>> drawCalls{};
 	sf::RenderWindow* myWindow = nullptr;
 	inline static CameraComponent* main{};
 };

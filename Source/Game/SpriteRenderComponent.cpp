@@ -40,7 +40,7 @@ void SpriteRenderComponent::Update(float deltaTime)
 	CameraComponent* mainCamera = CameraComponent::GetMainCamera();
 
 	if (mainCamera == nullptr)return;
-	mainCamera->RegisterDrawCall(*sprite);
+	mainCamera->RegisterDrawCall(*sprite,layer);
 }
 
 void SpriteRenderComponent::OnDestroy()

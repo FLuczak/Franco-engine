@@ -22,7 +22,7 @@ void PlayerShooting::Update(float deltaTime)
 		const auto mousePos = sf::Mouse::getPosition(Engine.window);
 		sf::Vector2f direction = sf::Vector2f(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) - GetTransform().position;
 		direction = sf::normalize(direction);
-		bullet.GetTransform().position = GetTransform().position + direction * 100.0f;
+		bullet.GetTransform().position = GetTransform().position + sf::Vector2f(32,32) + direction * distanceFromPlayer;
 		bullet.GetComponent<PhysicsBody>()->velocity = direction * bulletSpeed;
 
 		timer = shootingSpeed;

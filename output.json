@@ -26,6 +26,7 @@
     {
      "ComponentName": "class SpriteRenderComponent",
      "SerializedValues": {
+      "layer": "0",
       "spritePath": "Assets/Basic4x.png",
       "spriteSize": "left:0 top:0 width:64 height:64 "
      }
@@ -55,6 +56,7 @@
      "ComponentName": "class PlayerShooting",
      "SerializedValues": {
       "bulletSpeed": "450.000000",
+      "distanceFromPlayer": "50.000000",
       "shootingSpeed": "1.000000"
      }
     }
@@ -79,6 +81,7 @@
     {
      "ComponentName": "class SpriteRenderComponent",
      "SerializedValues": {
+      "layer": "0",
       "spritePath": "Assets/Basic4x.png",
       "spriteSize": "left:64 top:76 width:64 height:64 "
      }
@@ -109,41 +112,70 @@
      1.0
     ],
     "Translation": [
-     0.0,
-     0.0
+     200.0,
+     150.0
     ]
    }
   },
   {
    "Components": [
     {
-     "ComponentName": "class PhysicsBody",
+     "ComponentName": "class SpriteRenderComponent",
      "SerializedValues": {
-      "bodyType": "STATIC",
-      "mass": "5.000000",
-      "restitution": "1.000000"
+      "layer": "-1",
+      "spritePath": "Assets/map.png",
+      "spriteSize": "left:0 top:0 width:0 height:0 "
      }
     },
     {
-     "ComponentName": "class DiskCollider",
+     "ComponentName": "class BoxCollider",
      "SerializedValues": {
-      "offset": "x:0 y:0 ",
-      "radius": "50.000000"
+      "extents": "x:1200 y:20 ",
+      "offset": "x:0 y:40 "
+     }
+    },
+    {
+     "ComponentName": "class BoxCollider",
+     "SerializedValues": {
+      "extents": "x:1200 y:40 ",
+      "offset": "x:400 y:194 "
+     }
+    },
+    {
+     "ComponentName": "class BoxCollider",
+     "SerializedValues": {
+      "extents": "x:20 y:600 ",
+      "offset": "x:-58 y:30 "
+     }
+    },
+    {
+     "ComponentName": "class BoxCollider",
+     "SerializedValues": {
+      "extents": "x:20 y:600 ",
+      "offset": "x:257 y:200 "
+     }
+    },
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "STATIC",
+      "mass": "0.000000",
+      "restitution": "0.000000"
      }
     }
    ],
-   "Name": "Entity",
+   "Name": "Map\u0000ty",
    "Transform": {
     "Rotation": [
      0.0
     ],
     "Scale": [
-     1.0,
-     1.0
+     4.0,
+     4.0
     ],
     "Translation": [
-     400.0,
-     600.0
+     30.0,
+     -10.0
     ]
    }
   }

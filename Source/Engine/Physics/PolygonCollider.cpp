@@ -1,5 +1,6 @@
 #include "Engine/Physics/PolygonCollider.h"
 
+#include "Engine/Engine.hpp"
 #include "Engine/Entity.hpp"
 
 void PolygonCollider::Start()
@@ -10,6 +11,13 @@ void PolygonCollider::Start()
 void PolygonCollider::Update(float deltaTime)
 {
 	BaseCollider::Update(deltaTime);
+
+    auto transformed = GetTransformedPolygon();
+    if (transformed.size() <= 1)return;
+    for(int i= 0 ; i < transformed.size();i++)
+    {
+        Engine.debugRenderer.AddLine(DebugCategory::Physics, transformed[i] , transformed[(i + 1)%transformed.size()], sf::Color::Red);
+    }
 }
 
 void PolygonCollider::OnDestroy()
@@ -27,7 +35,7 @@ geometry2d::Polygon PolygonCollider::GetTransformedPolygon()const
 
     for (const auto& vertex : polygon) 
     {
-	    const sf::Vector2f translatedVertex = vertex + translation+ offset;
+	    const sf::Vector2f translatedVertex = vertex + translation + sf::Vector2f(offset.x,offset.y);
 
 	    const float rotatedX = translatedVertex.x * cos(rotation) - translatedVertex.y * sin(rotation);
 	    const float rotatedY = translatedVertex.x * sin(rotation) + translatedVertex.y * cos(rotation);
