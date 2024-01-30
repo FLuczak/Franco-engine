@@ -100,7 +100,6 @@ void PhysicsWorld::ResolveCollision(PhysicsBody& bodyA, PhysicsBody& bodyB, cons
     const sf::Vector2f temp = normalTimesDepth / (massA + massB);
 
     bodyA.GetTransform().position += (-temp * massA);
-    bodyB.GetTransform().position += (temp * massB);
 
     const sf::Vector2f relativeVelocity = bodyB.velocity - bodyA.velocity;
     const float restitutionCoefficient = std::min(bodyA.restitution, bodyB.restitution);

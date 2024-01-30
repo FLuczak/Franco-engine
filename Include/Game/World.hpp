@@ -16,6 +16,7 @@ public:
 	World();
 	unsigned int GetId();
 	Entity& Instantiate(std::string nameToSet);
+	Entity& InstantiateTemplate(std::string path);
 
 	void Start();
 	void DeleteDestroyedEntities();

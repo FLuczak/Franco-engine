@@ -1,4 +1,10 @@
 #include "Game/World.hpp"
+
+#include <fstream>
+#include <iostream>
+
+#include "Engine/AssetManager.hpp"
+#include "Engine/EditorUtility.h"
 #include "Engine/Entity.hpp"
 
 World::World() : Inspectable()
@@ -22,6 +28,20 @@ Entity& World::Instantiate(std::string nameToSet)
 {
     entities.emplace_back(GetId(), nameToSet);
     return entities.back();
+}
+
+Entity& World::InstantiateTemplate(std::string path)
+{
+    auto name = std::string("Entity");
+    entities.emplace_back(GetId(), name);
+    auto& entity = entities.back();
+
+    const auto& json = AssetManager::GetEntityTemplate(path);
+    auto& nonConst = const_cast<nlohmann::json&>(json);
+
+    entity.Deserialize(nonConst);
+    entity.Start(true);
+    return entity;
 }
 
 void World::Start()
@@ -87,12 +107,54 @@ void World::Inspect()
 
     if (ImGui::Button("+ ##entity", ImVec2(40, 40)))
     {
-        Instantiate("Entity");
+        ImGui::OpenPopup("ThePopup");
     }
+
+    if(!ImGui::IsMouseClicked(0) || ImGui::IsAnyItemHovered())
+    {
+        if (ImGui::BeginPopup("ThePopup"))
+        {
+            if (ImGui::Button("Empty entity"))
+            {
+                Instantiate("Entity");
+            }
+
+            if (ImGui::Button("From template"))
+            {
+                std::string path = Dialogs::OpenFileLoadDialog("(*.ent)");
+
+                if (path.empty() || path.find(".ent") == std::string::npos)
+                {
+                    ImGui::EndPopup();
+                    ImGui::End();
+                	return;
+                }
+                std::ifstream inputFile(path);
+
+                if (inputFile.is_open())
+                {
+                    nlohmann::json jsonData;
+                    inputFile >> jsonData;
+
+                    auto& entity = Instantiate("Entity");
+                    entity.Deserialize(jsonData);
+
+                    inputFile.close();
+                }
+                else
+                {
+                    std::cerr << "Error opening the file." << std::endl;
+                }
+            }
+
+            ImGui::EndPopup();
+        }
+    }
+
 
     for (auto& element : entities)
     {
-        if(ImGui::Selectable((element.name + "##"+ std::to_string(element.GetId())).c_str(), false, 0, ImVec2(100, 20)))
+        if(ImGui::Selectable( std::string(element.name + "##" + std::to_string(element.GetId()) ).c_str(), false, 0, ImVec2(100, 20)))
         {
             entityInspector.InspectEntity(&element);
         }

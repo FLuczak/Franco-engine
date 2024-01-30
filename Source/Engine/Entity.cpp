@@ -5,6 +5,15 @@
 #include "Engine/Component.hpp"
 
 
+void Entity::Start(bool isGame) const
+{
+	for (const auto& component : components)
+	{
+		if (!isGame && !component->tickInEditor)continue;
+		component->Start();
+	}
+}
+
 void Entity::OnDestroy() const
 {
 	for (auto& element : components)

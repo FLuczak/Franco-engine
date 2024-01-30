@@ -1,9 +1,11 @@
 #include "Engine/EntityInspector.hpp"
 
+#include <fstream>
 #include <iostream>
 
 #include "GenericFactory.hpp"
 #include "imgui.h"
+#include "Engine/EditorUtility.h"
 #include "magic_enum/magic_enum_utility.hpp"
 #include "Visit struct/visit_struct.hpp"
 
@@ -17,7 +19,7 @@ void EntityInspector::InspectEntity(Entity* entity)
 
 void EntityInspector::DisplayEntityNameChangeBox() const
 {
-	ImGui::InputText("Name", inspectedEntity->name.data(), inspectedEntity->name.size() + inspectedEntity->name.capacity());
+	ImGui::InputText(std::string("Name##" + std::to_string(inspectedEntity->GetId())).c_str(), inspectedEntity->name.data(), inspectedEntity->name.size() + inspectedEntity->name.capacity());
 }
 
 void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& component, const std::pair<std::string, EditorVariable*>& serializedField) const
@@ -183,6 +185,31 @@ void EntityInspector::DisplayComponents() const
 	}
 }
 
+void EntityInspector::DisplayTemplateSaveButton()
+{
+	if(ImGui::Button("Save template"))
+	{
+		std::string path = Dialogs::OpenFileSaveDialog();
+
+		if (path.empty())return;
+		auto json = inspectedEntity->Serialize();
+
+		std::ofstream outputFile(path);
+
+		if (outputFile.is_open()) {
+			// Write the JSON data to the file
+			outputFile << std::setw(json.size()) << json << std::endl;
+
+			// Close the file stream
+			outputFile.close(); std::cout << "JSON data has been written to 'output.json'." << std::endl;
+		}
+		else
+		{
+			std::cerr << "Error opening the file." << std::endl;
+		}
+	}
+}
+
 void EntityInspector::Update()
 {
 	ImGui::Begin("Entity inspector");
@@ -193,6 +220,7 @@ void EntityInspector::Update()
 	}
 
 	DisplayEntityNameChangeBox();
+	DisplayTemplateSaveButton();
 	DisplayComponents();
 
 	ImGui::End();

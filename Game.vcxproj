@@ -176,8 +176,10 @@
     <ClCompile Include="Source\Engine\Game.cpp" />
     <ClCompile Include="Source\Game\World.cpp" />
     <ClCompile Include="Source\Game\SpriteRenderComponent.cpp" />
+    <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Engine\EditorUtility.h" />
     <ClInclude Include="Include\Game\Bullet.h" />
     <ClInclude Include="Include\Engine\Physics\DiskCollider.hpp" />
     <ClInclude Include="Include\Engine\Engine.hpp" />
@@ -372,6 +374,7 @@
     <ClInclude Include="Include\Engine\Physics\PhysicsWorld.h" />
     <ClInclude Include="Include\Engine\Physics\PolygonCollider.h" />
     <ClInclude Include="Include\Game\PlayerShooting.h" />
+    <ClInclude Include="TileMap.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="External\SFML\include\SFML\Audio\SoundFileFactory.inl" />

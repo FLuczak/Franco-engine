@@ -18,9 +18,9 @@ public:
 	void Start() override;
 	void Update(float deltaTime) override;
 	void OnDestroy() override;
-	void OnCollisionEnter(::CollisionEvent& event) override;
-	void OnCollisionStay(::CollisionEvent& event) override;
-	void OnCollisionLeave(::CollisionEvent& event) override;
+	void OnCollisionEnter(CollisionEvent& event) override;
+	void OnCollisionStay(CollisionEvent& event) override;
+	void OnCollisionLeave(CollisionEvent& event) override;
 private:
 	float timer = 0.0f;
 };

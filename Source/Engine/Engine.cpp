@@ -3,6 +3,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "Engine/EditorUtility.h"
+
 class Engine Engine;
 
 Engine::Engine() :Inspectable() , window(sf::VideoMode(1280, 720), "Game")
@@ -18,18 +20,19 @@ void Engine::Inspect()
     {
         game->Start();
     }
-
+    ImGui::SameLine();
     if (ImGui::Button("Save"))
     {
+        std::string path = Dialogs::OpenFileSaveDialog();
+
+        if (path.empty())return;
         auto json = game->GetWorld().Serialize();
-        std::ofstream outputFile("output.json");
+        std::ofstream outputFile(path);
 
-        if (outputFile.is_open()) {
-            // Write the JSON data to the file
+        if (outputFile.is_open()) 
+        {
             outputFile << std::setw(json.size()) << json << std::endl;
-
-            // Close the file stream
-            outputFile.close();std::cout << "JSON data has been written to 'output.json'." << std::endl;
+        	outputFile.close();std::cout << "JSON data has been written to 'output.json'." << std::endl;
         }
         else
         {
@@ -38,9 +41,12 @@ void Engine::Inspect()
         }
     }
 
+    ImGui::SameLine();
     if (ImGui::Button("Load"))
     {
-        std::ifstream inputFile("output.json");
+        std::string path = Dialogs::OpenFileLoadDialog(".ent");
+        if (path.empty())return;
+        std::ifstream inputFile(path);
 
         if (inputFile.is_open())
         {

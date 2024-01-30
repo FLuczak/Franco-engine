@@ -18,31 +18,14 @@ void PlayerShooting::Update(float deltaTime)
 	timer -= deltaTime;
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && timer <= 0.0f)
 	{
-		auto& bullet =Engine.world.Instantiate("Bullet");
+		auto& bullet =Engine.world.InstantiateTemplate("Templates/Bullet.ent");
 		const auto mousePos = sf::Mouse::getPosition(Engine.window);
-
-		sf::Vector2f direction =sf::Vector2f( static_cast<float>(mousePos.x),static_cast<float>(mousePos.y)) - GetTransform().position;
+		sf::Vector2f direction = sf::Vector2f(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) - GetTransform().position;
 		direction = sf::normalize(direction);
-
 		bullet.GetTransform().position = GetTransform().position + direction * 100.0f;
-		bullet.GetTransform().scale = { 2,2 };
+		bullet.GetComponent<PhysicsBody>()->velocity = direction * bulletSpeed;
 
-		auto& physicsBody = bullet.AddComponent<PhysicsBody>();
-
-		physicsBody.velocity = direction * bulletSpeed;
-		physicsBody.mass = 100.0f;
-		physicsBody.bodyType = PhysicsBodyType::KINEMATIC;
-
-		auto& diskCollider = bullet.AddComponent<DiskCollider>();
-		diskCollider.radius = 8.0f;
-		diskCollider.offset = { 4.0f,4.0f };
-
-		auto& sprite = bullet.AddComponent<SpriteRenderComponent>();
-		sprite.spritePath = "Assets/Bullets.png";
-		sprite.spriteSize = sf::IntRect(180, 132, 8, 8);
 		timer = shootingSpeed;
-
-		bullet.AddComponent<Bullet>(3.0f);
 	}
 }
 

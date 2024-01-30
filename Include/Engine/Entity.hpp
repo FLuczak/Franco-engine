@@ -31,12 +31,13 @@ public:
 	Transform& GetTransform(){return transform;}
 
 	template<typename ComponentType, typename ...Args>
-	ComponentType& AddComponent(Args&& ... args);
+	ComponentType& AddComponent(Args&& ... args, bool startComponent);
 
 
 	template<typename ComponentType>
 	ComponentType* GetComponent();
 
+	void Start(bool isGame) const;
 	void OnDestroy() const;
 	void RemoveComponent(Component& component);
 
@@ -58,10 +59,10 @@ private:
 };
 
 template <typename ComponentType, typename ... Args>
-ComponentType& Entity::AddComponent(Args&& ... args)
+ComponentType& Entity::AddComponent(Args&& ... args,bool startComponent)
 {
 	components.emplace_back(std::make_unique<ComponentType>(*this,args... ));
-	components[components.size() - 1]->Start();
+	if(startComponent)components[components.size() - 1]->Start();
 	return dynamic_cast<ComponentType&>(*components[components.size() - 1]);
 }
 

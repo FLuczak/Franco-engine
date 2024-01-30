@@ -8,6 +8,7 @@ public:
 	void DisplayEntityNameChangeBox() const;
 	void DrawSerializedField(const std::unique_ptr<Component>& component, const std::pair<std::string, EditorVariable*>& serializedField) const;
 	void DisplayComponents() const;
+	void DisplayTemplateSaveButton();
 	void Update();
 private:
 	Entity* inspectedEntity = nullptr;

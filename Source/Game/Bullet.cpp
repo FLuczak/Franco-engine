@@ -5,6 +5,7 @@
 void Bullet::Start()
 {
 	Component::Start();
+	timer = lifeTime;
 }
 
 void Bullet::Update(float deltaTime)
