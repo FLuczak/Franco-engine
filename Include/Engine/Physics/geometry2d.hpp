@@ -2,10 +2,12 @@
 
 #include <vector>
 #include "SFML/System/Vector2.hpp"
-
+#include "Visit struct/visit_struct.hpp"
 /// <summary>
 /// A namespace containing functions related to 2D geometry.
 /// </summary>
+
+
 namespace geometry2d
 {
     // Input data types

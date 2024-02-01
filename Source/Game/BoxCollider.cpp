@@ -36,6 +36,7 @@ void BoxCollider::Update(float deltaTime)
         leftBottom.x =GetTransform().position.x -extents.x / 2.0f;
         leftBottom.y =GetTransform().position.y -extents.y / 2.0f;
         polygon.push_back(leftBottom);
+        oldExtents = extents;
 	}
 }
 

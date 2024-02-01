@@ -25,7 +25,7 @@ void EntityInspector::DisplayEntityNameChangeBox() const
 void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& component, const std::pair<std::string, EditorVariable*>& serializedField) const
 {
 	auto serializedValue = serializedField.second->ToString();
-	std::string variableValue = serializedValue;
+	std::stringstream stream = std::stringstream(serializedValue);
 
 	ImGui::Text(serializedField.first.c_str());
 
@@ -35,7 +35,7 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 	if (variableType == typeid(std::string))
 	{
 		ImGui::SameLine();
-		const char* buf = variableValue.c_str();
+		const char* buf = serializedValue.c_str();
 		ImGui::InputText(std::string("##" + serializedField.first).c_str(), const_cast<char*>(buf), 100);
 		serializedField.second->Deserialize(buf);
 		return;
@@ -44,7 +44,7 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 	if (variableType == typeid(float) || variableType == typeid(double))
 	{
 		ImGui::SameLine();
-		float value = std::stof(variableValue);
+		float value = std::stof(serializedValue);
 		if (ImGui::InputFloat(std::string("##" + serializedField.first).c_str(), &value))
 		{
 			auto str = std::to_string(value);
@@ -56,7 +56,7 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 	if (variableType == typeid(int))
 	{
 		ImGui::SameLine();
-		int value = std::stoi(variableValue);
+		int value = std::stoi(serializedValue);
 		if (ImGui::InputInt(std::string("##" + serializedField.first).c_str(), &value))
 		{
 			auto str = std::to_string(value);
@@ -68,19 +68,122 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 	if (variableType == typeid(bool))
 	{
 		ImGui::SameLine();
-		bool value = std::stoi(variableValue) == 1;
+		bool value = std::stoi(serializedValue) == 1;
 		ImGui::Checkbox(std::string("##" + serializedField.first).c_str(), &value);
 		auto str = std::to_string(value == true ? 1 : 0);
 		serializedField.second->Deserialize(str);
 		return;
 	}
 
+	if (typeName.find("std::vector") != std::string::npos)
+	{
+		std::stringstream deserializeStream;
+
+		bool addElement = false;
+		ImGui::SameLine();
+		if (ImGui::Button(std::string("+##"+serializedField.first).c_str(), ImVec2(20, 20)))
+		{
+			addElement = true;
+		}
+
+		if(std::string(serializedField.second->GetUnderlyingType().name()).find("class") != std::string::npos)
+		{
+			std::istringstream stream(serializedValue);
+			std::vector<std::string> pairs;
+			std::string tempPair;
+
+			while (std::getline(stream, tempPair, '}'))
+			{
+				pairs.push_back(tempPair);
+			}
+
+			int index = 0;
+			for (const auto& pair : pairs) 
+			{
+				std::istringstream pairStream(pair);
+				std::string keyValue;
+				deserializeStream << "{";
+				while (pairStream >> keyValue)
+				{
+					size_t colonPos = keyValue.find(':');
+					if (colonPos != std::string::npos) 
+					{
+						std::string name = keyValue.substr(0, colonPos);
+
+						if (name[0] == '{')
+						{
+							name = name.substr(1); 
+						}
+
+						std::string value = keyValue.substr(colonPos + 1);
+
+						std::string buf = value;
+						ImGui::Text(name.c_str());
+						ImGui::SameLine();
+						ImGui::InputText(std::string("##" + serializedField.first + name + std::to_string(index)).data(), &buf[0], 100);
+
+						deserializeStream << name << ":" << buf.c_str() << " ";
+					}
+				}
+
+				deserializeStream << "}";
+				index++;
+			}
+		}
+		else
+		{
+			std::istringstream stream(serializedValue);
+
+			if (!stream.str().empty())
+			{
+				std::vector<std::string> pairs;
+				std::string tempPair;
+				while (std::getline(stream, tempPair, '}'))
+				{
+					pairs.push_back(tempPair);
+				}
+
+				int index = 0;
+				for (const auto& pair : pairs)
+				{
+					std::istringstream pairStream(pair);
+					std::string keyValue;
+					deserializeStream << "{";
+					while (pairStream >> keyValue)
+					{
+
+						if (keyValue[0] == '{')
+						{
+							keyValue = keyValue.substr(1);
+						}
+
+						std::string buf = keyValue;
+						ImGui::Text(std::to_string(index).c_str());
+						ImGui::SameLine();
+						ImGui::InputText(std::string("##" + serializedField.first + std::to_string(index) + std::to_string(index)).data(), &buf[0], 100);
+
+						deserializeStream << buf.c_str() << " }";
+						index++;
+					}
+				}
+			}
+		}
+
+		if(addElement)
+		{
+			deserializeStream << "{}";
+		}
+
+		serializedField.second->Deserialize(deserializeStream.str());
+		return;
+	}
+
 	if (typeName.find("class") != std::string::npos)
 	{
-		std::stringstream stream = std::stringstream(serializedValue);
 		std::stringstream deserializeStream;
 		std::string pair;
 
+		int index = 0;
 		while (stream >> pair)
 		{
 			std::stringstream valueStream;
@@ -95,10 +198,11 @@ void EntityInspector::DrawSerializedField(const std::unique_ptr<Component>& comp
 
 				ImGui::Text(name.c_str());
 				ImGui::SameLine();
-				ImGui::InputText(std::string("##" + serializedField.first + name).data(), &buf[0], 100);
+				ImGui::InputText(std::string("##" + serializedField.first + name +std::to_string(index)).data(), &buf[0], 100);
 
 				deserializeStream << name << ":" << buf.c_str() << " ";
 			}
+			index++;
 		}
 
 		serializedField.second->Deserialize(deserializeStream.str());

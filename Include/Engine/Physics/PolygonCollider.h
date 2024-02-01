@@ -14,7 +14,7 @@ public:
 	void OnDestroy() override;
 	geometry2d::Polygon GetTransformedPolygon()const;
 
-	geometry2d::Polygon polygon;
+	SERIALIZE_FIELD(geometry2d::Polygon, polygon);
 	geometry2d::AABB AABB() override;
 };
 REGISTER_COMPONENT(PolygonCollider);
