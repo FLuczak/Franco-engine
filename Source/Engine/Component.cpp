@@ -1,4 +1,6 @@
 #include "Engine/Component.hpp"
+
+#include "Engine/EditorVariables.h"
 #include "Engine/Entity.hpp"
 
 Transform& Component::GetTransform() const
@@ -20,6 +22,11 @@ void Component::OnDestroy()
 
 Component::~Component()
 {
+}
+
+void Component::RegisterSerializedField(const std::string& name, EditorVariable* variable)
+{
+	editorVariables[name] = variable;
 }
 
 nlohmann::json Component::Serialize()

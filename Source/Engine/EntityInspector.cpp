@@ -6,6 +6,7 @@
 #include "GenericFactory.hpp"
 #include "imgui.h"
 #include "Engine/EditorUtility.h"
+#include "Engine/EditorVariables.h"
 #include "magic_enum/magic_enum_utility.hpp"
 #include "Visit struct/visit_struct.hpp"
 

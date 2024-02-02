@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/Component.hpp"
+#include "Engine/EditorVariables.h"
 #include "SFML/System/Vector2.hpp"
 
 class PlayerMovement : public Component

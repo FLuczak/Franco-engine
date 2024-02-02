@@ -1,6 +1,7 @@
 #pragma once
 #include "SimpleDelegates.h"
 #include "Engine/Component.hpp"
+#include "Engine/EditorVariables.h"
 #include "Engine/Physics/geometry2d.hpp"
 #include "SFML/SFMLMath.hpp"
 
@@ -19,7 +20,7 @@ class BaseCollider : public Component
 {
 public:
 	static inline fluczak::sdel::Delegate<void(BaseCollider&,PhysicsBody&)> OnColliderCreated;
-	SERIALIZE_FIELD(sf::Vector2f, offset);
+	SERIALIZE_FIELD(sf::Vector2f, offset)
 
 	ColliderShape colliderShape;
 	PhysicsBody* physicsBody = nullptr;

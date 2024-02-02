@@ -1,5 +1,6 @@
 #pragma once
 #include "Collision.hpp"
+#include "GenericFactory.hpp"
 #include "SimpleDelegates.h"
 #include "Engine/Component.hpp"
 #include "Engine/Entity.hpp"
@@ -38,7 +39,7 @@ public:
 
 	SERIALIZE_FIELD(float, mass)
 	SERIALIZE_FIELD(float, restitution)
-	SERIALIZE_FIELD(PhysicsBodyType, bodyType);
+	SERIALIZE_FIELD(PhysicsBodyType, bodyType)
 
 	const std::vector<std::reference_wrapper<BaseCollider>>& GetColliders(){ return colliders; }
 	void Start() override;

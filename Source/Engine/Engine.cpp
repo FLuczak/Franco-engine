@@ -42,6 +42,9 @@ void Engine::Inspect()
         }
     }
 
+    btEditor.Update();
+    fsmEditor.Update();
+
     ImGui::SameLine();
     if (ImGui::Button("Load"))
     {

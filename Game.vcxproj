@@ -143,6 +143,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="imgui\crude_json.cpp" />
+    <ClCompile Include="imgui\extra_fonts\binary_to_compressed_c.cpp" />
+    <ClCompile Include="imgui\imgui_canvas.cpp" />
+    <ClCompile Include="imgui\imgui_impl.cpp" />
+    <ClCompile Include="imgui\imgui_node_editor.cpp" />
+    <ClCompile Include="imgui\imgui_node_editor_api.cpp" />
+    <ClCompile Include="imgui\implot.cpp" />
+    <ClCompile Include="imgui\implot_demo.cpp" />
+    <ClCompile Include="imgui\implot_items.cpp" />
+    <ClCompile Include="Source\Engine\AI\BehaviorTrees\Behaviors.cpp" />
+    <ClCompile Include="Source\Engine\AI\BehaviorTrees\BehaviorTree.cpp" />
+    <ClCompile Include="Source\Engine\AI\BehaviorTrees\BehaviorTreeBuilder.cpp" />
+    <ClCompile Include="Source\Engine\AI\BehaviorTrees\Editor\BehaviorTreeEditor.cpp" />
+    <ClCompile Include="Source\Engine\AI\Blackboards\Blackboard.cpp" />
+    <ClCompile Include="Source\Engine\AI\FiniteStateMachines\Editor\FiniteStateMachineEditor.cpp" />
+    <ClCompile Include="Source\Engine\AI\FiniteStateMachines\FiniteStateMachine.cpp" />
+    <ClCompile Include="Source\Engine\AI\Utils\BlackboardInspector.cpp" />
     <ClCompile Include="Source\Game\PlayerShooting.cpp" />
     <ClCompile Include="Source\Game\Bullet.cpp" />
     <ClCompile Include="Source\Engine\Physics\DiskCollider.cpp" />
@@ -179,7 +196,29 @@
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="imgui\crude_json.h" />
+    <ClInclude Include="imgui\IconsFontAwesome.h" />
+    <ClInclude Include="imgui\imgui_bezier_math.h" />
+    <ClInclude Include="imgui\imgui_canvas.h" />
+    <ClInclude Include="imgui\imgui_extra_math.h" />
+    <ClInclude Include="imgui\imgui_impl.h" />
+    <ClInclude Include="imgui\imgui_node_editor.h" />
+    <ClInclude Include="imgui\imgui_node_editor_internal.h" />
+    <ClInclude Include="imgui\implot.h" />
+    <ClInclude Include="imgui\implot_internal.h" />
+    <ClInclude Include="Include\Engine\AI\BehaviorTrees\Behaviors.hpp" />
+    <ClInclude Include="Include\Engine\AI\BehaviorTrees\BehaviorTree.hpp" />
+    <ClInclude Include="Include\Engine\AI\BehaviorTrees\BehaviorTreeBuilder.hpp" />
+    <ClInclude Include="Include\Engine\AI\BehaviorTrees\Editor\BehaviorTreeEditor.hpp" />
+    <ClInclude Include="Include\Engine\AI\Blackboards\Blackboard.hpp" />
+    <ClInclude Include="Include\Engine\AI\Blackboards\Comparator.hpp" />
+    <ClInclude Include="Include\Engine\AI\FiniteStateMachines\Editor\FiniteStateMachineEditor.hpp" />
+    <ClInclude Include="Include\Engine\AI\FiniteStateMachines\FiniteStateMachine.hpp" />
+    <ClInclude Include="Include\Engine\AI\Utils\BlackboardInspector.hpp" />
+    <ClInclude Include="Include\Engine\AI\Utils\EditorUtils.h" />
+    <ClInclude Include="Include\Engine\AI\Utils\ExecutionContext.hpp" />
     <ClInclude Include="Include\Engine\EditorUtility.h" />
+    <ClInclude Include="Include\Engine\EditorVariables.h" />
     <ClInclude Include="Include\Game\Bullet.h" />
     <ClInclude Include="Include\Engine\Physics\DiskCollider.hpp" />
     <ClInclude Include="Include\Engine\Engine.hpp" />
@@ -386,6 +425,9 @@
     <None Include="External\SFML\include\SFML\System\Utf.inl" />
     <None Include="External\SFML\include\SFML\System\Vector2.inl" />
     <None Include="External\SFML\include\SFML\System\Vector3.inl" />
+    <None Include="imgui\imgui_bezier_math.inl" />
+    <None Include="imgui\imgui_extra_math.inl" />
+    <None Include="imgui\imgui_node_editor_internal.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

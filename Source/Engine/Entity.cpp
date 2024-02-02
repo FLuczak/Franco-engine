@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "GenericFactory.hpp"
 #include "Engine/Component.hpp"
 
 

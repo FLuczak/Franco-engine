@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/Component.hpp"
+#include "Engine/EditorVariables.h"
 
 class PlayerShooting : public Component
 {

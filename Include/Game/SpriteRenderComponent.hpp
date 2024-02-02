@@ -3,6 +3,7 @@
 
 #include "Engine/AssetManager.hpp"
 #include "Engine/Component.hpp"
+#include "Engine/EditorVariables.h"
 #include "SFML/Graphics/Sprite.hpp"
 
 VISITABLE_STRUCT(sf::IntRect, left, top, width,height);
