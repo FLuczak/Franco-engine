@@ -53,7 +53,6 @@ public:
 
 	void End(AI::StateMachineContext& context) override
 	{
-		context.blackboard->SetData("IsHit", false);
 		context.blackboard->SetData<bool>("AnimationEnded", false);
 	}
 };
@@ -71,8 +70,6 @@ public:
 	void Start() override;
 	void Update(float deltaTime) override;
 	void OnDestroy() override;
-	void OnCollisionEnter(CollisionEvent& event) override;
-	void OnCollisionLeave(CollisionEvent& event) override;
 
 private:
 	SpriteRenderComponent* sprite;

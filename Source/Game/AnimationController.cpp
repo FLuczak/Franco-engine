@@ -25,17 +25,5 @@ void AnimationController::OnDestroy()
 	Component::OnDestroy();
 }
 
-void AnimationController::OnCollisionEnter(CollisionEvent& event)
-{
-	Component::OnCollisionEnter(event);
-	if (event.otherCollider.GetEntity().GetComponent<Bullet>() == nullptr)return;
-	context.blackboard->SetData("IsHit", true);
-}
-
-void AnimationController::OnCollisionLeave(CollisionEvent& event)
-{
-	Component::OnCollisionLeave(event);
-	context.blackboard->SetData("IsHit", false);
-}
 
 
