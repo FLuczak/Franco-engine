@@ -38,6 +38,11 @@ void PhysicsBody::HandleCollisionEvents()
 
         ++it;
     }
+
+    for (auto& pair : collisionEvents)
+    {
+        pair.second.type = CollisionEventType::Colliding;
+    }
 }
 
 void PhysicsBody::RegisterCollider(BaseCollider& collider,  PhysicsBody& body)
