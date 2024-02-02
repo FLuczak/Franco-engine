@@ -3,6 +3,8 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+
+#include "AI/FiniteStateMachines/FiniteStateMachine.hpp"
 #include "nlohmann/json.hpp"
 
 #include "SFML/Graphics/Sprite.hpp"
@@ -12,7 +14,8 @@ enum class AssetType
 {
 	None,
 	Sprite,
-	EntityTemplate
+	EntityTemplate,
+	AnimationFSM
 };
 
 struct Asset
@@ -30,6 +33,22 @@ struct TextureAsset : Asset
 	}
 
 	sf::Texture texture;
+};
+
+struct AnimationFSM : Asset
+{
+	AnimationFSM(nlohmann::json json)
+	{
+		auto ss = std::stringstream(json.dump());
+		fsm = AI::FiniteStateMachine::DeserializeFromStringStream(ss);
+	}
+
+	std::any GetAsset() override
+	{
+		return std::any(fsm.get());
+	}
+
+	std::unique_ptr<AI::FiniteStateMachine> fsm;
 };
 
 struct EntityTemplateAsset : Asset
@@ -52,6 +71,7 @@ class AssetManager
 public:
 	static std::unique_ptr<sf::Sprite> GetTexture(std::string name, sf::IntRect size);
 	static const nlohmann::json& GetEntityTemplate(std::string name);
+	static AI::FiniteStateMachine& GetAnimationFSM(std::string name);
 private:
 	static std::filesystem::path GetAssetsPath();
 	static std::unordered_map<std::string, std::unique_ptr<Asset>> assets;

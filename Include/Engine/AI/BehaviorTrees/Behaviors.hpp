@@ -10,7 +10,8 @@
 #include "Engine/AI/Blackboards/Blackboard.hpp"
 #include "Engine/AI/Blackboards/Comparator.hpp"
 #include "Engine/AI/Utils/ExecutionContext.hpp"
-#include "Engine/EditorVariables.h"
+
+class EditorVariable;
 
 namespace AI
 {

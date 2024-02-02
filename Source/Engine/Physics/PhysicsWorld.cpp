@@ -168,6 +168,7 @@ void PhysicsWorld::CheckAndResolveCollisionForDiskDisk(BaseCollider& disk1, Base
 	else
     {
         HandleCollisionTrackingLeaveEvent(disk1, disk2);
+        HandleCollisionTrackingLeaveEvent(disk2, disk1);
     }
 }
 
@@ -198,10 +199,6 @@ void PhysicsWorld::HandleEnterOngoingCollisionEvents(const BaseCollider& trackin
     if (!events.contains(id))
     {
       events.insert(std::pair(id, CollisionEvent(CollisionEventType::Entering, collidingCollider, collisionInfo.depth, collisionInfo.normal)));
-    }
-    else
-    {
-    	events.at(id).type = CollisionEventType::Colliding;
     }
 }
 

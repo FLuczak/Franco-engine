@@ -86,7 +86,6 @@ struct StateMachineContext;
         void ComparatorValueInput(ComparatorWrapper& comparator, const char* label) const;
         void ChooseComparatorTypeInput(std::vector<AI::ComparatorWrapper>::value_type& comparator, const char* label) const;
         void ChooseComparisonTypeInput(std::vector<AI::ComparatorWrapper>::value_type& comparator, const char* label) const;
-        void EditorVariableInput(std::unique_ptr<AI::NodeWrapper>& focusedNode, std::pair<const std::string, EditorVariable*>& editorVariable) const;
 
         void DrawUpperMenu();
 

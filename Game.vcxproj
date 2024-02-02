@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\AnimationController.cpp" />
     <ClCompile Include="imgui\crude_json.cpp" />
     <ClCompile Include="imgui\extra_fonts\binary_to_compressed_c.cpp" />
     <ClCompile Include="imgui\imgui_canvas.cpp" />
@@ -196,6 +197,7 @@
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Game\AnimationController.h" />
     <ClInclude Include="imgui\crude_json.h" />
     <ClInclude Include="imgui\IconsFontAwesome.h" />
     <ClInclude Include="imgui\imgui_bezier_math.h" />

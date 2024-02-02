@@ -1,6 +1,7 @@
 
 #include "Engine/AI/BehaviorTrees/BehaviorTreeBuilder.hpp"
 #include "GenericFactory.hpp"
+#include "Engine/EditorVariables.h"
 #include "Engine/AI/BehaviorTrees/BehaviorTree.hpp"
 
 AI::BehaviorTreeBuilder& AI::BehaviorTreeBuilder::Selector()

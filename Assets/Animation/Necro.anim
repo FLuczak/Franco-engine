@@ -1,0 +1,106 @@
+{
+     "behavior-structure-type": "FSM",
+     "editor-data": [
+          {
+               "name": "Idle",
+               "position": {
+                    "x": -1.0,
+                    "y": -8.0
+               }
+          },
+          {
+               "name": "Hit",
+               "position": {
+                    "x": -10.0,
+                    "y": 103.0
+               }
+          }
+     ],
+     "states": [
+          {
+               "default": true,
+               "editor-variables": [
+                    {
+                         "name": "width",
+                         "value": "64.000000"
+                    },
+                    {
+                         "name": "height",
+                         "value": "64.000000"
+                    },
+                    {
+                         "name": "looping",
+                         "value": "1"
+                    },
+                    {
+                         "name": "startIndex",
+                         "value": "x:0 y:0 "
+                    },
+                    {
+                         "name": "endIndex",
+                         "value": "x:4 y:0 "
+                    },
+                    {
+                         "name": "animationTime",
+                         "value": "0.125000"
+                    }
+               ],
+               "name": "AnimationState"
+          },
+          {
+               "default": false,
+               "editor-variables": [
+                    {
+                         "name": "width",
+                         "value": "64.000000"
+                    },
+                    {
+                         "name": "height",
+                         "value": "64.000000"
+                    },
+                    {
+                         "name": "looping",
+                         "value": "0"
+                    },
+                    {
+                         "name": "startIndex",
+                         "value": "x:0 y:1 "
+                    },
+                    {
+                         "name": "endIndex",
+                         "value": "x:1 y:1 "
+                    },
+                    {
+                         "name": "animationTime",
+                         "value": "0.050000"
+                    }
+               ],
+               "name": "AnimationState"
+          }
+     ],
+     "transition-data": [
+          {
+               "from": 0,
+               "transitions": [
+                    {
+                         "comparators": [
+                              "IsHit bool 0 1 "
+                         ],
+                         "to": 1
+                    }
+               ]
+          },
+          {
+               "from": 1,
+               "transitions": [
+                    {
+                         "comparators": [
+                              "AnimationEnded bool 0 1 "
+                         ],
+                         "to": 0
+                    }
+               ]
+          }
+     ],
+     "transitions": []
+}

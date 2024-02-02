@@ -190,52 +190,6 @@ void AI::FiniteStateMachineEditor::ChooseComparisonTypeInput(AI::ComparatorWrapp
     }
 }
 
-void AI::FiniteStateMachineEditor::EditorVariableInput(std::unique_ptr<AI::NodeWrapper>& focusedNode,std::pair<const std::string, EditorVariable*>& editorVariable) const
-{
-    ImGui::SameLine();
-    std::string variableValue = editorVariable.second->ToString();
-
-    if (editorVariable.second->GetTypeInfo() == typeid(std::string))
-    {
-        char* buf = variableValue.data();
-        if (ImGui::InputText(std::string("##" + editorVariable.first).c_str(), buf, 100))
-        {
-            editorVariable.second->Deserialize(buf);
-            focusedNode->editorVariables[editorVariable.first] = editorVariable.second->ToString();
-        }
-    }
-
-    if (editorVariable.second->GetTypeInfo() == typeid(float) || editorVariable.second->GetTypeInfo() == typeid(double))
-    {
-        float value = std::stof(variableValue);
-        if (ImGui::InputFloat(std::string("##" + editorVariable.first).c_str(), &value))
-        {
-            auto str = std::to_string(value);
-            editorVariable.second->Deserialize(str);
-            focusedNode->editorVariables[editorVariable.first] = editorVariable.second->ToString();
-        }
-    }
-
-    if (editorVariable.second->GetTypeInfo() == typeid(int))
-    {
-        int value = std::stoi(variableValue);
-        if (ImGui::InputInt(std::string("##" + editorVariable.first).c_str(), &value))
-        {
-            auto str = std::to_string(value);
-            editorVariable.second->Deserialize(str);
-            focusedNode->editorVariables[editorVariable.first] = editorVariable.second->ToString();
-        }
-    }
-
-    if (editorVariable.second->GetTypeInfo() == typeid(bool))
-    {
-        bool value = std::stoi(variableValue) == 1;
-        ImGui::Checkbox(std::string("##" + editorVariable.first).c_str(), &value);
-        auto str = std::to_string(value==true?1:0);
-        editorVariable.second->Deserialize(str);
-        focusedNode->editorVariables[editorVariable.first] = editorVariable.second->ToString();
-    }
-}
 
 void AI::FiniteStateMachineEditor::DrawSelectedStateDetails()
 {
@@ -337,8 +291,7 @@ void AI::FiniteStateMachineEditor::DrawSelectedStateDetails()
         
         for (auto& editorVariable : focusedNode->underlyingState->editorVariables)
         {
-            ImGui::Text(editorVariable.first.c_str());
-            EditorVariableInput(focusedNode, editorVariable);
+            DrawSerializedField(editorVariable);
         }
     }
 
@@ -411,7 +364,7 @@ void AI::FiniteStateMachineEditor::DrawNode(const AI::EditorFSMWrapper& wrapper,
         {
             ax::NodeEditor::SetNodePosition(i + 1, wrapper.nodes[i]->position);
         }
-        ax::NodeEditor::NavigateToContent(false, 0);
+        ax::NodeEditor::NavigateToContent(true, 0);
 
         m_reloadPositions = false;
     }
@@ -503,11 +456,11 @@ void AI::FiniteStateMachineEditor::SaveStates(nlohmann::json& states) const
         stateObject["default"] = m_defaultState+1 == element->id;
         stateObject["editor-variables"] = nlohmann::json();
 
-        for (auto& variable : element->editorVariables)
+        for (auto& variable : element.get()->underlyingState->editorVariables)
         {
             auto toAdd = nlohmann::json();
             toAdd["name"] = variable.first;
-            toAdd["value"] = variable.second;
+            toAdd["value"] = variable.second->ToString();
             stateObject["editor-variables"].push_back(toAdd);
         }
         states.push_back(stateObject);

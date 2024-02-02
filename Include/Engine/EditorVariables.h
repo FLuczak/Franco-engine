@@ -3,6 +3,8 @@
 #include <string>
 #include <typeindex>
 
+#include "AI/BehaviorTrees/Behaviors.hpp"
+#include "AI/FiniteStateMachines/FiniteStateMachine.hpp"
 #include "magic_enum/magic_enum.hpp"
 #include "Visit struct/visit_struct.hpp"
 #include "Engine/Component.hpp"
@@ -57,15 +59,15 @@ public:
         component.RegisterSerializedField(name, this);
     }
 
-    //SerializedField(AI::BehaviorTreeAction& action, const std::string& name, T& variable) : value(variable)
-   // {
-    //    action.RegisterEditorVariable(name, this);
-   // }
+    SerializedField(AI::BehaviorTreeAction& action, const std::string& name, T& variable) : value(variable)
+    {
+        action.RegisterEditorVariable(name, this);
+    }
 
-    //SerializedField(AI::State& state, const std::string& name, T& variable) : value(variable)
-    //{
-    //    state.RegisterEditorVariable(name, this);
-    //}
+   SerializedField(AI::State& state, const std::string& name, T& variable) : value(variable)
+   {
+       state.RegisterEditorVariable(name, this);
+   }
 
     T GetValue() { return value; }
 

@@ -3,6 +3,7 @@
 #include <string>
 
 #include "windows.h"
+#include "Engine/EditorVariables.h"
 
 namespace AI
 {
@@ -124,6 +125,218 @@ inline int AI::ComparatorWrapper::GetComparisonTypeNum() const
         if (ComparatorsInEditor::comparisonTypes[i] == comparisonType) return i;
     }
     return 0;
+}
+
+inline void DrawSerializedField(const std::pair<std::string, EditorVariable*>& serializedField) 
+{
+	auto serializedValue = serializedField.second->ToString();
+	std::stringstream stream = std::stringstream(serializedValue);
+
+	ImGui::Text(serializedField.first.c_str());
+
+	auto variableType = serializedField.second->GetTypeInfo();
+	auto typeName = std::string(variableType.name());
+
+	if (variableType == typeid(std::string))
+	{
+		ImGui::SameLine();
+		const char* buf = serializedValue.c_str();
+		ImGui::InputText(std::string("##" + serializedField.first).c_str(), const_cast<char*>(buf), 100);
+		serializedField.second->Deserialize(buf);
+		return;
+	}
+
+	if (variableType == typeid(float) || variableType == typeid(double))
+	{
+		ImGui::SameLine();
+		float value = std::stof(serializedValue);
+		if (ImGui::InputFloat(std::string("##" + serializedField.first).c_str(), &value))
+		{
+			auto str = std::to_string(value);
+			serializedField.second->Deserialize(str);
+			return;
+		}
+	}
+
+	if (variableType == typeid(int))
+	{
+		ImGui::SameLine();
+		int value = std::stoi(serializedValue);
+		if (ImGui::InputInt(std::string("##" + serializedField.first).c_str(), &value))
+		{
+			auto str = std::to_string(value);
+			serializedField.second->Deserialize(str);
+			return;
+		}
+	}
+
+	if (variableType == typeid(bool))
+	{
+		ImGui::SameLine();
+		bool value = std::stoi(serializedValue) == 1;
+		ImGui::Checkbox(std::string("##" + serializedField.first).c_str(), &value);
+		auto str = std::to_string(value == true ? 1 : 0);
+		serializedField.second->Deserialize(str);
+		return;
+	}
+
+	if (typeName.find("std::vector") != std::string::npos)
+	{
+		std::stringstream deserializeStream;
+
+		bool addElement = false;
+		ImGui::SameLine();
+		if (ImGui::Button(std::string("+##" + serializedField.first).c_str(), ImVec2(20, 20)))
+		{
+			addElement = true;
+		}
+
+		if (std::string(serializedField.second->GetUnderlyingType().name()).find("class") != std::string::npos)
+		{
+			std::istringstream stream(serializedValue);
+			std::vector<std::string> pairs;
+			std::string tempPair;
+
+			while (std::getline(stream, tempPair, '}'))
+			{
+				pairs.push_back(tempPair);
+			}
+
+			int index = 0;
+			for (const auto& pair : pairs)
+			{
+				std::istringstream pairStream(pair);
+				std::string keyValue;
+				deserializeStream << "{";
+				while (pairStream >> keyValue)
+				{
+					size_t colonPos = keyValue.find(':');
+					if (colonPos != std::string::npos)
+					{
+						std::string name = keyValue.substr(0, colonPos);
+
+						if (name[0] == '{')
+						{
+							name = name.substr(1);
+						}
+
+						std::string value = keyValue.substr(colonPos + 1);
+
+						std::string buf = value;
+						ImGui::Text(name.c_str());
+						ImGui::SameLine();
+						ImGui::InputText(std::string("##" + serializedField.first + name + std::to_string(index)).data(), &buf[0], 100);
+
+						deserializeStream << name << ":" << buf.c_str() << " ";
+					}
+				}
+
+				deserializeStream << "}";
+				index++;
+			}
+		}
+		else
+		{
+			std::istringstream stream(serializedValue);
+
+			if (!stream.str().empty())
+			{
+				std::vector<std::string> pairs;
+				std::string tempPair;
+				while (std::getline(stream, tempPair, '}'))
+				{
+					pairs.push_back(tempPair);
+				}
+
+				int index = 0;
+				for (const auto& pair : pairs)
+				{
+					std::istringstream pairStream(pair);
+					std::string keyValue;
+					deserializeStream << "{";
+					while (pairStream >> keyValue)
+					{
+
+						if (keyValue[0] == '{')
+						{
+							keyValue = keyValue.substr(1);
+						}
+
+						std::string buf = keyValue;
+						ImGui::Text(std::to_string(index).c_str());
+						ImGui::SameLine();
+						ImGui::InputText(std::string("##" + serializedField.first + std::to_string(index) + std::to_string(index)).data(), &buf[0], 100);
+
+						deserializeStream << buf.c_str() << " }";
+						index++;
+					}
+				}
+			}
+		}
+
+		if (addElement)
+		{
+			deserializeStream << "{}";
+		}
+
+		serializedField.second->Deserialize(deserializeStream.str());
+		return;
+	}
+
+	if (typeName.find("class") != std::string::npos)
+	{
+		std::stringstream deserializeStream;
+		std::string pair;
+
+		int index = 0;
+		while (stream >> pair)
+		{
+			std::stringstream valueStream;
+			size_t colonPos = pair.find(':');
+
+			if (colonPos != std::string::npos)
+			{
+				std::string name = pair.substr(0, colonPos);
+				std::string value = pair.substr(colonPos + 1);
+
+				std::string buf = value;
+
+				ImGui::Text(name.c_str());
+				ImGui::SameLine();
+				ImGui::InputText(std::string("##" + serializedField.first + name + std::to_string(index)).data(), &buf[0], 100);
+
+				deserializeStream << name << ":" << buf.c_str() << " ";
+			}
+			index++;
+		}
+
+		serializedField.second->Deserialize(deserializeStream.str());
+		return;
+	}
+
+	if (typeName.find("enum") != std::string::npos)
+	{
+		ImGui::SameLine();
+		if (ImGui::BeginCombo("EnumDropdown", serializedValue.c_str()))
+		{
+			for (const auto& value : serializedField.second->GetEnumNames())
+			{
+				bool isSelected = false;
+				if (ImGui::Selectable(value.c_str(), isSelected))
+				{
+					isSelected = true;
+				}
+
+				if (isSelected)
+				{
+					serializedField.second->Deserialize(value);
+					ImGui::SetItemDefaultFocus();
+				}
+			}
+
+			ImGui::EndCombo();
+		}
+	}
 }
 
 inline std::string AI::ComparatorWrapper::ToString() const

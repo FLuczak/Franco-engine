@@ -82,8 +82,8 @@
      "ComponentName": "class SpriteRenderComponent",
      "SerializedValues": {
       "layer": "0",
-      "spritePath": "Assets/Basic4x.png",
-      "spriteSize": "left:64 top:76 width:64 height:64 "
+      "spritePath": "Assets/Necro.png",
+      "spriteSize": "left:0 top:0 width:64 height:64 "
      }
     },
     {
@@ -99,6 +99,12 @@
       "bodyType": "KINEMATIC",
       "mass": "1.000000",
       "restitution": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class AnimationController",
+     "SerializedValues": {
+      "path": "Animation/Necro.anim"
      }
     }
    ],
@@ -131,28 +137,32 @@
      "ComponentName": "class BoxCollider",
      "SerializedValues": {
       "extents": "x:1200 y:20 ",
-      "offset": "x:0 y:40 "
+      "offset": "x:0 y:40 ",
+      "polygon": "{x:-570 y:0 }{x:630 y:0 }{x:630 y:-20 }{x:-570 y:-20 }"
      }
     },
     {
      "ComponentName": "class BoxCollider",
      "SerializedValues": {
       "extents": "x:1200 y:40 ",
-      "offset": "x:400 y:194 "
+      "offset": "x:400 y:194 ",
+      "polygon": "{x:-570 y:10 }{x:630 y:10 }{x:630 y:-30 }{x:-570 y:-30 }"
      }
     },
     {
      "ComponentName": "class BoxCollider",
      "SerializedValues": {
       "extents": "x:20 y:600 ",
-      "offset": "x:-58 y:30 "
+      "offset": "x:-58 y:30 ",
+      "polygon": "{x:20 y:290 }{x:40 y:290 }{x:40 y:-310 }{x:20 y:-310 }"
      }
     },
     {
      "ComponentName": "class BoxCollider",
      "SerializedValues": {
       "extents": "x:20 y:600 ",
-      "offset": "x:257 y:200 "
+      "offset": "x:257 y:200 ",
+      "polygon": "{x:20 y:290 }{x:40 y:290 }{x:40 y:-310 }{x:20 y:-310 }"
      }
     },
     {

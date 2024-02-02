@@ -56,6 +56,33 @@ std::unique_ptr<sf::Sprite> AssetManager::GetTexture(std::string name, sf::IntRe
 	return *json;
 }
 
+AI::FiniteStateMachine& AssetManager::GetAnimationFSM(std::string name)
+{
+	if (!assets.contains(name))
+	{
+		const auto tempName = std::string(GetAssetsPath().string()) + '\\' + name;
+		std::ifstream inputFile(tempName);
+
+		if (inputFile.is_open())
+		{
+			nlohmann::json jsonData;
+			inputFile >> jsonData;
+			std::unique_ptr<AnimationFSM> animationFSM = std::make_unique<AnimationFSM>(jsonData);
+			assets[name] = std::move(animationFSM);
+
+			inputFile.close();
+		}
+		else
+		{
+			std::cerr << "Error opening the file:" << tempName << std::endl;
+		}
+	}
+
+	auto asset = assets[name]->GetAsset();
+	const auto json = std::any_cast<AI::FiniteStateMachine*>(asset);
+	return *json;
+}
+
 std::filesystem::path AssetManager::GetAssetsPath()
 {
 	std::filesystem::path assetsPath1 = std::filesystem::current_path() / "Assets";

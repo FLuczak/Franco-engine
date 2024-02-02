@@ -71,5 +71,23 @@ private:
         return true;                                                              \
     }()
 
+// Macros for registration
+#define REGISTER_STATE(DerivedType)                                   \
+    static const bool DerivedType##Registered = []                                \
+    {                                                                             \
+        GenericFactory<AI::State>::Instance().RegisterProduct<DerivedType>(#DerivedType); \
+        return true;                                                              \
+    }()
+
+
+// Macros for registration
+#define REGISTER_ACTION(DerivedType)                                   \
+    static const bool DerivedType##Registered = []                                \
+    {                                                                             \
+        GenericFactory<AI::BehaviorTreeAction>::Instance().RegisterProduct<DerivedType>(#DerivedType); \
+        return true;                                                              \
+    }()
+
+
 
 
