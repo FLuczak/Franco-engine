@@ -110,7 +110,7 @@
     {
      "ComponentName": "class NavMeshAgent",
      "SerializedValues": {
-      "movementSpeed": "10.000000"
+      "movementSpeed": "120.000000"
      }
     }
    ],
@@ -226,6 +226,21 @@
      "ComponentName": "class NavMeshObstacle",
      "SerializedValues": {
       "polygon": "{x:600 y:360 }{x:500 y:300 }{x:700 y:300 }"
+     }
+    },
+    {
+     "ComponentName": "class PolygonCollider",
+     "SerializedValues": {
+      "offset": "x:0 y:0 ",
+      "polygon": "{x:600 y:360 }{x:500 y:300 }{x:700 y:300 }"
+     }
+    },
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "STATIC",
+      "mass": "1.000000",
+      "restitution": "0.000000"
      }
     }
    ],

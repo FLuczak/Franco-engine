@@ -17,16 +17,17 @@ void NavMeshAgent::Update(float deltaTime)
     const sf::Vector2f agentPos2D = GetTransform().position;
     const sf::Vector2f referencePoint = path.GetClosestPointOnPath(agentPos2D);
     const float referencePointT =  path.GetPercentageAlongPath(referencePoint);
-	attractionPoint = path.FindPointOnPath(referencePointT + 0.01f);
+	attractionPoint = path.FindPointOnPath(referencePointT + 0.125f);
+
+    Engine.debugRenderer.AddCircle(DebugCategory::AINavigation, attractionPoint, 30.0f, sf::Color::Red);
 
     if (!path.IsEmpty())
     {
         preferredVelocity = attractionPoint - agentPos2D;
-    }
-	else
-    {
-        Engine.debugRenderer.AddCircle(DebugCategory::AINavigation, { 900,400 }, 5.0f, sf::Color::Red);
-        SetDestination({ 900,400 });
+        if(sf::distance2(attractionPoint,agentPos2D) >= 0.01f)
+        {
+            preferredVelocity = sf::normalize(preferredVelocity);
+        }
     }
 
     if (referencePointT >= 0.995f)
