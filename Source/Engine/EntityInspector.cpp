@@ -48,10 +48,20 @@ void EntityInspector::DisplayComponents() const
 
 
 	int index = 0;
+	int componentIndex = 0;
+	int removedId = -1;
 	for (auto& component : inspectedEntity->components)
 	{
 		std::string componentName = typeid(*component).name();
 		componentName.erase(componentName.find("class "),6);
+
+		if(ImGui::Button((std::string("- ##") + std::to_string(componentIndex)).c_str()))
+		{
+			removedId = componentIndex;
+		}
+
+		ImGui::SameLine();
+
 		if (ImGui::TreeNode((componentName + " ##"+std::to_string(index)).c_str()))
 		{
 			for (std::pair<const std::string, EditorVariable*>& editorVariable : component->GetSerializedFields())
@@ -61,6 +71,13 @@ void EntityInspector::DisplayComponents() const
 			index++;
 			ImGui::TreePop();
 		}
+
+		componentIndex++;
+	}
+
+	if(removedId != -1)
+	{
+		inspectedEntity->components.erase(inspectedEntity->components.begin()+removedId);
 	}
 
 	ImGui::Separator();
