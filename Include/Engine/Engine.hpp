@@ -4,6 +4,7 @@
 #include "Inspector.hpp"
 #include "AI/BehaviorTrees/Editor/BehaviorTreeEditor.hpp"
 #include "AI/FiniteStateMachines/Editor/FiniteStateMachineEditor.hpp"
+#include "AI/NavMesh/NavMesh.hpp"
 #include "Game/World.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 
@@ -18,6 +19,7 @@ public:
 	Inspector inspector;
 	AI::FiniteStateMachineEditor fsmEditor;
 	AI::BehaviorTreeEditor btEditor;
+	AI::NavMesh navMesh;
 	World world;
 };
 

@@ -7,7 +7,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <cmath>
-
+#include <algorithm>
 
 namespace sf
 {
@@ -75,7 +75,7 @@ namespace sf
      * Returns the dot product of two given vectors
      */
     template <VectorLike T>
-    double operator*( const T& vec1, const T& vec2 )
+    float operator*( const T& vec1, const T& vec2 )
     {
         return vec1.x * vec2.x + vec1.y * vec2.y;
     }
@@ -84,6 +84,14 @@ namespace sf
     float dot(const T& vec1, const T& vec2)
     {
         return vec1.x * vec2.x + vec1.y * vec2.y;
+    }
+
+
+    template <VectorLike T>
+    T lerp(const T & vec1, const T & vec2,float t)
+    {
+        t = std::clamp(t, 0.0f, 1.0f);
+    	return vec1 * (1.0f - t) + vec2 * t;
     }
 
     /*
@@ -99,7 +107,7 @@ namespace sf
      * Converts radians to degrees
      */
     template <IsScalar T>
-    inline double radToDeg( T radians )
+    inline float radToDeg( T radians )
     {
         return radians * 180.0 / PI;
     }
@@ -108,7 +116,7 @@ namespace sf
      * Converts degrees to radian
      */
     template <IsScalar T>
-    inline double degToRad( T degree )
+    inline float degToRad( T degree )
     {
         return degree / 180.0 * PI;
     }
@@ -117,9 +125,18 @@ namespace sf
      * Returns the length of a given vector
      */
     template <VectorLike T>
-    inline double getLength( const T& vec )
+    inline float getLength( const T& vec )
     {
         return sqrt( sqr( vec.x ) + sqr( vec.y ) );
+    }
+
+    /*
+	* Returns the length of a given vector
+	*/
+    template <VectorLike T>
+    inline float length2(const T& vec)
+    {
+        return sqr(vec.x) + sqr(vec.y);
     }
 
     /*
@@ -149,9 +166,9 @@ namespace sf
     template <VectorLike T>
     inline T getNormalized( const T& vec )
     {
-        const double length = getLength( vec );
-        const double newX   = vec.x / length;
-        const double newY   = vec.y / length;
+        const float length = getLength( vec );
+        const float newX   = vec.x / length;
+        const float newY   = vec.y / length;
 
         return T( newX, newY );
     }
@@ -162,7 +179,7 @@ namespace sf
     template <VectorLike T>
     inline T& normalize( T& vec ) 
     {
-        const double length = getLength( vec );
+        const float length = getLength( vec );
         vec.x /= length;
         vec.y /= length;
 
@@ -206,12 +223,12 @@ namespace sf
      * Returns the angle of a given vector from 0 to 360° depending its direction on the unit circle
      */
     template <VectorLike T>
-    inline double getRotationAngle( const T& vec )
+    inline float getRotationAngle( const T& vec )
     {
         const T      normalizedVec = getNormalized( vec );
-        const double angleXRad     = acos( normalizedVec.x );
-        const double angleYRad     = asin( normalizedVec.y );
-        double       angleRad;
+        const float angleXRad     = acos( normalizedVec.x );
+        const float angleYRad     = asin( normalizedVec.y );
+        float       angleRad;
 
         if ( angleYRad < 0 )
             angleRad = degToRad( 360 ) - angleXRad;
@@ -225,9 +242,9 @@ namespace sf
      * Returns the angle in degrees between two given vectors
      */
     template <VectorLike T>
-    inline double getAngleBetween( const T& vec1, const T& vec2 )
+    inline float getAngleBetween( const T& vec1, const T& vec2 )
     {
-        const double angle = acos( ( vec1 * vec2 ) / ( getLength( vec1 ) * getLength( vec2 ) ) );
+        const float angle = acos( ( vec1 * vec2 ) / ( getLength( vec1 ) * getLength( vec2 ) ) );
 
         return radToDeg( angle );
     }
@@ -236,11 +253,11 @@ namespace sf
      * Returns a vector rotated with a given angle in degrees
      */
     template <VectorLike T>
-    inline void getRotated( const T& vec, double angle )
+    inline void getRotated( const T& vec, float angle )
     {
-        const double angleRad = degToRad( -angle );
-        const double newX     = vec.x * cos( angleRad ) - vec.y * sin( angleRad );
-        const double newY     = vec.x * sin( angleRad ) + vec.y * cos( angleRad );
+        const float angleRad = degToRad( -angle );
+        const float newX     = vec.x * cos( angleRad ) - vec.y * sin( angleRad );
+        const float newY     = vec.x * sin( angleRad ) + vec.y * cos( angleRad );
 
         return T( newX, newY );
     }
@@ -249,9 +266,9 @@ namespace sf
      * Rotates a vector in-place with a given angle in degrees
      */
     template <VectorLike T>
-    inline T& rotate( T& vec, double angle )
+    inline T& rotate( T& vec, float angle )
     {
-        const double angleRad = degToRad( -angle );
+        const float angleRad = degToRad( -angle );
         
         vec.x = vec.x * cos( angleRad ) - vec.y * sin( angleRad );
         vec.y = vec.x * sin( angleRad ) + vec.y * cos( angleRad );

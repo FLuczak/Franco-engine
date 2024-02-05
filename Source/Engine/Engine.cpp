@@ -7,7 +7,7 @@
 
 class Engine Engine;
 
-Engine::Engine() :Inspectable() , window(sf::VideoMode(1280, 720), "Game")
+Engine::Engine() :Inspectable() , window(sf::VideoMode(1280, 720), "Game"), navMesh(0.75f)
 {
     game = std::make_unique<Game>();
     inspector.RegisterInspectable(*this);

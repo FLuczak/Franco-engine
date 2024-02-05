@@ -143,6 +143,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="External\clipper\src\clipper.engine.cpp" />
+    <ClCompile Include="External\clipper\src\clipper.offset.cpp" />
+    <ClCompile Include="External\clipper\src\clipper.rectclip.cpp" />
+    <ClCompile Include="Source\Engine\AI\NavMesh\Graph.cpp" />
+    <ClCompile Include="Source\Engine\AI\NavMesh\Navigation.cpp" />
+    <ClCompile Include="Source\Engine\AI\NavMesh\NavMesh.cpp" />
+    <ClCompile Include="Source\Engine\AI\NavMesh\NavMeshPath.cpp" />
     <ClCompile Include="Source\Game\AnimationController.cpp" />
     <ClCompile Include="imgui\crude_json.cpp" />
     <ClCompile Include="imgui\extra_fonts\binary_to_compressed_c.cpp" />
@@ -197,6 +204,28 @@
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="External\cdt\CDT.h" />
+    <ClInclude Include="External\cdt\CDT.hpp" />
+    <ClInclude Include="External\cdt\CDTUtils.h" />
+    <ClInclude Include="External\cdt\CDTUtils.hpp" />
+    <ClInclude Include="External\cdt\KDTree.h" />
+    <ClInclude Include="External\cdt\LocatorKDTree.h" />
+    <ClInclude Include="External\cdt\portable_nth_element.hpp" />
+    <ClInclude Include="External\cdt\predicates.h" />
+    <ClInclude Include="External\cdt\remove_at.hpp" />
+    <ClInclude Include="External\cdt\Triangulation.h" />
+    <ClInclude Include="External\cdt\Triangulation.hpp" />
+    <ClInclude Include="External\clipper\include\clipper2\clipper.core.h" />
+    <ClInclude Include="External\clipper\include\clipper2\clipper.engine.h" />
+    <ClInclude Include="External\clipper\include\clipper2\clipper.export.h" />
+    <ClInclude Include="External\clipper\include\clipper2\clipper.h" />
+    <ClInclude Include="External\clipper\include\clipper2\clipper.minkowski.h" />
+    <ClInclude Include="External\clipper\include\clipper2\clipper.offset.h" />
+    <ClInclude Include="External\clipper\include\clipper2\clipper.rectclip.h" />
+    <ClInclude Include="Include\Engine\AI\NavMesh\Graph.hpp" />
+    <ClInclude Include="Include\Engine\AI\NavMesh\Navigation.hpp" />
+    <ClInclude Include="Include\Engine\AI\NavMesh\NavMesh.hpp" />
+    <ClInclude Include="Include\Engine\AI\NavMesh\NavMeshPath.hpp" />
     <ClInclude Include="Include\Game\AnimationController.h" />
     <ClInclude Include="imgui\crude_json.h" />
     <ClInclude Include="imgui\IconsFontAwesome.h" />

@@ -10,6 +10,8 @@ void Game::Start()
 {
 	started = true;
 	world.Start();
+
+	float radius = 0.75f;
 }
 
 Game::Game() : gameWindow(Engine.window), world(Engine.world)
