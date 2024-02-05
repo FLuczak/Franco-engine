@@ -1,0 +1,432 @@
+{
+ "Entities": [
+  {
+   "Components": [
+    {
+     "ComponentName": "class CameraComponent"
+    }
+   ],
+   "Name": "MainCamera",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PatternEmitter",
+     "SerializedValues": {
+      "active": "1",
+      "bulletSpeed": "150.000000",
+      "bulletTemplate": "Templates/Bullet.ent",
+      "delay": "0.000000",
+      "fireRate": "3.000000",
+      "offset": "x:0 y:0 ",
+      "scale": "30.000000",
+      "templates": "{Assets/smilepattern.png}"
+     }
+    }
+   ],
+   "Name": "Entity",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     640.0,
+     360.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "KINEMATIC",
+      "mass": "100.000000",
+      "restitution": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class DiskCollider",
+     "SerializedValues": {
+      "offset": "x:4 y:4 ",
+      "radius": "8.000000"
+     }
+    },
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "0",
+      "spritePath": "Assets/Bullets.png",
+      "spriteSize": "left:180 top:132 width:8 height:8 "
+     }
+    },
+    {
+     "ComponentName": "class Bullet",
+     "SerializedValues": {
+      "lifeTime": "3.000000"
+     }
+    }
+   ],
+   "Name": "Bullet",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     2.0,
+     2.0
+    ],
+    "Translation": [
+     730.0,
+     762.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "KINEMATIC",
+      "mass": "100.000000",
+      "restitution": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class DiskCollider",
+     "SerializedValues": {
+      "offset": "x:4 y:4 ",
+      "radius": "8.000000"
+     }
+    },
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "0",
+      "spritePath": "Assets/Bullets.png",
+      "spriteSize": "left:180 top:132 width:8 height:8 "
+     }
+    },
+    {
+     "ComponentName": "class Bullet",
+     "SerializedValues": {
+      "lifeTime": "3.000000"
+     }
+    }
+   ],
+   "Name": "Bullet",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     2.0,
+     2.0
+    ],
+    "Translation": [
+     790.0,
+     762.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "KINEMATIC",
+      "mass": "100.000000",
+      "restitution": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class DiskCollider",
+     "SerializedValues": {
+      "offset": "x:4 y:4 ",
+      "radius": "8.000000"
+     }
+    },
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "0",
+      "spritePath": "Assets/Bullets.png",
+      "spriteSize": "left:180 top:132 width:8 height:8 "
+     }
+    },
+    {
+     "ComponentName": "class Bullet",
+     "SerializedValues": {
+      "lifeTime": "3.000000"
+     }
+    }
+   ],
+   "Name": "Bullet",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     2.0,
+     2.0
+    ],
+    "Translation": [
+     820.0,
+     792.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "KINEMATIC",
+      "mass": "100.000000",
+      "restitution": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class DiskCollider",
+     "SerializedValues": {
+      "offset": "x:4 y:4 ",
+      "radius": "8.000000"
+     }
+    },
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "0",
+      "spritePath": "Assets/Bullets.png",
+      "spriteSize": "left:180 top:132 width:8 height:8 "
+     }
+    },
+    {
+     "ComponentName": "class Bullet",
+     "SerializedValues": {
+      "lifeTime": "3.000000"
+     }
+    }
+   ],
+   "Name": "Bullet",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     2.0,
+     2.0
+    ],
+    "Translation": [
+     820.0,
+     822.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "KINEMATIC",
+      "mass": "100.000000",
+      "restitution": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class DiskCollider",
+     "SerializedValues": {
+      "offset": "x:4 y:4 ",
+      "radius": "8.000000"
+     }
+    },
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "0",
+      "spritePath": "Assets/Bullets.png",
+      "spriteSize": "left:180 top:132 width:8 height:8 "
+     }
+    },
+    {
+     "ComponentName": "class Bullet",
+     "SerializedValues": {
+      "lifeTime": "3.000000"
+     }
+    }
+   ],
+   "Name": "Bullet",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     2.0,
+     2.0
+    ],
+    "Translation": [
+     820.0,
+     852.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "KINEMATIC",
+      "mass": "100.000000",
+      "restitution": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class DiskCollider",
+     "SerializedValues": {
+      "offset": "x:4 y:4 ",
+      "radius": "8.000000"
+     }
+    },
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "0",
+      "spritePath": "Assets/Bullets.png",
+      "spriteSize": "left:180 top:132 width:8 height:8 "
+     }
+    },
+    {
+     "ComponentName": "class Bullet",
+     "SerializedValues": {
+      "lifeTime": "3.000000"
+     }
+    }
+   ],
+   "Name": "Bullet",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     2.0,
+     2.0
+    ],
+    "Translation": [
+     820.0,
+     882.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "KINEMATIC",
+      "mass": "100.000000",
+      "restitution": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class DiskCollider",
+     "SerializedValues": {
+      "offset": "x:4 y:4 ",
+      "radius": "8.000000"
+     }
+    },
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "0",
+      "spritePath": "Assets/Bullets.png",
+      "spriteSize": "left:180 top:132 width:8 height:8 "
+     }
+    },
+    {
+     "ComponentName": "class Bullet",
+     "SerializedValues": {
+      "lifeTime": "3.000000"
+     }
+    }
+   ],
+   "Name": "Bullet",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     2.0,
+     2.0
+    ],
+    "Translation": [
+     730.0,
+     912.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class PhysicsBody",
+     "SerializedValues": {
+      "bodyType": "KINEMATIC",
+      "mass": "100.000000",
+      "restitution": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class DiskCollider",
+     "SerializedValues": {
+      "offset": "x:4 y:4 ",
+      "radius": "8.000000"
+     }
+    },
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "0",
+      "spritePath": "Assets/Bullets.png",
+      "spriteSize": "left:180 top:132 width:8 height:8 "
+     }
+    },
+    {
+     "ComponentName": "class Bullet",
+     "SerializedValues": {
+      "lifeTime": "3.000000"
+     }
+    }
+   ],
+   "Name": "Bullet",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     2.0,
+     2.0
+    ],
+    "Translation": [
+     790.0,
+     912.0
+    ]
+   }
+  }
+ ]
+}

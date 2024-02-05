@@ -191,7 +191,7 @@ inline void DrawSerializedField(const std::pair<std::string, EditorVariable*>& s
 			addElement = true;
 		}
 
-		if (std::string(serializedField.second->GetUnderlyingType().name()).find("class") != std::string::npos)
+		if (std::string(serializedField.second->GetUnderlyingType().name()).find("class") != std::string::npos && serializedField.second->GetUnderlyingType() != typeid(std::string))
 		{
 			std::istringstream stream(serializedValue);
 			std::vector<std::string> pairs;

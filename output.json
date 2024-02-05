@@ -112,6 +112,20 @@
      "SerializedValues": {
       "movementSpeed": "120.000000"
      }
+    },
+    {
+     "ComponentName": "class RadialEmitter",
+     "SerializedValues": {
+      "active": "1",
+      "angle": "360",
+      "bulletSpeed": "250.000000",
+      "bulletTemplate": "Templates/Bullet.ent",
+      "delay": "0.000000",
+      "fireRate": "1.000000",
+      "offset": "x:32 y:32 ",
+      "radius": "60.000000",
+      "step": "30"
+     }
     }
    ],
    "Name": "Entity",
@@ -124,8 +138,8 @@
      1.0
     ],
     "Translation": [
-     200.0,
-     150.0
+     450.0,
+     300.0
     ]
    }
   },
@@ -206,45 +220,6 @@
     }
    ],
    "Name": "Surfac",
-   "Transform": {
-    "Rotation": [
-     0.0
-    ],
-    "Scale": [
-     1.0,
-     1.0
-    ],
-    "Translation": [
-     0.0,
-     0.0
-    ]
-   }
-  },
-  {
-   "Components": [
-    {
-     "ComponentName": "class NavMeshObstacle",
-     "SerializedValues": {
-      "polygon": "{x:600 y:360 }{x:500 y:300 }{x:700 y:300 }"
-     }
-    },
-    {
-     "ComponentName": "class PolygonCollider",
-     "SerializedValues": {
-      "offset": "x:0 y:0 ",
-      "polygon": "{x:600 y:360 }{x:500 y:300 }{x:700 y:300 }"
-     }
-    },
-    {
-     "ComponentName": "class PhysicsBody",
-     "SerializedValues": {
-      "bodyType": "STATIC",
-      "mass": "1.000000",
-      "restitution": "0.000000"
-     }
-    }
-   ],
-   "Name": "Entity",
    "Transform": {
     "Rotation": [
      0.0

@@ -114,20 +114,20 @@ void PhysicsWorld::ResolveCollision(PhysicsBody& bodyA, PhysicsBody& bodyB, cons
     if (bodyA.bodyType == PhysicsBodyType::STATIC)
     {
         const sf::Vector2f impulse = impulseMagnitude * collisionInfo.normal;
-        bodyB.velocity += impulse;
+      //  bodyB.velocity += impulse;
     }
     else if (bodyB.bodyType == PhysicsBodyType::STATIC)
     {
         const sf::Vector2f impulse = impulseMagnitude * collisionInfo.normal;
-        bodyA.velocity -= impulse;
+       // bodyA.velocity -= impulse;
     }
     else
     {
         impulseMagnitude /= (massA + massB);
         const sf::Vector2f impulse = (impulseMagnitude)*collisionInfo.normal;
 
-        bodyA.velocity -= impulse * massB;
-        bodyB.velocity += impulse * massA;
+      //  bodyA.velocity -= impulse * massB;
+      //  bodyB.velocity += impulse * massA;
     }
 }
 

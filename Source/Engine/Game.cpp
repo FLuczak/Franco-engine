@@ -33,6 +33,7 @@ int main()
         ImGui::SFML::Update(window, deltaClock.restart());
         window.clear();
         game.Tick(elapsed.asSeconds());
+        window.setTitle(std::string("Engine") + std::to_string(elapsed.asMilliseconds()) + std::string("ms"));
     	game.Render();
         inspector.InspectAll();
         ImGui::SFML::Render(window);

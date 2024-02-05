@@ -253,7 +253,7 @@ namespace sf
      * Returns a vector rotated with a given angle in degrees
      */
     template <VectorLike T>
-    inline void getRotated( const T& vec, float angle )
+    inline sf::Vector2f getRotated( const T& vec, float angle )
     {
         const float angleRad = degToRad( -angle );
         const float newX     = vec.x * cos( angleRad ) - vec.y * sin( angleRad );
