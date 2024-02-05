@@ -56,7 +56,7 @@ class Graph;
         void AddNodes(const std::vector<Node>& nodesToAdd);
         void AddNodesAndEdges(const std::vector<Node>& nodesToAdd, const std::vector<Edge>& edgesToSet);
         void AddNodesAndEdges(const std::vector<Node>& nodesToAdd, const std::vector<EdgeData>& edgesToSet);
-
+        
         const std::vector<Node>& GetNodes()const  { return nodes; }
     private:
         std::vector<Node> nodes;

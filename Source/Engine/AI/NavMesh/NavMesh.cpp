@@ -402,19 +402,15 @@ void AI::NavMesh::DebugDraw(DebugRenderer& debugRenderer) const
 {
     int numLines = 0;
 
-    for (const std::vector<Clipper2Lib::Point<double>>& j : trianglesPath)
+    for (auto& triangle : triangles)
     {
-        const int meshSize = static_cast<int>(j.size());
-        for (int i = 0; i < meshSize; i++)
-        {
-            numLines++;
-            sf::Vector2f pointA = sf::Vector2f(static_cast<float>(j[i].x), static_cast<float>(j[i].y));
-            sf::Vector2f pointB = sf::Vector2f(static_cast<float>(j[(i + 1) % meshSize].x), static_cast<float>(j[(i + 1) % meshSize].y));
-            debugRenderer.AddLine(DebugCategory::AINavigation, pointA, pointB, sf::Color::White);
-        }
+	    for (int i =0 ; i < triangle.vertices.size(); i++)
+	    {
+            debugRenderer.AddLine(DebugCategory::AINavigation, triangle.vertices[i], triangle.vertices[(i + 1) % triangle.vertices.size()], sf::Color::White);
+	    }
     }
 
-    //graph.DebugDrawGraph(debugRenderer);
+    graph.DebugDrawGraph(debugRenderer);
 }
 
 /**
@@ -554,6 +550,7 @@ void AI::NavMesh::InitializeTriangles(const CDT::Triangulation<double>& cdt)
  */
 void AI::NavMesh::InitializeGraph()
 {
+    graph = AI::Graph();
     std::vector<EdgeData> edgeData;
     std::vector<AI::Node> nodes;
 
@@ -605,12 +602,12 @@ void AI::NavMesh::TriangulateMesh(std::vector<Clipper2Lib::PathsD>& paths)
 {
     for (Clipper2Lib::PathsD& path : paths)
     {
-        CDT::Triangulation<double> cdt(CDT::VertexInsertionOrder::AsProvided, CDT::IntersectingConstraintEdges::Ignore, 0.0);
+        CDT::Triangulation<double> cdt(CDT::VertexInsertionOrder::Auto, CDT::IntersectingConstraintEdges::Resolve, 0.65);
 
         AddTriangulationVertices(cdt, path);
         AddTriangulationEdges(cdt, path);
 
-        cdt.eraseOuterTrianglesAndHoles();
+		cdt.eraseOuterTrianglesAndHoles();
         extractEdgesFromTriangles(cdt.triangles);
 
         InitializeTriangles(cdt);

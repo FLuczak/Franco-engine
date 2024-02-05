@@ -9,10 +9,7 @@
 
 bool geometry2d::IsPointLeftOfLine(const sf::Vector2f& point, const sf::Vector2f& line1, const sf::Vector2f& line2)
 {
-    double p[2] = {point.x, point.y};
-    double la[2] = {line1.x, line1.y};
-    double lb[2] = {line2.x, line2.y};
-    return true;
+    return (line2.x - line1.x) * (point.y - line1.y) - (line2.y - line1.y) * (point.x - line1.x) > 0;
 }
 
 bool geometry2d::DoSegmentsIntersect(sf::Vector2f one, sf::Vector2f two, sf::Vector2f three, sf::Vector2f four)

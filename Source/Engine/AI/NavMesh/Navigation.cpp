@@ -105,6 +105,6 @@ void AI::Navigation::DebugDrawPath(DebugRenderer& renderer, const std::vector<sf
 
     for (size_t i = 0; i < path.size() - 1; i++)
     {
-        renderer.AddLine(DebugCategory::AINavigation, sf::Vector2f(path[i].x, path[i].y),sf::Vector2f(path[i + 1].x, path[i + 1].y), sf::Color::Cyan);
+        renderer.AddLine(DebugCategory::Gameplay, sf::Vector2f(path[i].x, path[i].y),sf::Vector2f(path[i + 1].x, path[i + 1].y), sf::Color::Cyan);
     }
 }

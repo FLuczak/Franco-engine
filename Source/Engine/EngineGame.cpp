@@ -1,9 +1,8 @@
 #include <Engine/EngineGame.hpp>
-
-#include "SimpleDelegates.h"
 #include "Engine/Engine.hpp"
 #include "Game/CameraComponent.hpp"
-#include "Game/SpriteRenderComponent.hpp"
+#include "Game/NavMeshObstacle.h"
+#include "Game/NavmeshSurface.h"
 #include "Game/World.hpp"
 
 void Game::Start()
@@ -11,7 +10,23 @@ void Game::Start()
 	started = true;
 	world.Start();
 
-	float radius = 0.75f;
+	std::vector<geometry2d::Polygon> floors;
+	std::vector<geometry2d::Polygon> obstacles;
+
+	for (auto& entity : world.GetEntitiesOfType<NavmeshSurface>())
+	{
+		const auto surface = entity.get().GetComponent<NavmeshSurface>();
+		floors.push_back(surface->GetPolygon());
+	}
+
+	for (auto& entity : world.GetEntitiesOfType<NavMeshObstacle>())
+	{
+		const auto obstacle = entity.get().GetComponent<NavMeshObstacle>();
+		obstacles.push_back(obstacle->GetPolygon());
+	}
+
+	Engine.navMesh = AI::NavMesh(0.75f, floors, obstacles);
+	Engine.navMesh.Bake();
 }
 
 Game::Game() : gameWindow(Engine.window), world(Engine.world)

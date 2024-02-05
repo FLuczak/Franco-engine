@@ -68,6 +68,7 @@ void Engine::Inspect()
         }
     }
 
+    navMesh.DebugDraw(debugRenderer);
     ImGui::SameLine();
 
     if (ImGui::BeginMenu("Debug Render",true))

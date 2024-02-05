@@ -146,6 +146,9 @@
     <ClCompile Include="External\clipper\src\clipper.engine.cpp" />
     <ClCompile Include="External\clipper\src\clipper.offset.cpp" />
     <ClCompile Include="External\clipper\src\clipper.rectclip.cpp" />
+    <ClCompile Include="Source\Game\NavMeshAgent.cpp" />
+    <ClCompile Include="Source\Game\NavMeshObstacle.cpp" />
+    <ClCompile Include="Source\Game\NavmeshSurface.cpp" />
     <ClCompile Include="Source\Engine\AI\NavMesh\Graph.cpp" />
     <ClCompile Include="Source\Engine\AI\NavMesh\Navigation.cpp" />
     <ClCompile Include="Source\Engine\AI\NavMesh\NavMesh.cpp" />
@@ -444,6 +447,9 @@
     <ClInclude Include="Include\Engine\Physics\PhysicsWorld.h" />
     <ClInclude Include="Include\Engine\Physics\PolygonCollider.h" />
     <ClInclude Include="Include\Game\PlayerShooting.h" />
+    <ClInclude Include="Include\Game\NavmeshSurface.h" />
+    <ClInclude Include="Include\Game\NavMeshObstacle.h" />
+    <ClInclude Include="Include\Game\NavMeshAgent.h" />
     <ClInclude Include="TileMap.hpp" />
   </ItemGroup>
   <ItemGroup>
