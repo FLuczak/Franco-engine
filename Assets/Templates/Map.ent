@@ -3,7 +3,7 @@
       {
          "ComponentName": "class SpriteRenderComponent",
          "SerializedValues": {
-            "layer": "-1",
+            "layer": "4",
             "spritePath": "Assets/map.png",
             "spriteSize": "left:0 top:0 width:0 height:0 "
          }
@@ -11,29 +11,33 @@
       {
          "ComponentName": "class BoxCollider",
          "SerializedValues": {
-            "extents": "x:1200 y:20 ",
-            "offset": "x:0 y:40 "
+            "extents": "x:300 y:18 ",
+            "offset": "x:605 y:90 ",
+            "polygon": "{x:-150 y:9 }{x:150 y:9 }{x:150 y:-9 }{x:-150 y:-9 }"
          }
       },
       {
          "ComponentName": "class BoxCollider",
          "SerializedValues": {
-            "extents": "x:1200 y:40 ",
-            "offset": "x:400 y:194 "
+            "extents": "x:300 y:18 ",
+            "offset": "x:605 y:665 ",
+            "polygon": "{x:-150 y:9 }{x:150 y:9 }{x:150 y:-9 }{x:-150 y:-9 }"
          }
       },
       {
          "ComponentName": "class BoxCollider",
          "SerializedValues": {
-            "extents": "x:20 y:600 ",
-            "offset": "x:-58 y:30 "
+            "extents": "x:4 y:160 ",
+            "offset": "x:10 y:380 ",
+            "polygon": "{x:-2 y:80 }{x:2 y:80 }{x:2 y:-80 }{x:-2 y:-80 }"
          }
       },
       {
          "ComponentName": "class BoxCollider",
          "SerializedValues": {
-            "extents": "x:20 y:600 ",
-            "offset": "x:257 y:200 "
+            "extents": "x:4 y:160 ",
+            "offset": "x:1207 y:380 ",
+            "polygon": "{x:-2 y:80 }{x:2 y:80 }{x:2 y:-80 }{x:-2 y:-80 }"
          }
       },
       {
@@ -45,7 +49,7 @@
          }
       }
    ],
-   "Name": "Map\u0000ty",
+   "Name": "Map",
    "Transform": {
       "Rotation": [
          0.0
@@ -55,8 +59,8 @@
          4.0
       ],
       "Translation": [
-         30.0,
-         -10.0
+         1.0,
+         0.0
       ]
    }
 }

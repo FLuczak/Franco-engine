@@ -35,13 +35,14 @@ geometry2d::Polygon PolygonCollider::GetTransformedPolygon()const
 
     for (const auto& vertex : polygon) 
     {
-	    const sf::Vector2f translatedVertex = vertex + translation + sf::Vector2f(offset.x,offset.y);
+	    const sf::Vector2f translatedVertex = vertex;
 
 	    const float rotatedX = translatedVertex.x * cos(rotation) - translatedVertex.y * sin(rotation);
 	    const float rotatedY = translatedVertex.x * sin(rotation) + translatedVertex.y * cos(rotation);
 	    const sf::Vector2f rotatedVertex(rotatedX, rotatedY);
 
         sf::Vector2f scaledVertex = sf::Vector2f(rotatedVertex.x * scale.x, rotatedVertex.y * scale.y);
+        scaledVertex += sf::Vector2f(offset.x, offset.y) + translation;
 
         transformed.push_back(scaledVertex);
     }

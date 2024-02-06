@@ -67,11 +67,9 @@ void Dungeon::Start()
         int x = images[i] % 10;
         int y = images[i] / 10;
         auto& entity = Engine.world.InstantiateTemplate("Templates/Map.ent");
-        entity.GetTransform().position =sf::Vector2f(x*cellWidth, y*cellHeight);
+        entity.GetTransform().position =sf::Vector2f(x*cellWidth - cellWidth * 5, y*cellHeight - cellHeight * 5);
         entity.GetComponent<SpriteRenderComponent>()->layer = y;
     }
-
-    CameraComponent::GetMainCamera()->GetTransform().position = sf::Vector2f(5 * cellWidth, 5 * cellHeight);
 }
 
 bool Dungeon::Visit(int i)
