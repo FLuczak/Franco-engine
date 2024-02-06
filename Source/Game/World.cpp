@@ -32,7 +32,7 @@ Entity& World::Instantiate(std::string nameToSet)
 
 Entity& World::InstantiateTemplate(std::string path)
 {
-    auto name = std::string("Entity");
+    auto name = std::string();
     entities.emplace_back(GetId(), name);
     auto& entity = entities.back();
 
@@ -154,7 +154,8 @@ void World::Inspect()
 
     for (auto& element : entities)
     {
-        if(ImGui::Selectable( std::string(element.name + "##" + std::to_string(element.GetId()) ).c_str(), false, 0, ImVec2(100, 20)))
+        std::string id = std::to_string(element.GetId());
+        if(ImGui::Selectable( std::string(element.name + "(" + id + ")").c_str(), false, ImGuiSelectableFlags_AllowItemOverlap, ImVec2(200, 20)))
         {
             entityInspector.InspectEntity(&element);
         }

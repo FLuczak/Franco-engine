@@ -26,7 +26,7 @@ void CameraComponent::Update(float deltaTime)
 	{
 		for (auto call : element.second)
 		{
-			call .setPosition(GetTransform().position + call.getPosition());
+			call .setPosition(GetTransform().position - call.getPosition());
 			myWindow->draw(call);
 		}
 	}
