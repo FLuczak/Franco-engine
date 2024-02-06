@@ -103,6 +103,12 @@ nlohmann::json Entity::Serialize()
 void Entity::Deserialize(nlohmann::json& json)
 {
 	name = json["Name"].get<std::string>();
+	const size_t nullPos = name.find('\0');
+
+	if (nullPos != std::string::npos) {
+		name.resize(nullPos);
+	}
+
 	sf::Vector2f translation = { json["Transform"]["Translation"][0],json["Transform"]["Translation"][1]};
 	sf::Vector2f scale = { json["Transform"]["Scale"][0],json["Transform"]["Scale"][1]};
 	float rotation = json["Transform"]["Rotation"][0];

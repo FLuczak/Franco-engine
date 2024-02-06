@@ -204,6 +204,9 @@
     <ClCompile Include="Source\Game\BulletEmitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Dungeon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\SFML\include\SFML\Audio\AlResource.hpp">
@@ -939,6 +942,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Game\BulletEmitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Dungeon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

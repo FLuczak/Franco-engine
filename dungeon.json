@@ -1,0 +1,58 @@
+{
+ "Entities": [
+  {
+   "Components": [
+    {
+     "ComponentName": "class CameraComponent"
+    },
+    {
+     "ComponentName": "class PlayerMovement",
+     "SerializedValues": {
+      "moveSpeed": "-150.000000"
+     }
+    }
+   ],
+   "Name": "MainCamera",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class Dungeon",
+     "SerializedValues": {
+      "cellHeight": "575",
+      "cellWidth": "1200",
+      "maxRooms": "12",
+      "minRooms": "6"
+     }
+    }
+   ],
+   "Name": "Entity",
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     0.0,
+     0.0
+    ]
+   }
+  }
+ ]
+}

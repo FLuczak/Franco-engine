@@ -29,8 +29,8 @@ void DebugRenderer::AddLine(DebugCategory::Enum category, const sf::Vector2f& fr
 
     GetMainCamera();
 
-    const sf::Vector2f fromOffset = from + mainCam->GetTransform().position;
-    const sf::Vector2f toOffset = to + mainCam->GetTransform().position;
+    const sf::Vector2f fromOffset = from - mainCam->GetTransform().position;
+    const sf::Vector2f toOffset = to - mainCam->GetTransform().position;
 
     // Create a line drawable
     sf::Vertex line[] =
@@ -54,7 +54,7 @@ void DebugRenderer::AddText(DebugCategory::Enum category, const sf::Vector2f& po
     debugText.setString(text);
     debugText.setCharacterSize(12);
     debugText.setFillColor(color);
-    debugText.setPosition(position + offsetPosition);
+    debugText.setPosition(position - offsetPosition);
 
     window.draw(debugText);
 }
@@ -72,7 +72,7 @@ void DebugRenderer::AddCircle(DebugCategory::Enum category, const sf::Vector2f& 
     debugCircle.setOutlineColor(color);
     debugCircle.setOutlineThickness(1.f);
     debugCircle.setOrigin(radius, radius);
-    debugCircle.setPosition(center + offsetPosition);
+    debugCircle.setPosition(center - offsetPosition);
 
     window.draw(debugCircle);
 }
@@ -92,7 +92,7 @@ void DebugRenderer::AddSquare(DebugCategory::Enum category, const sf::Vector2f& 
     debugSquare.setOutlineColor(color);
     debugSquare.setOutlineThickness(1.f);
     debugSquare.setOrigin(size / 2.f, size / 2.f);
-    debugSquare.setPosition(center + offsetPosition);
+    debugSquare.setPosition(center - offsetPosition);
 
     window.draw(debugSquare);
 }
