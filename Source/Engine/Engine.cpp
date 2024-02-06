@@ -17,10 +17,23 @@ Engine::Engine() :Inspectable() , window(sf::VideoMode(1280, 720), "Game"), navM
 void Engine::Inspect()
 {
     ImGui::Begin("Engine");
-    if (ImGui::Button("Play"))
+    if(!game->IsPlaying())
     {
-        game->Start();
+        if (ImGui::Button("Play"))
+        {
+            temporaryWorld = world.Serialize();
+            game->Start();
+        }
     }
+	else
+    {
+        if (ImGui::Button("Stop"))
+        {
+            game->End();
+            world.Deserialize(temporaryWorld);
+        }
+    }
+    
     ImGui::SameLine();
     if (ImGui::Button("Save"))
     {

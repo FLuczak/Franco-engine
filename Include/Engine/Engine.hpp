@@ -21,6 +21,8 @@ public:
 	AI::BehaviorTreeEditor btEditor;
 	AI::NavMesh navMesh;
 	World world;
+private:
+	nlohmann::json temporaryWorld;
 };
 
 extern Engine Engine;

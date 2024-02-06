@@ -59,4 +59,5 @@ void Game::Inspect()
 
 void Game::End()
 {
+	started = false;
 }

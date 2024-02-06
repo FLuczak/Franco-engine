@@ -15,6 +15,8 @@ public:
 	void Start() override;
 	void End() override;
 
+	bool IsPlaying() const { return started; }
+
 	World& GetWorld() const { return world; }
 	static Game& GetCurrentGame() { return *currentGame; }
 	sf::RenderWindow& gameWindow;
