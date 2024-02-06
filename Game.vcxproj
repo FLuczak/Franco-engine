@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\DoorComponent.cpp" />
     <ClCompile Include="Source\Game\Dungeon.cpp" />
     <ClCompile Include="Source\Game\BulletEmitter.cpp" />
     <ClCompile Include="External\clipper\src\clipper.engine.cpp" />
@@ -209,6 +210,7 @@
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Game\DoorComponent.h" />
     <ClInclude Include="Include\Game\Dungeon.h" />
     <ClInclude Include="Include\Game\BulletEmitter.h" />
     <ClInclude Include="External\cdt\CDT.h" />

@@ -16,6 +16,12 @@ public:
         gen= std::mt19937(rd());
 	}
 
+	void SpawnRooms();
+	bool GenerateRooms();
+
+	void SpawnDoors();
+    void TrySpawnDoor(int roomTo, int roomFrom) const;
+
 	void Start() override;
 	void Update(float deltaTime) override;
 	bool Visit(int i);
@@ -25,7 +31,8 @@ public:
     }
 
 
-    SERIALIZE_FIELD(int, cellWidth);
+
+	SERIALIZE_FIELD(int, cellWidth);
     SERIALIZE_FIELD(int, cellHeight);
     SERIALIZE_FIELD(int, maxRooms);
     SERIALIZE_FIELD(int, minRooms);

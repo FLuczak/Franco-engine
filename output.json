@@ -26,7 +26,7 @@
     {
      "ComponentName": "class SpriteRenderComponent",
      "SerializedValues": {
-      "layer": "0",
+      "layer": "99",
       "spritePath": "Assets/Basic4x.png",
       "spriteSize": "left:0 top:0 width:64 height:64 "
      }
@@ -81,7 +81,7 @@
     {
      "ComponentName": "class SpriteRenderComponent",
      "SerializedValues": {
-      "layer": "0",
+      "layer": "99",
       "spritePath": "Assets/Necro.png",
       "spriteSize": "left:0 top:0 width:64 height:64 "
      }

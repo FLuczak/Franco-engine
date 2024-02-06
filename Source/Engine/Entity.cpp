@@ -41,6 +41,7 @@ void Entity::RemoveComponent(Component& component)
 
 void Entity::Update(float deltaTime,bool isGame)
 {
+	if (!active)return;
 	int removed = 0;
 
 	while (!componentsToRemove.empty())

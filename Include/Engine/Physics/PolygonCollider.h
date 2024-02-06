@@ -15,6 +15,9 @@ public:
 	geometry2d::Polygon GetTransformedPolygon()const;
 
 	SERIALIZE_FIELD(geometry2d::Polygon, polygon);
+
+	geometry2d::Polygon transformed;
+	geometry2d::Polygon oldTransformed;
 	geometry2d::AABB AABB() override;
 };
 REGISTER_COMPONENT(PolygonCollider);

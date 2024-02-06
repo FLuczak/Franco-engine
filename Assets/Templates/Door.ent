@@ -1,0 +1,42 @@
+{
+   "Components": [
+      {
+         "ComponentName": "class SpriteRenderComponent",
+         "SerializedValues": {
+            "layer": "0",
+            "spritePath": "Assets/Door.png",
+            "spriteSize": "left:0 top:0 width:0 height:0 "
+         }
+      },
+      {
+         "ComponentName": "class PhysicsBody",
+         "SerializedValues": {
+            "bodyType": "STATIC",
+            "mass": "0.000000",
+            "restitution": "0.000000"
+         }
+      },
+      {
+         "ComponentName": "class BoxCollider",
+         "SerializedValues": {
+            "extents": "x:64 y:64 ",
+            "offset": "x:32 y:32 ",
+            "polygon": "{x:-32 y:32 }{x:32 y:32 }{x:32 y:-32 }{x:-32 y:-32 }"
+         }
+      }
+   ],
+   "Name": "Door\u0000y",
+   "Transform": {
+      "Rotation": [
+         0.0
+      ],
+      "Scale": [
+         1.0,
+         1.0
+      ],
+      "Translation": [
+         640.0,
+         360.0
+      ]
+   }
+}

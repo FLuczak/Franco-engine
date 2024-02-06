@@ -21,6 +21,8 @@ void EntityInspector::InspectEntity(Entity* entity)
 
 void EntityInspector::DisplayEntityNameChangeBox() const
 {
+	ImGui::Checkbox(std::string("##enabled" + std::to_string(inspectedEntity->GetId())).c_str(), &inspectedEntity->active);
+	ImGui::SameLine();
 	ImGui::InputText(std::string("Name##" + std::to_string(inspectedEntity->GetId())).c_str(), inspectedEntity->name.data(), inspectedEntity->name.size() + inspectedEntity->name.capacity());
 }
 
