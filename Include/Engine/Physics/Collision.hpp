@@ -19,8 +19,9 @@ enum class CollisionEventType
 struct CollisionEvent
 {
     CollisionEvent(CollisionEventType typeToSet,BaseCollider& colliderToSet, float depthToSet, sf::Vector2f normalToSet) : type(typeToSet), otherCollider(colliderToSet), depth(depthToSet), normal(normalToSet) {}
-    CollisionEvent() = default;
-    CollisionEventType type;
+    CollisionEvent(const CollisionEvent& other): type(other.type), otherCollider(other.otherCollider), depth(other.depth), normal(other.normal) {}
+
+	CollisionEventType type;
     BaseCollider& otherCollider;
     float depth;
     sf::Vector2f normal;

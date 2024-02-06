@@ -6,13 +6,20 @@
 void PolygonCollider::Start()
 {
 	BaseCollider::Start();
+    transformed = GetTransformedPolygon();
+    oldTransformed = transformed;
 }
 
 void PolygonCollider::Update(float deltaTime)
 {
 	BaseCollider::Update(deltaTime);
 
-    auto transformed = GetTransformedPolygon();
+    if(oldTransformed != transformed)
+    {
+        transformed = GetTransformedPolygon();
+        oldTransformed = transformed;
+    }
+
     if (transformed.size() <= 1)return;
     for(int i= 0 ; i < transformed.size();i++)
     {

@@ -9,6 +9,8 @@ public:
 	void DisplayComponents() const;
 	void DisplayTemplateSaveButton();
 	void Update();
+	Entity* GetInspectedEntity() const { return inspectedEntity; }
+
 private:
 	Entity* inspectedEntity = nullptr;
 };

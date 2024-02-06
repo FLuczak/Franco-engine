@@ -52,7 +52,7 @@ inline std::unordered_map<std::string, BehaviorWrapperType> behaviorWrapperTypes
 
 namespace Dialogs
 {
-static std::string OpenFileSaveDialog()
+ static inline std::string OpenFileSaveDialog()
 {
     OPENFILENAMEA file;
     CHAR szFile[260] = {0};

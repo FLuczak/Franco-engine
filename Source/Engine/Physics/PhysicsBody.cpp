@@ -17,31 +17,39 @@ void PhysicsBody::OnDestroy()
 
 void PhysicsBody::HandleCollisionEvents()
 {
-    for (auto it = collisionEvents.begin(); it != collisionEvents.end();)
+    for (auto& collisionEvent : collisionEvents)
+    {
+        if (collisionEvent.second.type == CollisionEventType::Entering)
+        {
+            GetEntity().OnCollisionEnter(collisionEvent.second);
+        }
+
+        if (collisionEvent.second.type == CollisionEventType::Colliding)
+        {
+            GetEntity().OnCollisionStay(collisionEvent.second);
+        }
+
+        if (collisionEvent.second.type == CollisionEventType::Leaving)
+        {
+            GetEntity().OnCollisionLeave(collisionEvent.second);
+        }
+    }
+
+    for (auto it = collisionEvents.begin(); it != collisionEvents.end(); )
     {
         if (it->second.type == CollisionEventType::Entering)
         {
-            GetEntity().OnCollisionEnter(it->second);
-        }
-
-        if (it->second.type == CollisionEventType::Colliding)
-        {
-            GetEntity().OnCollisionStay(it->second);
+            it->second.type = CollisionEventType::Colliding;
         }
 
         if (it->second.type == CollisionEventType::Leaving)
         {
-            GetEntity().OnCollisionLeave(it->second);
             it = collisionEvents.erase(it);
-            continue;
         }
-
-        ++it;
-    }
-
-    for (auto& pair : collisionEvents)
-    {
-        pair.second.type = CollisionEventType::Colliding;
+        else
+        {
+            ++it;
+        }
     }
 }
 

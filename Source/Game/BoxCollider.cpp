@@ -3,7 +3,7 @@
 
 void BoxCollider::Start()
 {
-	BaseCollider::Start();
+	PolygonCollider::Start();
 }
 
 void BoxCollider::Update(float deltaTime)
@@ -42,5 +42,5 @@ void BoxCollider::Update(float deltaTime)
 
 void BoxCollider::OnDestroy()
 {
-	BaseCollider::OnDestroy();
+    PolygonCollider::OnDestroy();
 }

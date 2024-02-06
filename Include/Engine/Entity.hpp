@@ -50,6 +50,7 @@ public:
 	nlohmann::json Serialize();
 	void Deserialize(nlohmann::json& json);
 
+	bool active = true;
 	std::string name = {};
 	std::vector<std::unique_ptr<Component>> components{};
 private:

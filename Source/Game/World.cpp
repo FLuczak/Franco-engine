@@ -65,6 +65,11 @@ void World::DeleteDestroyedEntities()
 		{
 			if( entity.GetId() == entitiesToRemove.front())
 			{
+                if(entityInspector.GetInspectedEntity() == &entity)
+                {
+                    entityInspector.InspectEntity(nullptr);
+                }
+
                 entity.OnDestroy();
                 return true;
 			}
@@ -187,7 +192,7 @@ nlohmann::json World::Serialize()
 void World::Deserialize(nlohmann::json& json)
 {
     entities.clear();
-
+    entityInspector.InspectEntity(nullptr);
 	for (auto& element : json["Entities"])
 	{
        auto& temp = Instantiate("entity");
