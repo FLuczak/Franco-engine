@@ -2,16 +2,21 @@
 
 #include "Engine/Engine.hpp"
 #include "Game/DoorComponent.h"
+#include "Game/RoomComponent.h"
 #include "Game/SpriteRenderComponent.hpp"
 
 void Dungeon::SpawnRooms()
 {
-	for (int i = 0; i < images.size(); ++i) 
+	for (int i = 0; i < rooms.size(); ++i) 
 	{
-		int x = images[i] % 10;
-		int y = images[i] / 10;
+		int x = rooms[i] % 10;
+		int y = rooms[i] / 10;
+
 		auto& entity = Engine.world.InstantiateTemplate("Templates/Map.ent");
-		if (images[i] != 45)
+		entity.GetComponent<RoomComponent>()->id = rooms[i];
+		roomsVector.push_back({ entity });
+
+		if (rooms[i] != 45)
 		{
 			entity.active = false;
 		}
@@ -73,7 +78,7 @@ bool Dungeon::GenerateRooms()
 
 void Dungeon::SpawnDoors()
 {
-	for (auto i : images)
+	for (auto i : rooms)
 	{
 		int x = i % 10;
 		if (x > 1) { TrySpawnDoor(i -1,i); }
@@ -83,7 +88,7 @@ void Dungeon::SpawnDoors()
 	}
 }
 
-void Dungeon::TrySpawnDoor(int roomTo,int roomFrom) const
+void Dungeon::TrySpawnDoor(int roomTo,int roomFrom) 
 {
 	if (floorPlan[roomTo] != 0)
 	{
@@ -94,18 +99,34 @@ void Dungeon::TrySpawnDoor(int roomTo,int roomFrom) const
 		const int fromY = roomFrom / 10;
 
 		auto& door = Engine.world.InstantiateTemplate("Templates/Door.ent");
-		const auto roomToPosition = sf::Vector2f(toX * cellWidth - cellWidth * 5, toY * cellHeight - cellHeight * 4) + sf::Vector2f(30, 10);
-		const auto roomFromPosition = sf::Vector2f(fromX * cellWidth - cellWidth * 5, fromY * cellHeight - cellHeight * 4) + sf::Vector2f(30, -135);
-		door.GetTransform().position = (roomToPosition - roomFromPosition) / 2.0f;
-		auto& doorComponent = door.AddComponent<DoorComponent>(true);
+		auto& doorComponent = *door.GetComponent<DoorComponent>();
 
-		doorComponent.doorDirection =  sf::Vector2f(fromY,  fromX)- sf::Vector2f(toY,toX );
-		doorComponent.doorDirection = sf::normalize(doorComponent.doorDirection);
+		const auto  roomToObj = std::find_if(roomsVector.begin(), roomsVector.end(), [roomTo](std::reference_wrapper<Entity>& entity)
+		{
+			return entity.get().GetComponent<RoomComponent>()->id == roomTo;
+		});
+
+		const auto  roomFromObj = std::find_if(roomsVector.begin(), roomsVector.end(), [roomFrom](std::reference_wrapper<Entity>& entity)
+		{
+			return entity.get().GetComponent<RoomComponent>()->id == roomFrom;
+		});
+
+		roomToObj->get().GetComponent<RoomComponent>()->AddDoor(door);
+		roomFromObj->get().GetComponent<RoomComponent>()->AddDoor(door);
+
+		const auto roomToPosition = sf::Vector2f(toX * cellWidth - cellWidth * 5, toY * cellHeight - cellHeight *4) + sf::Vector2f(cellWidth/2,cellHeight/2) + sf::Vector2f(30, 10);
+		const auto roomFromPosition = sf::Vector2f(fromX * cellWidth - cellWidth * 5, fromY * cellHeight - cellHeight *4) + sf::Vector2f(cellWidth / 2, cellHeight / 2) + sf::Vector2f(30, 10);
+		door.GetTransform().position = (roomToPosition + roomFromPosition) / 2.0f + sf::Vector2f(-32,64);
 
 		if(roomFrom != 45)
 		{
 			door.active = false;
 		}
+
+		doorComponent.doorDirection = roomToPosition - roomFromPosition;
+		doorComponent.doorDirection = sf::normalize(doorComponent.doorDirection);
+		doorComponent.roomTo = roomTo;
+		doorComponent.roomFrom = roomFrom;
 	}
 }
 
@@ -115,7 +136,7 @@ void Dungeon::Start()
     std::mt19937 gen(rd());
     started = true;
     placedSpecial = false;
-    images.clear();
+    rooms.clear();
     floorPlan.assign(101, 0);
     floorPlanCount = 0;
     cellQueue.clear();
@@ -143,7 +164,7 @@ bool Dungeon::Visit(int i)
     floorPlan[i] = 1;
     floorPlanCount += 1;
 
-    images.push_back(i); // Store the image ID or index
+    rooms.push_back(i); // Store the image ID or index
     return true;
 }
 

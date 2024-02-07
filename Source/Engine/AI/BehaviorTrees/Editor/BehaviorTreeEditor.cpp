@@ -415,22 +415,34 @@ void AI::BehaviorTreeEditor::Update()
 {
     auto& io = ImGui::GetIO();
 
-    ImGui::Begin("BT editor", &open);
-    DrawUpperMenu();
-    ImGui::Separator();
+    if(ImGui::Begin("BT editor", nullptr))
+    {
+        open = true;
+    }
+	else
+    {
+        open = false;
+    }
 
-    DrawSelectedStateDetails();
-    m_selectedNodes.clear();
-    ImGui::SameLine();
-    
-    ax::NodeEditor::SetCurrentEditor(m_context);
-    ax::NodeEditor::Begin("BT editor", ImVec2(0.0, 0.0f));
+    if(open)
+    {
+        DrawUpperMenu();
+        ImGui::Separator();
 
-    CheckSelectedNode(editorRoot);
-    DrawNodes();
+        DrawSelectedStateDetails();
+        m_selectedNodes.clear();
+        ImGui::SameLine();
 
-    ax::NodeEditor::End();
-    ax::NodeEditor::SetCurrentEditor(nullptr);
+        ax::NodeEditor::SetCurrentEditor(m_context);
+        ax::NodeEditor::Begin("BT editor", ImVec2(0.0, 0.0f));
+
+        CheckSelectedNode(editorRoot);
+        DrawNodes();
+
+        ax::NodeEditor::End();
+        ax::NodeEditor::SetCurrentEditor(nullptr);
+
+    }
 
     ImGui::End();
 }
@@ -438,7 +450,7 @@ void AI::BehaviorTreeEditor::Update()
 void AI::BehaviorTreeEditor::PreviewContext(const BehaviorTree& bt,const BehaviorTreeContext& context)
 {
     auto& io = ImGui::GetIO();
-    bool open = true;
+	open = true;
 
     if (&bt != previewedTree)
     {

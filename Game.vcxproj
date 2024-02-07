@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\RoomComponent.cpp" />
     <ClCompile Include="Source\Game\DoorComponent.cpp" />
     <ClCompile Include="Source\Game\Dungeon.cpp" />
     <ClCompile Include="Source\Game\BulletEmitter.cpp" />
@@ -456,6 +457,7 @@
     <ClInclude Include="Include\Game\NavmeshSurface.h" />
     <ClInclude Include="Include\Game\NavMeshObstacle.h" />
     <ClInclude Include="Include\Game\NavMeshAgent.h" />
+    <ClInclude Include="Include\Game\RoomComponent.h" />
     <ClInclude Include="TileMap.hpp" />
   </ItemGroup>
   <ItemGroup>

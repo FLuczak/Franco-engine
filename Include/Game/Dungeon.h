@@ -20,7 +20,7 @@ public:
 	bool GenerateRooms();
 
 	void SpawnDoors();
-    void TrySpawnDoor(int roomTo, int roomFrom) const;
+    void TrySpawnDoor(int roomTo, int roomFrom);
 
 	void Start() override;
 	void Update(float deltaTime) override;
@@ -37,6 +37,7 @@ public:
     SERIALIZE_FIELD(int, maxRooms);
     SERIALIZE_FIELD(int, minRooms);
 private:
+    std::vector<std::reference_wrapper<Entity>> roomsVector{};
 
 	std::random_device rd;
     std::uniform_real_distribution<> dis;
@@ -44,7 +45,7 @@ private:
 
     bool started;
     bool placedSpecial;
-    std::vector<int> images;
+    std::vector<int> rooms;
     std::vector<int> floorPlan;
     std::vector<int> cellQueue;
     std::vector<int> endRooms;

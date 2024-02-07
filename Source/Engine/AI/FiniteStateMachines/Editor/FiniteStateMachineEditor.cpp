@@ -561,27 +561,40 @@ void AI::FiniteStateMachineEditor::Update()
 {
     auto& io = ImGui::GetIO();
 
-    ImGui::Begin("FSM editor", &open);
-    DrawUpperMenu();
+    
+    if(ImGui::Begin("FSM editor", nullptr))
+    {
+        open = true;
+    }
+	else
+    {
+        open = false;
+    }
 
-    ImGui::Separator();
+    if(open)
+    {
+        DrawUpperMenu();
 
-    DrawSelectedStateDetails();
+        ImGui::Separator();
 
-    m_selectedNodes.clear();
+        DrawSelectedStateDetails();
 
-    ImGui::SameLine(400);
+        m_selectedNodes.clear();
 
-    ax::NodeEditor::SetCurrentEditor(m_context);
-    ax::NodeEditor::Begin("FSM editor", ImVec2(0.0, 0.0f));
+        ImGui::SameLine(400);
 
-    HandleClicks();
-    DrawNodes(m_editorFSM);
-    DrawTransitions(m_editorFSM);
-    ax::NodeEditor::End();
-    ax::NodeEditor::SetCurrentEditor(nullptr);
+        ax::NodeEditor::SetCurrentEditor(m_context);
+        ax::NodeEditor::Begin("FSM editor", ImVec2(0.0, 0.0f));
 
-    DrawPopupMenu();
+        HandleClicks();
+        DrawNodes(m_editorFSM);
+        DrawTransitions(m_editorFSM);
+
+        ax::NodeEditor::End();
+        ax::NodeEditor::SetCurrentEditor(nullptr);
+
+        DrawPopupMenu();
+    }
 
     ImGui::End();
 }

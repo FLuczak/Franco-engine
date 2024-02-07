@@ -19,13 +19,21 @@
       {
          "ComponentName": "class BoxCollider",
          "SerializedValues": {
-            "extents": "x:64 y:64 ",
+            "extents": "x:64 y:100 ",
             "offset": "x:32 y:32 ",
-            "polygon": "{x:-32 y:32 }{x:32 y:32 }{x:32 y:-32 }{x:-32 y:-32 }"
+            "polygon": "{x:-32 y:50 }{x:32 y:50 }{x:32 y:-50 }{x:-32 y:-50 }"
+         }
+      },
+      {
+         "ComponentName": "class DoorComponent",
+         "SerializedValues": {
+            "doorModifier": "150.000000",
+            "roomFrom": "45",
+            "roomTo": "44"
          }
       }
    ],
-   "Name": "Door\u0000y",
+   "Name": "Door",
    "Transform": {
       "Rotation": [
          0.0
@@ -35,8 +43,8 @@
          1.0
       ],
       "Translation": [
-         640.0,
-         360.0
+         -2.0,
+         361.0
       ]
    }
 }

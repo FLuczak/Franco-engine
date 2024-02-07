@@ -16,6 +16,11 @@ int main()
 {
     sf::RenderWindow& window = Engine.window;sf::Clock clock;
     ImGui::SFML::Init(window);
+    auto& io = ImGui::GetIO();
+
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+
     sf::Clock deltaClock;
     Inspector& inspector = Engine.inspector;
     Game& game = *Engine.game;

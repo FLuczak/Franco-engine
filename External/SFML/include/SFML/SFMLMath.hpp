@@ -187,6 +187,16 @@ namespace sf
     }
 
     template <VectorLike T>
+    inline T& normalized(T vec)
+    {
+        const float length = getLength(vec);
+        vec.x /= length;
+        vec.y /= length;
+
+        return vec;
+    }
+
+    template <VectorLike T>
     T min(const T& point1, const T& point2)
 	{
         return T(std::min(point1.x, point2.x), std::min(point1.y, point2.y));
