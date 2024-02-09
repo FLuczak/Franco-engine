@@ -20,10 +20,11 @@ void PlayerShooting::Update(float deltaTime)
 	{
 		auto& bullet =Engine.world.InstantiateTemplate("Templates/Bullet.ent");
 		const auto mousePos = sf::Mouse::getPosition(Engine.window);
-		sf::Vector2f direction = sf::Vector2f(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) - GetTransform().position;
+		sf::Vector2f direction = sf::Vector2f(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) - GetTransform().position + CameraComponent::GetMainCamera()->GetTransform().position;
 		direction = sf::normalize(direction);
 		bullet.GetTransform().position = GetTransform().position + sf::Vector2f(32,32) + direction * distanceFromPlayer;
 		bullet.GetComponent<PhysicsBody>()->velocity = direction * bulletSpeed;
+		bullet.tag = Tag::Player;
 
 		timer = shootingSpeed;
 	}

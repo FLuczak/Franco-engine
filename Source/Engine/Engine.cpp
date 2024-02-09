@@ -30,6 +30,7 @@ void Engine::Inspect()
         if (ImGui::Button("Stop"))
         {
             game->End();
+            world.DestroyAll();
             world.Deserialize(temporaryWorld);
         }
     }

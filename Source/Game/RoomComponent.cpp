@@ -12,9 +12,19 @@ void RoomComponent::EnteredRoom(DoorComponent& door)
 		GetEntity().active = true;
 		for (auto& doorEntity : doorEntities)
 		{
-			doorEntity.get().active = doorEntity.get().GetComponent<DoorComponent>()->roomFrom == id;
+			doorEntity.get().active = false;
 		}
 		CameraComponent::GetMainCamera()->GetTransform().position = GetTransform().position;
+	}
+
+	if(!completed)
+	{
+		if (id == 45)return;
+		for(int i = 0; i < numberEnemies;i++)
+		{
+			auto& entity = Engine.world.InstantiateTemplate("Templates/Necromancer.ent");
+			entity.GetTransform().position = GetTransform().position + sf::Vector2f(600, 300) + sf::Vector2f(rand() % 1000 - 500, rand() % 500 - 250); 
+		}
 	}
 }
 

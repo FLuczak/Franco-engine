@@ -1,0 +1,77 @@
+{
+    "Components": [
+        {
+            "ComponentName": "class SpriteRenderComponent",
+            "SerializedValues": {
+                "layer": "99",
+                "spritePath": "Assets/Necro.png",
+                "spriteSize": "left:0 top:0 width:64 height:64 "
+            }
+        },
+        {
+            "ComponentName": "class DiskCollider",
+            "SerializedValues": {
+                "offset": "x:32 y:32 ",
+                "radius": "35.000000"
+            }
+        },
+        {
+            "ComponentName": "class PhysicsBody",
+            "SerializedValues": {
+                "bodyType": "KINEMATIC",
+                "mass": "1.000000",
+                "restitution": "0.000000"
+            }
+        },
+        {
+            "ComponentName": "class AnimationController",
+            "SerializedValues": {
+                "path": "Animation/Necro.anim"
+            }
+        },
+        {
+            "ComponentName": "class NavMeshAgent",
+            "SerializedValues": {
+                "movementSpeed": "120.000000"
+            }
+        },
+        {
+            "ComponentName": "class RadialEmitter",
+            "SerializedValues": {
+                "active": "1",
+                "angle": "360",
+                "bulletSpeed": "250.000000",
+                "bulletTemplate": "Templates/Bullet.ent",
+                "delay": "0.000000",
+                "fireRate": "1.000000",
+                "offset": "x:32 y:32 ",
+                "radius": "60.000000",
+                "step": "30"
+            }
+        },
+        {
+            "ComponentName": "class Health",
+            "SerializedValues": {
+                "maxHealth": "5"
+            }
+        },
+        {
+            "ComponentName": "class DestroyOnDeathComponent"
+        }
+    ],
+    "Name": "Necrom",
+    "Tag": 2,
+    "Transform": {
+        "Rotation": [
+            0.0
+        ],
+        "Scale": [
+            1.0,
+            1.0
+        ],
+        "Translation": [
+            450.0,
+            300.0
+        ]
+    }
+}

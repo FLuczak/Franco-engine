@@ -21,7 +21,9 @@ unsigned World::GetId()
     }
 
     std::sort(idsToSet.begin(),idsToSet.end());
-    return idsToSet[0];
+	unsigned toReturn = idsToSet[0];
+    idsToSet.erase(idsToSet.begin());
+    return toReturn;
 }
 
 Entity& World::Instantiate(std::string nameToSet)
@@ -69,6 +71,8 @@ void World::DeleteDestroyedEntities()
                 {
                     entityInspector.InspectEntity(nullptr);
                 }
+
+                idsToSet.push_back(entity.GetId());
 
                 entity.OnDestroy();
                 return true;
@@ -198,4 +202,12 @@ void World::Deserialize(nlohmann::json& json)
        auto& temp = Instantiate("entity");
        temp.Deserialize(element);
 	}
+}
+
+void World::DestroyAll()
+{
+    for(auto& entity : entities)
+    {
+        Destroy(entity);
+    }
 }

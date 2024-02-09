@@ -88,6 +88,7 @@ nlohmann::json Entity::Serialize()
 	toReturn["Name"] = name;
 	toReturn["Components"] = {};
 	toReturn["Transform"] = {};
+	toReturn["Tag"] = tag;
 
 	for (auto& component : components)
 	{
@@ -113,6 +114,11 @@ void Entity::Deserialize(nlohmann::json& json)
 	sf::Vector2f translation = { json["Transform"]["Translation"][0],json["Transform"]["Translation"][1]};
 	sf::Vector2f scale = { json["Transform"]["Scale"][0],json["Transform"]["Scale"][1]};
 	float rotation = json["Transform"]["Rotation"][0];
+
+	if(json.contains("Tag"))
+	{
+		tag = json["Tag"];
+	}
 
 	transform.position = translation;
 	transform.rotation = rotation;

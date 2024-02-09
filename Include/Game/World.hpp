@@ -32,12 +32,14 @@ public:
 
 	nlohmann::json Serialize();
 	void Deserialize(nlohmann::json& json);
+	void DestroyAll();
+
 private:
 	EntityInspector entityInspector{};
 	std::queue<unsigned int> entitiesToRemove{};
 	int nextId = 0;
 	std::list<Entity> entities{};
-	std::vector<int> idsToSet{};
+	std::vector<entity_id> idsToSet{};
 };
 
 template <typename ComponentType>

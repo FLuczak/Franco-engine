@@ -24,6 +24,27 @@ void EntityInspector::DisplayEntityNameChangeBox() const
 	ImGui::Checkbox(std::string("##enabled" + std::to_string(inspectedEntity->GetId())).c_str(), &inspectedEntity->active);
 	ImGui::SameLine();
 	ImGui::InputText(std::string("Name##" + std::to_string(inspectedEntity->GetId())).c_str(), inspectedEntity->name.data(), inspectedEntity->name.size() + inspectedEntity->name.capacity());
+
+	constexpr auto tags = magic_enum::enum_names<Tag>();
+	if (ImGui::BeginCombo("Tag:", magic_enum::enum_name(inspectedEntity->tag).data()))
+	{
+		for (auto value : tags)
+		{
+			bool isSelected = false;
+			if (ImGui::Selectable(std::string(value).c_str(), isSelected))
+			{
+				isSelected = true;
+			}
+
+			if (isSelected)
+			{
+				inspectedEntity->tag = magic_enum::enum_cast<Tag>(std::string(value)).value();
+				ImGui::SetItemDefaultFocus();
+			}
+		}
+
+		ImGui::EndCombo();
+	}
 }
 
 

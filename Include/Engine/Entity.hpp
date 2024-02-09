@@ -20,6 +20,14 @@ struct Transform
 
 using entity_id = size_t;
 
+enum class Tag
+{
+	Untagged,
+	Player,
+	Enemy,
+	UI
+};
+
 class Entity
 {
 public:
@@ -29,6 +37,8 @@ public:
 
 	entity_id GetId() const { return id; }
 	Transform& GetTransform(){return transform;}
+
+	Tag tag;
 
 	template<typename ComponentType, typename ...Args>
 	ComponentType& AddComponent(Args&& ... args, bool startComponent);

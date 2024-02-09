@@ -39,6 +39,7 @@ void RadialEmitter::Fire()
 		auto body = bullet.GetComponent<PhysicsBody>();
 		if (body == nullptr)return;
 		body->velocity = sf::normalize(direction) * bulletSpeed;
+		bullet.tag = Tag::Enemy;
 	}
 }
 
@@ -56,6 +57,7 @@ void SpiralEmitter::Fire()
 		auto body = bullet.GetComponent<PhysicsBody>();
 		if (body == nullptr)return;
 		body->velocity = sf::normalize(direction) * bulletSpeed;
+		bullet.tag = Tag::Enemy;
 	}
 }
 
@@ -92,6 +94,7 @@ void PatternEmitter::Fire()
 				if (body == nullptr)return;
 				body->velocity = sf::getRotated(sf::Vector2f(0, 1), GetTransform().rotation);
 				body->velocity = sf::normalize(body->velocity) * bulletSpeed;
+				bullet.tag = Tag::Enemy;
 			}
 		}
 	}
