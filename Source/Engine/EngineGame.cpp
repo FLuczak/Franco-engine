@@ -1,9 +1,9 @@
 #include <Engine/EngineGame.hpp>
 #include "Engine/Engine.hpp"
+#include "Engine/NavMeshObstacle.h"
+#include "Engine/NavmeshSurface.h"
 #include "Game/CameraComponent.hpp"
-#include "Game/NavMeshObstacle.h"
-#include "Game/NavmeshSurface.h"
-#include "Game/World.hpp"
+
 
 void Game::Start()
 {

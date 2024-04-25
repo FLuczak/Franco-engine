@@ -1,5 +1,4 @@
-#include "Game/NavMeshObstacle.h"
-
+#include "Engine/NavMeshObstacle.h"
 #include "Engine/DebugRenderer.hpp"
 #include "Engine/Engine.hpp"
 #include "SFML/Graphics/Color.hpp"

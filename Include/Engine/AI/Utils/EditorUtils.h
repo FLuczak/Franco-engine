@@ -50,6 +50,24 @@ inline std::unordered_map<std::string, BehaviorWrapperType> behaviorWrapperTypes
 
 }  // namespace BehaviorsInBTEditor
 
+inline bool SetDragDropTarget(std::filesystem::path& payloadData, const std::initializer_list<std::string>& dataTypes)
+{
+	if (ImGui::BeginDragDropTarget())
+	{
+		for (const auto& dataType : dataTypes)
+		{
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(dataType.c_str()))
+			{
+				payloadData = std::filesystem::path(static_cast<const char*>(payload->Data));
+
+				ImGui::EndDragDropTarget();
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 namespace Dialogs
 {
  static inline std::string OpenFileSaveDialog()
@@ -283,6 +301,26 @@ inline void DrawSerializedField(const std::pair<std::string, EditorVariable*>& s
 		return;
 	}
 
+	if (variableType == typeid(PathHelper))
+	{
+		std::stringstream deserializeStream{ serializedValue };
+		std::filesystem::path path;
+		std::string formatString;
+
+		deserializeStream >> path;
+		deserializeStream >> formatString;
+
+		SetDragDropTarget(path, { formatString });
+
+		deserializeStream = {};
+
+		deserializeStream << path;
+		deserializeStream << formatString;
+
+		serializedField.second->Deserialize(deserializeStream.str());
+		return;
+	}
+
 	if (typeName.find("class") != std::string::npos)
 	{
 		std::stringstream deserializeStream;
@@ -351,4 +389,6 @@ inline std::string AI::ComparatorWrapper::ToString() const
     toReturn << value << " ";
     return toReturn.str();
 }
+
+
 }  // namespace AI

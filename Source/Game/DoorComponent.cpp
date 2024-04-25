@@ -3,7 +3,6 @@
 #include "Engine/Engine.hpp"
 #include "Engine/Entity.hpp"
 #include "Engine/Physics/Collision.hpp"
-#include "Game/BaseCollider.h"
 #include "Game/PlayerMovement.hpp"
 
 void DoorComponent::Update(float deltaTime)

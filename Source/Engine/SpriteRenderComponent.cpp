@@ -1,5 +1,5 @@
-#include "Game/SpriteRenderComponent.hpp"
 
+#include "Engine/SpriteRenderComponent.hpp"
 #include "Engine/Entity.hpp"
 #include "Game/CameraComponent.hpp"
 
@@ -11,23 +11,23 @@ SpriteRenderComponent::SpriteRenderComponent(Entity& entityToSet): Component(ent
 void SpriteRenderComponent::Start()
 {
 	Component::Start();
-	sprite = AssetManager::GetTexture(spritePath, spriteSize);
-	oldSpritePath = spritePath;
+	sprite = AssetManager::GetTexture(spritePath.path, spriteSize);
+	oldSpritePath = spritePath.path;
 }
 
 void SpriteRenderComponent::Update(float deltaTime)
 {
 	Component::Update(deltaTime);
 
-	if(oldSpritePath != spritePath)
+	if(oldSpritePath != spritePath.path)
 	{
-		sprite = AssetManager::GetTexture(spritePath, spriteSize);
-		oldSpritePath = spritePath;
+		sprite = AssetManager::GetTexture(spritePath.path, spriteSize);
+		oldSpritePath = spritePath.path;
 	}
 
 	if(oldSpriteSize != spriteSize)
 	{
-		sprite = AssetManager::GetTexture(spritePath, spriteSize);
+		sprite = AssetManager::GetTexture(spritePath.path, spriteSize);
 		oldSpriteSize = spriteSize;
 	}
 

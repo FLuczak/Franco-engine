@@ -1,11 +1,11 @@
 #pragma once
+#include "AssetExplorer.h"
 #include "DebugRenderer.hpp"
 #include "EngineGame.hpp"
 #include "Inspector.hpp"
 #include "AI/BehaviorTrees/Editor/BehaviorTreeEditor.hpp"
 #include "AI/FiniteStateMachines/Editor/FiniteStateMachineEditor.hpp"
 #include "AI/NavMesh/NavMesh.hpp"
-#include "Game/World.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 
 class Engine : public Inspectable
@@ -20,6 +20,7 @@ public:
 	AI::FiniteStateMachineEditor fsmEditor;
 	AI::BehaviorTreeEditor btEditor;
 	AI::NavMesh navMesh;
+	AssetExplorer explorer;
 	World world;
 private:
 	nlohmann::json temporaryWorld;

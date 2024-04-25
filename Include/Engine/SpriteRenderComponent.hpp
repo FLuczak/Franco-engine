@@ -18,12 +18,12 @@ public:
 	void OnDestroy() override;
 
 	std::unique_ptr<sf::Sprite> sprite{};
-	SERIALIZE_FIELD(std::string, spritePath)
+	SERIALIZE_FILE_PATH(.png, spritePath);
 	SERIALIZE_FIELD(sf::IntRect, spriteSize)
 	SERIALIZE_FIELD(int, layer)
 	~SpriteRenderComponent() override;
 private:
-	std::string oldSpritePath;
+	std::filesystem::path oldSpritePath;
 	sf::IntRect oldSpriteSize;
 };
 REGISTER_COMPONENT(SpriteRenderComponent);

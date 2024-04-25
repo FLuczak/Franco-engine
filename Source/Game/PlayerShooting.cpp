@@ -3,7 +3,6 @@
 #include "Engine/Engine.hpp"
 #include "Engine/Physics/DiskCollider.hpp"
 #include "Game/Bullet.h"
-#include "Game/SpriteRenderComponent.hpp"
 #include "SFML/Window/Mouse.hpp"
 
 void PlayerShooting::Start()

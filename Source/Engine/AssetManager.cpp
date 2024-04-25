@@ -28,7 +28,13 @@ std::unique_ptr<sf::Sprite> AssetManager::GetTexture(std::string name, sf::IntRe
 	}
 }
 
- const nlohmann::json& AssetManager::GetEntityTemplate(std::string name)
+std::unique_ptr<sf::Sprite> AssetManager::GetTexture(std::filesystem::path path, sf::IntRect size)
+{
+	if (!std::filesystem::exists(path))return nullptr;
+	return GetTexture(path, size);
+}
+
+const nlohmann::json& AssetManager::GetEntityTemplate(std::string name)
 {
 	if (!assets.contains(name))
 	{
@@ -85,7 +91,7 @@ AI::FiniteStateMachine& AssetManager::GetAnimationFSM(std::string name)
 
 std::filesystem::path AssetManager::GetAssetsPath()
 {
-	std::filesystem::path assetsPath1 = std::filesystem::current_path() / "Assets";
+	std::filesystem::path assetsPath1 = std::filesystem::current_path() / "Assets" ;
 	std::filesystem::path assetsPath2 = std::filesystem::current_path().parent_path().parent_path() / "Assets";
 
 	if (std::filesystem::exists(assetsPath1)) 

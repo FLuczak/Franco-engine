@@ -9,6 +9,11 @@
 #include "Visit struct/visit_struct.hpp"
 #include "Engine/Component.hpp"
 
+struct PathHelper
+{
+    std::string format{};
+    std::filesystem::path path{};
+};
 
 template <typename U>
 concept HasToString = requires(const U & type)
@@ -36,6 +41,7 @@ concept HasInsert = requires(U u, T t)
     { u.insert(t) } -> std::same_as<void>;
     { u.insert(std::move(t)) } -> std::same_as<void>;
 };
+
 
 class EditorVariable
 {
@@ -106,6 +112,15 @@ public:
                 SerializedField<decltype(element)> f(element);
                 ss << "{" << f.ToString() << "}";
             }
+            return ss.str();
+        }
+
+        if constexpr (std::is_same_v<T,PathHelper>)
+        {
+            std::stringstream ss;
+            PathHelper helper = static_cast<PathHelper>(val);
+            ss << "Path:" << helper.path;
+            ss << "Format:" << helper.format;
             return ss.str();
         }
 
@@ -185,6 +200,23 @@ public:
             return toReturn;
         }
 
+        if constexpr (std::is_same<T, PathHelper>::value)
+        {
+            std::string path;
+            std::string format;
+
+            stringStream >> path;
+            stringStream>>path;
+            stringStream>>format;
+            stringStream>>format;
+
+            static_cast<PathHelper>(toReturn).path = path;
+            static_cast<PathHelper>(toReturn).format = format;
+
+        	return toReturn;
+        }
+
+
         return toReturn;
     }
 
@@ -261,3 +293,7 @@ private:
 #define SERIALIZE_FIELD(type, name) \
         type name;                             \
         SerializedField<type> name##Helper{*this, #name, name};
+
+#define SERIALIZE_FILE_PATH(format, name) \
+        PathHelper name{"",#format};                             \
+        SerializedField<PathHelper> name##Helper{*this, #name, name};

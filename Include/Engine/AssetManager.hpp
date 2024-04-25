@@ -70,6 +70,7 @@ class AssetManager
 {
 public:
 	static std::unique_ptr<sf::Sprite> GetTexture(std::string name, sf::IntRect size);
+	static std::unique_ptr<sf::Sprite> GetTexture(std::filesystem::path path, sf::IntRect size);
 	static const nlohmann::json& GetEntityTemplate(std::string name);
 	static AI::FiniteStateMachine& GetAnimationFSM(std::string name);
 private:

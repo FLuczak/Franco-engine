@@ -24,6 +24,7 @@
     <ProjectGuid>{38c63ab9-0a0e-4f19-9d0a-8c821df64806}</ProjectGuid>
     <RootNamespace>Game</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Engine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -143,6 +144,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="imgui\imgui_stdlib.cpp" />
+    <ClCompile Include="Source\Engine\AssetExplorer.cpp" />
     <ClCompile Include="Source\Game\DestroyOnDeathComponent.cpp" />
     <ClCompile Include="Source\Game\Health.cpp" />
     <ClCompile Include="Source\Game\RoomComponent.cpp" />
@@ -152,14 +155,14 @@
     <ClCompile Include="External\clipper\src\clipper.engine.cpp" />
     <ClCompile Include="External\clipper\src\clipper.offset.cpp" />
     <ClCompile Include="External\clipper\src\clipper.rectclip.cpp" />
-    <ClCompile Include="Source\Game\NavMeshAgent.cpp" />
-    <ClCompile Include="Source\Game\NavMeshObstacle.cpp" />
-    <ClCompile Include="Source\Game\NavmeshSurface.cpp" />
+    <ClCompile Include="Source\Engine\NavMeshAgent.cpp" />
+    <ClCompile Include="Source\Engine\NavMeshObstacle.cpp" />
+    <ClCompile Include="Source\Engine\NavmeshSurface.cpp" />
     <ClCompile Include="Source\Engine\AI\NavMesh\Graph.cpp" />
     <ClCompile Include="Source\Engine\AI\NavMesh\Navigation.cpp" />
     <ClCompile Include="Source\Engine\AI\NavMesh\NavMesh.cpp" />
     <ClCompile Include="Source\Engine\AI\NavMesh\NavMeshPath.cpp" />
-    <ClCompile Include="Source\Game\AnimationController.cpp" />
+    <ClCompile Include="Source\Engine\AnimationController.cpp" />
     <ClCompile Include="imgui\crude_json.cpp" />
     <ClCompile Include="imgui\extra_fonts\binary_to_compressed_c.cpp" />
     <ClCompile Include="imgui\imgui_canvas.cpp" />
@@ -182,8 +185,8 @@
     <ClCompile Include="Source\Engine\Physics\DiskCollider.cpp" />
     <ClCompile Include="Source\Engine\Physics\PolygonCollider.cpp" />
     <ClCompile Include="Source\Engine\Engine.cpp" />
-    <ClCompile Include="Source\Game\BaseCollider.cpp" />
-    <ClCompile Include="Source\Game\BoxCollider.cpp" />
+    <ClCompile Include="Source\Engine\BaseCollider.cpp" />
+    <ClCompile Include="Source\Engine\BoxCollider.cpp" />
     <ClCompile Include="Source\Engine\DebugRenderer.cpp" />
     <ClCompile Include="Source\Engine\Physics\PhysicsBody.cpp" />
     <ClCompile Include="Source\Engine\Physics\PhysicsWorld.cpp" />
@@ -208,11 +211,13 @@
     <ClCompile Include="Source\Engine\Application.cpp" />
     <ClCompile Include="Source\Engine\EngineGame.cpp" />
     <ClCompile Include="Source\Engine\Game.cpp" />
-    <ClCompile Include="Source\Game\World.cpp" />
-    <ClCompile Include="Source\Game\SpriteRenderComponent.cpp" />
+    <ClCompile Include="Source\Engine\Physics\World.cpp" />
+    <ClCompile Include="Source\Engine\SpriteRenderComponent.cpp" />
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="imgui\imgui_stdlib.h" />
+    <ClInclude Include="Include\Engine\AssetExplorer.h" />
     <ClInclude Include="Include\Game\DestroyOnDeathComponent.h" />
     <ClInclude Include="Include\Game\Health.h" />
     <ClInclude Include="Include\Game\DoorComponent.h" />
@@ -240,7 +245,7 @@
     <ClInclude Include="Include\Engine\AI\NavMesh\Navigation.hpp" />
     <ClInclude Include="Include\Engine\AI\NavMesh\NavMesh.hpp" />
     <ClInclude Include="Include\Engine\AI\NavMesh\NavMeshPath.hpp" />
-    <ClInclude Include="Include\Game\AnimationController.h" />
+    <ClInclude Include="Include\Engine\AnimationController.h" />
     <ClInclude Include="imgui\crude_json.h" />
     <ClInclude Include="imgui\IconsFontAwesome.h" />
     <ClInclude Include="imgui\imgui_bezier_math.h" />
@@ -276,8 +281,8 @@
     <ClInclude Include="External\magic_enum\magic_enum_iostream.hpp" />
     <ClInclude Include="External\magic_enum\magic_enum_switch.hpp" />
     <ClInclude Include="External\magic_enum\magic_enum_utility.hpp" />
-    <ClInclude Include="Include\Game\BaseCollider.h" />
-    <ClInclude Include="Include\Game\BoxCollider.h" />
+    <ClInclude Include="Include\Engine\BaseCollider.h" />
+    <ClInclude Include="Include\Engine\BoxCollider.h" />
     <ClInclude Include="Include\Engine\DebugRenderer.hpp" />
     <ClInclude Include="External\nlohmann\adl_serializer.hpp" />
     <ClInclude Include="External\nlohmann\byte_container_with_subtype.hpp" />
@@ -447,8 +452,8 @@
     <ClInclude Include="External\SFML\include\SFML\Window\WindowBase.hpp" />
     <ClInclude Include="External\SFML\include\SFML\Window\WindowHandle.hpp" />
     <ClInclude Include="External\SFML\include\SFML\Window\WindowStyle.hpp" />
-    <ClInclude Include="Include\Game\World.hpp" />
-    <ClInclude Include="Include\Game\SpriteRenderComponent.hpp" />
+    <ClInclude Include="Include\Engine\Physics\World.hpp" />
+    <ClInclude Include="Include\Engine\SpriteRenderComponent.hpp" />
     <ClInclude Include="Include\GenericFactory.hpp" />
     <ClInclude Include="Include\SimpleDelegates.h" />
     <ClInclude Include="Include\Engine\Inspector.hpp" />
@@ -458,9 +463,9 @@
     <ClInclude Include="Include\Engine\Physics\PhysicsWorld.h" />
     <ClInclude Include="Include\Engine\Physics\PolygonCollider.h" />
     <ClInclude Include="Include\Game\PlayerShooting.h" />
-    <ClInclude Include="Include\Game\NavmeshSurface.h" />
-    <ClInclude Include="Include\Game\NavMeshObstacle.h" />
-    <ClInclude Include="Include\Game\NavMeshAgent.h" />
+    <ClInclude Include="Include\Engine\NavmeshSurface.h" />
+    <ClInclude Include="Include\Engine\NavMeshObstacle.h" />
+    <ClInclude Include="Include\Engine\NavMeshAgent.h" />
     <ClInclude Include="Include\Game\RoomComponent.h" />
     <ClInclude Include="TileMap.hpp" />
   </ItemGroup>

@@ -1,8 +1,8 @@
 #include "Game/Health.h"
 
+#include "Engine/BaseCollider.h"
 #include "Engine/Entity.hpp"
 #include "Engine/Physics/Collision.hpp"
-#include "Game/BaseCollider.h"
 #include "Game/Bullet.h"
 
 void Health::ChangeHealth(int amount)

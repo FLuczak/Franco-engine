@@ -105,5 +105,8 @@ void Engine::Inspect()
         ImGui::EndMenu();
     }
 
+
+    explorer.Update(0.0f);
+
     ImGui::End();
 }

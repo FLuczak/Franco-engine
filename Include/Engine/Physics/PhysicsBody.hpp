@@ -2,9 +2,10 @@
 #include "Collision.hpp"
 #include "GenericFactory.hpp"
 #include "SimpleDelegates.h"
+#include "Engine/BaseCollider.h"
 #include "Engine/Component.hpp"
+#include "Engine/EditorVariables.h"
 #include "Engine/Entity.hpp"
-#include "Game/BaseCollider.h"
 #include "SFML/System/Vector2.hpp"
 
 class BaseCollider;

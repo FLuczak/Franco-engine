@@ -30,10 +30,10 @@
     <ClCompile Include="Source\Engine\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\World.cpp">
+    <ClCompile Include="Source\Engine\Physics\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\SpriteRenderComponent.cpp">
+    <ClCompile Include="Source\Engine\SpriteRenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\AssetManager.cpp">
@@ -93,10 +93,10 @@
     <ClCompile Include="Source\Engine\DebugRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\BoxCollider.cpp">
+    <ClCompile Include="Source\Engine\BoxCollider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\BaseCollider.cpp">
+    <ClCompile Include="Source\Engine\BaseCollider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Engine.cpp">
@@ -168,7 +168,7 @@
     <ClCompile Include="imgui\implot_items.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\AnimationController.cpp">
+    <ClCompile Include="Source\Engine\AnimationController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\AI\NavMesh\Graph.cpp">
@@ -192,13 +192,13 @@
     <ClCompile Include="External\clipper\src\clipper.rectclip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\NavmeshSurface.cpp">
+    <ClCompile Include="Source\Engine\NavmeshSurface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\NavMeshObstacle.cpp">
+    <ClCompile Include="Source\Engine\NavMeshObstacle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\NavMeshAgent.cpp">
+    <ClCompile Include="Source\Engine\NavMeshAgent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\BulletEmitter.cpp">
@@ -217,6 +217,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Game\DestroyOnDeathComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\AssetExplorer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_stdlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -533,10 +539,10 @@
     <ClInclude Include="Include\Engine\Component.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\World.hpp">
+    <ClInclude Include="Include\Engine\Physics\World.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\SpriteRenderComponent.hpp">
+    <ClInclude Include="Include\Engine\SpriteRenderComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\AssetManager.hpp">
@@ -755,10 +761,10 @@
     <ClInclude Include="Include\Engine\DebugRenderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\BoxCollider.h">
+    <ClInclude Include="Include\Engine\BoxCollider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\BaseCollider.h">
+    <ClInclude Include="Include\Engine\BaseCollider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="External\magic_enum\magic_enum.hpp">
@@ -875,7 +881,7 @@
     <ClInclude Include="imgui\implot_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\AnimationController.h">
+    <ClInclude Include="Include\Engine\AnimationController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Engine\AI\NavMesh\Graph.hpp">
@@ -944,13 +950,13 @@
     <ClInclude Include="External\clipper\include\clipper2\clipper.rectclip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\NavmeshSurface.h">
+    <ClInclude Include="Include\Engine\NavmeshSurface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\NavMeshObstacle.h">
+    <ClInclude Include="Include\Engine\NavMeshObstacle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Game\NavMeshAgent.h">
+    <ClInclude Include="Include\Engine\NavMeshAgent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Game\BulletEmitter.h">
@@ -969,6 +975,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Game\DestroyOnDeathComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Engine\AssetExplorer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_stdlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

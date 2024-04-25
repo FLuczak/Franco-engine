@@ -1,9 +1,9 @@
 #include "Game/Dungeon.h"
 
 #include "Engine/Engine.hpp"
+#include "Engine/SpriteRenderComponent.hpp"
 #include "Game/DoorComponent.h"
 #include "Game/RoomComponent.h"
-#include "Game/SpriteRenderComponent.hpp"
 
 void Dungeon::SpawnRooms()
 {
