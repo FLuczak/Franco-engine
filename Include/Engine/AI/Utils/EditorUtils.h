@@ -65,6 +65,8 @@ inline bool SetDragDropTarget(std::filesystem::path& payloadData, const std::ini
 			}
 		}
 	}
+	ImGui::SameLine();
+	ImGui::Text(payloadData.string().c_str());
 	return false;
 }
 
@@ -303,21 +305,17 @@ inline void DrawSerializedField(const std::pair<std::string, EditorVariable*>& s
 
 	if (variableType == typeid(PathHelper))
 	{
-		std::stringstream deserializeStream{ serializedValue };
-		std::filesystem::path path;
-		std::string formatString;
+		nlohmann::json j = nlohmann::json::parse(serializedValue);
+		PathHelper helper;
+		helper.format = j["format"].get<std::string>();
+		helper.path = std::filesystem::path(j["path"].get<std::string>());
 
-		deserializeStream >> path;
-		deserializeStream >> formatString;
+		SetDragDropTarget(helper.path, { helper.format });
 
-		SetDragDropTarget(path, { formatString });
+		j["format"] = helper.format;
+		j["path"] = helper.path.string();
 
-		deserializeStream = {};
-
-		deserializeStream << path;
-		deserializeStream << formatString;
-
-		serializedField.second->Deserialize(deserializeStream.str());
+		serializedField.second->Deserialize(j.dump());
 		return;
 	}
 

@@ -30,8 +30,7 @@ std::unique_ptr<sf::Sprite> AssetManager::GetTexture(std::string name, sf::IntRe
 
 std::unique_ptr<sf::Sprite> AssetManager::GetTexture(std::filesystem::path path, sf::IntRect size)
 {
-	if (!std::filesystem::exists(path))return nullptr;
-	return GetTexture(path, size);
+	return GetTexture(path.string(), size);
 }
 
 const nlohmann::json& AssetManager::GetEntityTemplate(std::string name)

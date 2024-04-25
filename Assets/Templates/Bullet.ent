@@ -18,7 +18,7 @@
       {
          "ComponentName": "class SpriteRenderComponent",
          "SerializedValues": {
-            "spritePath": "Assets/Bullets.png",
+            "spritePath": "{\"format\":\".png\",\"path\":\"C:\\\\Users\\\\kenar\\\\source\\\\repos\\\\C++\\\\Franco-engine\\\\Assets\\\\Bullets.png\"}",
             "spriteSize": "left:180 top:132 width:8 height:8 "
          }
       },

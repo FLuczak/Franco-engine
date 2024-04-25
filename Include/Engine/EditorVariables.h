@@ -11,8 +11,8 @@
 
 struct PathHelper
 {
-    std::string format{};
     std::filesystem::path path{};
+    std::string format{};
 };
 
 template <typename U>
@@ -117,11 +117,11 @@ public:
 
         if constexpr (std::is_same_v<T,PathHelper>)
         {
-            std::stringstream ss;
-            PathHelper helper = static_cast<PathHelper>(val);
-            ss << "Path:" << helper.path;
-            ss << "Format:" << helper.format;
-            return ss.str();
+            auto helper = static_cast<PathHelper>(val);
+            nlohmann::json j;
+            j["format"] = helper.format;
+            j["path"] = helper.path.string();
+            return j.dump();
         }
 
         return "";
@@ -202,20 +202,12 @@ public:
 
         if constexpr (std::is_same<T, PathHelper>::value)
         {
-            std::string path;
-            std::string format;
-
-            stringStream >> path;
-            stringStream>>path;
-            stringStream>>format;
-            stringStream>>format;
-
-            static_cast<PathHelper>(toReturn).path = path;
-            static_cast<PathHelper>(toReturn).format = format;
-
-        	return toReturn;
+            nlohmann::json j = nlohmann::json::parse(stringStream.str());
+            PathHelper helper;
+            helper.format = j["format"].get<std::string>();
+            helper.path = std::filesystem::path(j["path"].get<std::string>());
+            return helper;
         }
-
 
         return toReturn;
     }

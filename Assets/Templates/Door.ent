@@ -4,7 +4,7 @@
          "ComponentName": "class SpriteRenderComponent",
          "SerializedValues": {
             "layer": "0",
-            "spritePath": "Assets/Door.png",
+            "spritePath": "{\"format\":\".png\",\"path\":\"C:\\\\Users\\\\kenar\\\\source\\\\repos\\\\C++\\\\Franco-engine\\\\Assets\\\\Door.png\"}",
             "spriteSize": "left:0 top:0 width:0 height:0 "
          }
       },
