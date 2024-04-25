@@ -153,6 +153,7 @@ void PhysicsWorld::CheckAndResolveCollisionForPolygonDisk(BaseCollider& polygon,
 	else
     {
         HandleCollisionTrackingLeaveEvent(polygon, disk);
+        HandleCollisionTrackingLeaveEvent(disk, polygon);
     }
 }
 
