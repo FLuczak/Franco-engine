@@ -3,6 +3,7 @@
 #include "Engine/AssetManager.hpp"
 #include "Engine/Engine.hpp"
 #include "Game/PlayerMovement.hpp"
+#include "Engine/SpriteRenderComponent.hpp"
 
 sf::Vector2f BulletEmitter::GetDirectionToPlayer() const
 {
@@ -38,10 +39,10 @@ void BulletEmitter::Fire()
 void SingleEmitter::Fire()
 {
 	BulletEmitter::Fire();
-	auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.string());
-	sf::Vector2f direction = { 0,1 };
-	direction = GetDirectionToPlayer();
-	bullet.GetTransform().position = GetTransform().position + direction ;
+	auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.path.string());
+	sf::Vector2f direction = GetDirectionToPlayer();
+	const auto spriteSize = GetEntity().GetComponent<SpriteRenderComponent>()->spriteSize;
+	bullet.GetTransform().position = GetTransform().position + sf::Vector2f(static_cast<float>(spriteSize.width) / 2.0f, static_cast<float>(spriteSize.height) / 2.0f) + direction * 64;
 	const auto body = bullet.GetComponent<PhysicsBody>();
 	if (body == nullptr)return;
 	body->velocity = sf::normalize(direction) * bulletSpeed;
@@ -53,7 +54,7 @@ void RadialEmitter::Fire()
 	BulletEmitter::Fire();
 	for(int i = 0 ; i < angle; i+= step)
 	{
-		auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.string());
+		auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.path.string());
 		sf::Vector2f direction = { 0,1 };
 		direction = sf::getRotated(direction, i);
 		direction *= radius;
@@ -70,7 +71,7 @@ void SpiralEmitter::Fire()
 	BulletEmitter::Fire();
 	for (int i = 0; i < numberOfBullets; i++)
 	{
-		auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.string());
+		auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.path.string());
 		float angle = i * sf::PI * 2 / numberOfBullets;
 		float x = cos(angle) * radius;
 		float y = sin(angle) * radius;
@@ -110,7 +111,7 @@ void PatternEmitter::Fire()
 		{
 			if(pattern.bulletPattern[j][i])
 			{
-				auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.string());
+				auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.path.string());
 				bullet.GetTransform().position = GetTransform().position + offset + sf::Vector2f(j,i)*scale;
 				auto body = bullet.GetComponent<PhysicsBody>();
 				if (body == nullptr)return;

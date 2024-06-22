@@ -10,7 +10,7 @@ public:
 	SERIALIZE_FIELD(float, fireRate)
 	SERIALIZE_FIELD(float, bulletSpeed)
 	SERIALIZE_FIELD(float, delay)
-	SERIALIZE_FIELD(std::filesystem::path, bulletTemplate)
+	SERIALIZE_FILE_PATH(.ent, bulletTemplate)
 	SERIALIZE_FIELD(bool, active)
 
 	BulletEmitter(Entity& entityToSet): Component(entityToSet), fireRate(0), bulletSpeed(0), delay(0), active(true)

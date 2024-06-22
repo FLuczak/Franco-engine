@@ -9,10 +9,18 @@ std::unordered_map<std::string, std::unique_ptr<Asset>> AssetManager::assets{};
 
 std::unique_ptr<sf::Sprite> AssetManager::GetTexture(std::string name, sf::IntRect size)
 {
+	size_t pos = name.find("Assets");
+	if (pos != std::string::npos)
+	{
+		name = name.substr(pos + std::string("Assets/").length());
+	}
+
 	if (!assets.contains(name))
 	{
 		std::unique_ptr<TextureAsset> textureAsset = std::make_unique<TextureAsset>();
-		textureAsset->texture.loadFromFile(name);
+		const auto tempName = std::string(GetAssetsPath().string()) + '\\' + name;
+
+		textureAsset->texture.loadFromFile(tempName);
 		assets[name] = std::move(textureAsset);
 	}
 
@@ -35,6 +43,12 @@ std::unique_ptr<sf::Sprite> AssetManager::GetTexture(std::filesystem::path path,
 
 const nlohmann::json& AssetManager::GetEntityTemplate(std::string name)
 {
+	size_t pos = name.find("Assets");
+	if (pos != std::string::npos)
+	{
+		name = name.substr(pos + std::string("Assets/").length());
+	}
+
 	if (!assets.contains(name))
 	{
 		const auto tempName = std::string(GetAssetsPath().string()) + '\\' + name;
@@ -63,6 +77,12 @@ const nlohmann::json& AssetManager::GetEntityTemplate(std::string name)
 
 AI::FiniteStateMachine& AssetManager::GetAnimationFSM(std::string name)
 {
+	size_t pos = name.find("Assets");
+	if (pos != std::string::npos)
+	{
+		name = name.substr(pos + std::string("Assets/").length());
+	}
+
 	if (!assets.contains(name))
 	{
 		const auto tempName = std::string(GetAssetsPath().string()) + '\\' + name;

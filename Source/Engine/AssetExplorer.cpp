@@ -160,9 +160,11 @@ bool AssetExplorer::SetDragDropSource(ProjectFile file)
     {
         std::string extension = file.m_fileDirectory.path().extension().string();
         std::string path = file.m_fileDirectory.path().string();
-        ImGui::SetDragDropPayload(extension.c_str(), path.c_str(), sizeof(char) * (path.size() + 1));
+
+    	ImGui::SetDragDropPayload(extension.c_str(), path.c_str(), sizeof(char) * (path.size() + 1));
         ImGui::Text("%s", (file.m_Icon + path).c_str());
         ImGui::EndDragDropSource();
+        std::string keyword = "Assets/";
 
         return true;
     }

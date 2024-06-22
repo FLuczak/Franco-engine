@@ -312,6 +312,15 @@ inline void DrawSerializedField(const std::pair<std::string, EditorVariable*>& s
 
 		SetDragDropTarget(helper.path, { helper.format });
 
+		std::string pathToString = helper.path.string();
+		size_t pos = pathToString.find("Assets");
+		if (pos != std::string::npos) 
+		{
+			pathToString = pathToString.substr(pos);
+		}
+
+		helper.path = pathToString;
+
 		j["format"] = helper.format;
 		j["path"] = helper.path.string();
 

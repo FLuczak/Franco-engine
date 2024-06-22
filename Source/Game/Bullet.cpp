@@ -27,12 +27,14 @@ void Bullet::OnDestroy()
 void Bullet::OnCollisionEnter(CollisionEvent& event)
 {
 	Component::OnCollisionEnter(event);
+	if (event.otherCollider.GetEntity().GetComponent<Bullet>())return;
 	Engine.world.Destroy(GetEntity());
 }
 
 void Bullet::OnCollisionStay(CollisionEvent& event)
 {
 	Component::OnCollisionStay(event);
+	if (event.otherCollider.GetEntity().GetComponent<Bullet>())return;
 	Engine.world.Destroy(GetEntity());
 }
 

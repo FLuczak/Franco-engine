@@ -206,6 +206,7 @@ public:
             PathHelper helper;
             helper.format = j["format"].get<std::string>();
             helper.path = std::filesystem::path(j["path"].get<std::string>());
+
             return helper;
         }
 

@@ -36,20 +36,6 @@
             }
         },
         {
-            "ComponentName": "class RadialEmitter",
-            "SerializedValues": {
-                "active": "1",
-                "angle": "360",
-                "bulletSpeed": "250.000000",
-                "bulletTemplate": "Templates/Bullet.ent",
-                "delay": "0.000000",
-                "fireRate": "1.000000",
-                "offset": "x:32 y:32 ",
-                "radius": "60.000000",
-                "step": "30"
-            }
-        },
-        {
             "ComponentName": "class Health",
             "SerializedValues": {
                 "maxHealth": "5"
@@ -57,6 +43,16 @@
         },
         {
             "ComponentName": "class DestroyOnDeathComponent"
+        },
+        {
+            "ComponentName": "class SingleEmitter",
+            "SerializedValues": {
+                "active": "1",
+                "bulletSpeed": "200.000000",
+                "bulletTemplate": "{\"format\":\".ent\",\"path\":\"Assets\\\\Templates\\\\Bullet.ent\"}",
+                "delay": "0.000000",
+                "fireRate": "1.000000"
+            }
         }
     ],
     "Name": "Necrom",
