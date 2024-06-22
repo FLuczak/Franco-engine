@@ -10,19 +10,31 @@ public:
 	SERIALIZE_FIELD(float, fireRate)
 	SERIALIZE_FIELD(float, bulletSpeed)
 	SERIALIZE_FIELD(float, delay)
-	SERIALIZE_FIELD(std::string, bulletTemplate)
+	SERIALIZE_FIELD(std::filesystem::path, bulletTemplate)
 	SERIALIZE_FIELD(bool, active)
 
-	explicit BulletEmitter(Entity& entityToSet): Component(entityToSet)
+	BulletEmitter(Entity& entityToSet): Component(entityToSet), fireRate(0), bulletSpeed(0), delay(0), active(true)
 	{
 	}
 
+	sf::Vector2f GetDirectionToPlayer() const;
 	void Start() override;
 	void Update(float deltaTime) override;
 	virtual void Fire();
 protected:
 	float timer = 0.0f;
 };
+
+class SingleEmitter :public BulletEmitter
+{
+public:
+	explicit SingleEmitter(Entity& entityToSet) : BulletEmitter(entityToSet)
+	{
+	}
+
+	void Fire() override;
+};
+REGISTER_COMPONENT(SingleEmitter);
 
 class RadialEmitter : public BulletEmitter
 {

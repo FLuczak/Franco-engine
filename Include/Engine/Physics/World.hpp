@@ -29,6 +29,7 @@ public:
 
 	template<typename ComponentType>
 	std::vector<std::reference_wrapper<Entity>> GetEntitiesOfType();
+	std::vector<std::reference_wrapper<Entity>> GetEntitiesWithTag(const Tag& tag);
 
 	nlohmann::json Serialize();
 	void Deserialize(nlohmann::json& json);

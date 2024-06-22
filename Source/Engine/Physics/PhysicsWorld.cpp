@@ -308,7 +308,7 @@ void PhysicsWorld::Simulate(float dt)
     	m_executedFrame = true;
     }
 
-    for (int i = physicsBodies.size()-1; i > 0 ;i--)
+    for (size_t i = physicsBodies.size()-1; i > 0 ;i--)
     {
         auto& body = physicsBodies[i];
         auto& physicsBody = body.get();

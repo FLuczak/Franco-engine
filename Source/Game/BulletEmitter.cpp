@@ -2,6 +2,15 @@
 
 #include "Engine/AssetManager.hpp"
 #include "Engine/Engine.hpp"
+#include "Game/PlayerMovement.hpp"
+
+sf::Vector2f BulletEmitter::GetDirectionToPlayer() const
+{
+	const auto players = Engine.world.GetEntitiesOfType<PlayerMovement>();
+	if (players.empty())return {};
+	auto vector =players[0].get().GetTransform().position - GetTransform().position;
+	return  sf::normalize(vector);
+}
 
 void BulletEmitter::Start()
 {
@@ -26,12 +35,25 @@ void BulletEmitter::Fire()
 
 }
 
+void SingleEmitter::Fire()
+{
+	BulletEmitter::Fire();
+	auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.string());
+	sf::Vector2f direction = { 0,1 };
+	direction = GetDirectionToPlayer();
+	bullet.GetTransform().position = GetTransform().position + direction ;
+	const auto body = bullet.GetComponent<PhysicsBody>();
+	if (body == nullptr)return;
+	body->velocity = sf::normalize(direction) * bulletSpeed;
+	bullet.tag = Tag::Enemy;
+}
+
 void RadialEmitter::Fire()
 {
 	BulletEmitter::Fire();
 	for(int i = 0 ; i < angle; i+= step)
 	{
-		auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate);
+		auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.string());
 		sf::Vector2f direction = { 0,1 };
 		direction = sf::getRotated(direction, i);
 		direction *= radius;
@@ -48,7 +70,7 @@ void SpiralEmitter::Fire()
 	BulletEmitter::Fire();
 	for (int i = 0; i < numberOfBullets; i++)
 	{
-		auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate);
+		auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.string());
 		float angle = i * sf::PI * 2 / numberOfBullets;
 		float x = cos(angle) * radius;
 		float y = sin(angle) * radius;
@@ -88,11 +110,11 @@ void PatternEmitter::Fire()
 		{
 			if(pattern.bulletPattern[j][i])
 			{
-				auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate);
+				auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.string());
 				bullet.GetTransform().position = GetTransform().position + offset + sf::Vector2f(j,i)*scale;
 				auto body = bullet.GetComponent<PhysicsBody>();
 				if (body == nullptr)return;
-				body->velocity = sf::getRotated(sf::Vector2f(0, 1), GetTransform().rotation);
+				body->velocity = GetDirectionToPlayer();
 				body->velocity = sf::normalize(body->velocity) * bulletSpeed;
 				bullet.tag = Tag::Enemy;
 			}

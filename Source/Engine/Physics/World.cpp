@@ -182,6 +182,18 @@ void World::Inspect()
 	ImGui::End();
 }
 
+std::vector<std::reference_wrapper<Entity>> World::GetEntitiesWithTag(const Tag& tag)
+{
+    std::vector<std::reference_wrapper<Entity>> toReturn;
+    for (auto& element : entities)
+    {
+        if (element.tag != tag)continue;
+        toReturn.emplace_back(element);
+    }
+
+    return toReturn;
+}
+
 nlohmann::json World::Serialize()
 {
     nlohmann::json toReturn = nlohmann::json();

@@ -1,69 +1,70 @@
 {
-   "Components": [
-      {
-         "ComponentName": "class SpriteRenderComponent",
-         "SerializedValues": {
-            "layer": "4",
-            "spritePath": "{\"format\":\".png\",\"path\":\"C:\\\\Users\\\\kenar\\\\source\\\\repos\\\\C++\\\\Franco-engine\\\\Assets\\\\map.png\"}",
-            "spriteSize": "left:0 top:0 width:0 height:0 "
-         }
-      },
-      {
-         "ComponentName": "class BoxCollider",
-         "SerializedValues": {
-            "extents": "x:300 y:18 ",
-            "offset": "x:605 y:90 ",
-            "polygon": "{x:-150 y:9 }{x:150 y:9 }{x:150 y:-9 }{x:-150 y:-9 }"
-         }
-      },
-      {
-         "ComponentName": "class BoxCollider",
-         "SerializedValues": {
-            "extents": "x:300 y:18 ",
-            "offset": "x:605 y:665 ",
-            "polygon": "{x:-150 y:9 }{x:150 y:9 }{x:150 y:-9 }{x:-150 y:-9 }"
-         }
-      },
-      {
-         "ComponentName": "class BoxCollider",
-         "SerializedValues": {
-            "extents": "x:4 y:160 ",
-            "offset": "x:10 y:380 ",
-            "polygon": "{x:-2 y:80 }{x:2 y:80 }{x:2 y:-80 }{x:-2 y:-80 }"
-         }
-      },
-      {
-         "ComponentName": "class BoxCollider",
-         "SerializedValues": {
-            "extents": "x:4 y:160 ",
-            "offset": "x:1207 y:380 ",
-            "polygon": "{x:-2 y:80 }{x:2 y:80 }{x:2 y:-80 }{x:-2 y:-80 }"
-         }
-      },
-      {
-         "ComponentName": "class PhysicsBody",
-         "SerializedValues": {
-            "bodyType": "STATIC",
-            "mass": "0.000000",
-            "restitution": "0.000000"
-         }
-      },
-      {
-         "ComponentName": "class RoomComponent"
-      }
-   ],
-   "Name": "Map",
-   "Transform": {
-      "Rotation": [
-         0.0
-      ],
-      "Scale": [
-         4.0,
-         4.0
-      ],
-      "Translation": [
-         1.0,
-         0.0
-      ]
-   }
+    "Components": [
+        {
+            "ComponentName": "class SpriteRenderComponent",
+            "SerializedValues": {
+                "layer": "4",
+                "spritePath": "{\"format\":\".png\",\"path\":\"C:\\\\Users\\\\kenar\\\\source\\\\repos\\\\C++\\\\Franco-engine\\\\Assets\\\\Sprites\\\\map.png\"}",
+                "spriteSize": "left:0 top:0 width:0 height:0 "
+            }
+        },
+        {
+            "ComponentName": "class BoxCollider",
+            "SerializedValues": {
+                "extents": "x:300 y:18 ",
+                "offset": "x:605 y:90 ",
+                "polygon": "{x:-150 y:9 }{x:150 y:9 }{x:150 y:-9 }{x:-150 y:-9 }"
+            }
+        },
+        {
+            "ComponentName": "class BoxCollider",
+            "SerializedValues": {
+                "extents": "x:300 y:18 ",
+                "offset": "x:605 y:665 ",
+                "polygon": "{x:-150 y:9 }{x:150 y:9 }{x:150 y:-9 }{x:-150 y:-9 }"
+            }
+        },
+        {
+            "ComponentName": "class BoxCollider",
+            "SerializedValues": {
+                "extents": "x:4 y:160 ",
+                "offset": "x:10 y:380 ",
+                "polygon": "{x:-2 y:80 }{x:2 y:80 }{x:2 y:-80 }{x:-2 y:-80 }"
+            }
+        },
+        {
+            "ComponentName": "class BoxCollider",
+            "SerializedValues": {
+                "extents": "x:4 y:160 ",
+                "offset": "x:1207 y:380 ",
+                "polygon": "{x:-2 y:80 }{x:2 y:80 }{x:2 y:-80 }{x:-2 y:-80 }"
+            }
+        },
+        {
+            "ComponentName": "class PhysicsBody",
+            "SerializedValues": {
+                "bodyType": "STATIC",
+                "mass": "0.000000",
+                "restitution": "0.000000"
+            }
+        },
+        {
+            "ComponentName": "class RoomComponent"
+        }
+    ],
+    "Name": "Map",
+    "Tag": -842150451,
+    "Transform": {
+        "Rotation": [
+            0.0
+        ],
+        "Scale": [
+            4.0,
+            4.0
+        ],
+        "Translation": [
+            1.0,
+            0.0
+        ]
+    }
 }

@@ -1,50 +1,51 @@
 {
-   "Components": [
-      {
-         "ComponentName": "class SpriteRenderComponent",
-         "SerializedValues": {
-            "layer": "0",
-            "spritePath": "{\"format\":\".png\",\"path\":\"C:\\\\Users\\\\kenar\\\\source\\\\repos\\\\C++\\\\Franco-engine\\\\Assets\\\\Door.png\"}",
-            "spriteSize": "left:0 top:0 width:0 height:0 "
-         }
-      },
-      {
-         "ComponentName": "class PhysicsBody",
-         "SerializedValues": {
-            "bodyType": "STATIC",
-            "mass": "0.000000",
-            "restitution": "0.000000"
-         }
-      },
-      {
-         "ComponentName": "class BoxCollider",
-         "SerializedValues": {
-            "extents": "x:64 y:100 ",
-            "offset": "x:32 y:32 ",
-            "polygon": "{x:-32 y:50 }{x:32 y:50 }{x:32 y:-50 }{x:-32 y:-50 }"
-         }
-      },
-      {
-         "ComponentName": "class DoorComponent",
-         "SerializedValues": {
-            "doorModifier": "150.000000",
-            "roomFrom": "45",
-            "roomTo": "44"
-         }
-      }
-   ],
-   "Name": "Door",
-   "Transform": {
-      "Rotation": [
-         0.0
-      ],
-      "Scale": [
-         1.0,
-         1.0
-      ],
-      "Translation": [
-         -2.0,
-         361.0
-      ]
-   }
+    "Components": [
+        {
+            "ComponentName": "class SpriteRenderComponent",
+            "SerializedValues": {
+                "layer": "0",
+                "spritePath": "{\"format\":\".png\",\"path\":\"C:\\\\Users\\\\kenar\\\\source\\\\repos\\\\C++\\\\Franco-engine\\\\Assets\\\\Sprites\\\\door.png\"}",
+                "spriteSize": "left:0 top:0 width:0 height:0 "
+            }
+        },
+        {
+            "ComponentName": "class PhysicsBody",
+            "SerializedValues": {
+                "bodyType": "STATIC",
+                "mass": "0.000000",
+                "restitution": "0.000000"
+            }
+        },
+        {
+            "ComponentName": "class BoxCollider",
+            "SerializedValues": {
+                "extents": "x:64 y:100 ",
+                "offset": "x:32 y:32 ",
+                "polygon": "{x:-32 y:50 }{x:32 y:50 }{x:32 y:-50 }{x:-32 y:-50 }"
+            }
+        },
+        {
+            "ComponentName": "class DoorComponent",
+            "SerializedValues": {
+                "doorModifier": "150.000000",
+                "roomFrom": "45",
+                "roomTo": "44"
+            }
+        }
+    ],
+    "Name": "Door",
+    "Tag": -842150451,
+    "Transform": {
+        "Rotation": [
+            0.0
+        ],
+        "Scale": [
+            1.0,
+            1.0
+        ],
+        "Translation": [
+            -2.0,
+            361.0
+        ]
+    }
 }

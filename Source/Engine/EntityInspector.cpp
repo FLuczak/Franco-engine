@@ -10,6 +10,7 @@
 #include "Engine/AI/Utils/EditorUtils.h"
 #include "magic_enum/magic_enum_utility.hpp"
 #include "Visit struct/visit_struct.hpp"
+#include "imgui/imgui_stdlib.h"
 #include "imgui/ImGuizmo.h"
 
 void EntityInspector::InspectEntity(Entity* entity)
@@ -51,6 +52,7 @@ void EntityInspector::DisplayEntityNameChangeBox() const
 
 void EntityInspector::DisplayComponents() const
 {
+	static std::string filter = "";
 	ImGui::Text("Components");
 	auto components = GenericFactory<Component>::Instance().GetKeys();
 	
@@ -105,11 +107,24 @@ void EntityInspector::DisplayComponents() const
 	}
 
 	ImGui::Separator();
+	ImGui::InputText("Filter", &filter);
 
 	if (ImGui::TreeNode("AddComponent"))
 	{
 		for(auto& component: components)
 		{
+			if(!filter.empty())
+			{
+				std::string mainStringLowercase = component;
+				std::ranges::transform(mainStringLowercase, mainStringLowercase.begin(), ::towlower);
+				std::string subStringLowercase = filter;
+				std::ranges::transform(subStringLowercase, subStringLowercase.begin(), ::towlower);
+				const size_t foundPosition = mainStringLowercase.find(subStringLowercase);
+				if (foundPosition == std::string::npos)
+				{
+					continue;
+				}
+			}
 			if(ImGui::Button(component.c_str()))
 			{
 				auto temp = GenericFactory<Component>::Instance().CreateProduct(component,inspectedEntity);
@@ -161,6 +176,7 @@ void EntityInspector::Update()
 
 	ImGui::End();
 }
+
 
 void EntityInspector::DisplayGizmo()
 {
