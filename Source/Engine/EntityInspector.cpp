@@ -10,6 +10,7 @@
 #include "Engine/AI/Utils/EditorUtils.h"
 #include "magic_enum/magic_enum_utility.hpp"
 #include "Visit struct/visit_struct.hpp"
+#include "imgui/ImGuizmo.h"
 
 void EntityInspector::InspectEntity(Entity* entity)
 {
@@ -159,4 +160,9 @@ void EntityInspector::Update()
 	DisplayComponents();
 
 	ImGui::End();
+}
+
+void EntityInspector::DisplayGizmo()
+{
+
 }

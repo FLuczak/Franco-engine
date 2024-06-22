@@ -1,5 +1,4 @@
-#include "Game/NavMeshAgent.h"
-
+#include "Engine/NavMeshAgent.h"
 #include "Engine/Engine.hpp"
 #include "Engine/AI/NavMesh/Navigation.hpp"
 

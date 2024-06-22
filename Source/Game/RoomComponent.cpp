@@ -12,9 +12,17 @@ void RoomComponent::EnteredRoom(DoorComponent& door)
 		GetEntity().active = true;
 		for (auto& doorEntity : doorEntities)
 		{
-			doorEntity.get().active = false;
+			doorEntity.get().active = true;
 		}
 		CameraComponent::GetMainCamera()->GetTransform().position = GetTransform().position;
+	}
+	else
+	{
+		GetEntity().active = false;
+		for (auto& doorEntity : doorEntities)
+		{
+			doorEntity.get().active = false;
+		}
 	}
 
 	if(!completed)

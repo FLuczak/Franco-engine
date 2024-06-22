@@ -26,7 +26,7 @@ public:
     /// </summary>
     /// <param name="file">The file you want to drag to somewhere else.</param>
     /// <returns>TRUE if the resource is being dragged in the current frame.</returns>
-    bool SetDragDropSource(ProjectFile file);
+    static bool SetDragDropSource(ProjectFile file);
 
     /// <summary>
     /// Set the ImGui widget above this line as a DragDrop target.
@@ -34,7 +34,7 @@ public:
     /// <param name="payloadData">A return argument in which the asset path will be written so you can use it.</param>
     /// <param name="dataType">What data type should the DragDropTarget look for. Currently, it works with the file's extensions. Use something like {".gltf", ".glb", etc.}</param>
     /// <returns>TRUE if the payloadData was updated with the asset's path.</returns>
-    bool SetDragDropTarget(std::filesystem::path& payloadData, const std::initializer_list<std::string>& dataTypes);
+    static bool SetDragDropTarget(std::filesystem::path& payloadData, const std::initializer_list<std::string>& dataTypes);
 
 private:  // private functions
     void PrintAllFolders();
@@ -42,15 +42,15 @@ private:  // private functions
     void DisplayFolderContents(const std::filesystem::path& root);
     void DisplayFilteredContents();
 
-    void DisplayOnlyFilesInFolder(std::filesystem::path directory);
-    const std::string DetermineIcon(const std::string& extension) const;
+    void DisplayOnlyFilesInFolder(std::filesystem::path directory) const;
+    static const std::string DetermineIcon(const std::string& extension);
 
     /// <summary>
     /// Says whether the entry's filename matches the current filter.
     /// </summary>
     /// <param name="entry">The entry you want to check the filter against.</param>
     /// <returns>TRUE if it should be displayed.</returns>
-    bool IsEntryFiltered(std::filesystem::directory_entry entry);
+    bool IsEntryFiltered(std::filesystem::directory_entry entry) const;
 
 
 private:  // private parameters

@@ -12,6 +12,7 @@ public:
 	Entity* GetInspectedEntity() const { return inspectedEntity; }
 
 private:
+	void DisplayGizmo();
 	Entity* inspectedEntity = nullptr;
 };
 

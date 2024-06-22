@@ -29,7 +29,7 @@ int main()
     icons_config.MergeMode = true;
     icons_config.PixelSnapH = true;
     icons_config.GlyphMinAdvanceX = iconFontSize;
-    io.Fonts->AddFontFromFileTTF((std::filesystem::current_path() / "Assets" / "fa-regular-400.ttf").string().c_str(), iconFontSize, &icons_config, icons_ranges);
+    io.Fonts->AddFontFromFileTTF((std::filesystem::current_path() / "Assets" / "fa-solid-900.ttf").string().c_str(), iconFontSize, &icons_config, icons_ranges);
 	ImGui::SFML::UpdateFontTexture();
 
     sf::Clock deltaClock;

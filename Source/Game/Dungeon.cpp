@@ -13,7 +13,7 @@ void Dungeon::SpawnRooms()
 		int y = rooms[i] / 10;
 
 		auto& entity = Engine.world.InstantiateTemplate("Templates/Map.ent");
-		entity.GetComponent<RoomComponent>()->id = rooms[i];
+		entity.GetComponent<RoomComponent>()->id = y*10+x;
 		roomsVector.push_back({ entity });
 
 		if (rooms[i] != 45)
@@ -80,17 +80,16 @@ void Dungeon::SpawnDoors()
 {
 	for (auto i : rooms)
 	{
-		int x = i % 10;
-		if (x > 1) { TrySpawnDoor(i -1,i); }
-		if (x < 9) { TrySpawnDoor(i + 1,i); }
-		if (i > 20) { TrySpawnDoor(i - 10,i); }
-		if (i < 70){ TrySpawnDoor(i + 10,i); }
+		if (i != 0) { TrySpawnDoor(i -1,i); }
+		if (i < 99) { TrySpawnDoor(i + 1,i); }
+		if (i > 11) { TrySpawnDoor(i - 10,i); }
+		if (i < 90){ TrySpawnDoor(i + 10,i); }
 	}
 }
 
 void Dungeon::TrySpawnDoor(int roomTo,int roomFrom) 
 {
-	if (floorPlan[roomTo] != 0)
+	if (std::ranges::find(rooms,roomTo) != rooms.end())
 	{
 		const int toX = roomTo % 10;
 		const int toY = roomTo / 10;

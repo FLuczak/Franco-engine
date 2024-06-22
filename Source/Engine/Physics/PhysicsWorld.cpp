@@ -308,9 +308,11 @@ void PhysicsWorld::Simulate(float dt)
     	m_executedFrame = true;
     }
 
-    for (auto& body : physicsBodies)
+    for (int i = physicsBodies.size()-1; i > 0 ;i--)
     {
+        auto& body = physicsBodies[i];
         auto& physicsBody = body.get();
+
         if (physicsBody.GetEntity().active == false)continue;
         if (physicsBody.collisionEvents.empty())continue;
         physicsBody.HandleCollisionEvents();

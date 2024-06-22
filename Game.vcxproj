@@ -113,7 +113,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)External\SFML\include;$(SolutionDir)Include;$(SolutionDir)imgui\;$(SolutionDir)External;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\SFML\include;$(SolutionDir)Include;$(SolutionDir)imgui\;$(SolutionDir)External;$(SolutionDir)External/imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -144,7 +144,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="imgui\imgui_stdlib.cpp" />
+    <ClCompile Include="External\imgui\crude_json.cpp" />
+    <ClCompile Include="External\imgui\imgui-SFML.cpp" />
+    <ClCompile Include="External\imgui\imgui.cpp" />
+    <ClCompile Include="External\imgui\ImGuizmo.cpp" />
+    <ClCompile Include="External\imgui\imgui_canvas.cpp" />
+    <ClCompile Include="External\imgui\imgui_demo.cpp" />
+    <ClCompile Include="External\imgui\imgui_draw.cpp" />
+    <ClCompile Include="External\imgui\imgui_impl.cpp" />
+    <ClCompile Include="External\imgui\imgui_node_editor.cpp" />
+    <ClCompile Include="External\imgui\imgui_node_editor_api.cpp" />
+    <ClCompile Include="External\imgui\imgui_stdlib.cpp" />
+    <ClCompile Include="External\imgui\imgui_tables.cpp" />
+    <ClCompile Include="External\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="External\imgui\implot.cpp" />
+    <ClCompile Include="External\imgui\implot_demo.cpp" />
+    <ClCompile Include="External\imgui\implot_items.cpp" />
     <ClCompile Include="Source\Engine\AssetExplorer.cpp" />
     <ClCompile Include="Source\Game\DestroyOnDeathComponent.cpp" />
     <ClCompile Include="Source\Game\Health.cpp" />
@@ -163,15 +178,6 @@
     <ClCompile Include="Source\Engine\AI\NavMesh\NavMesh.cpp" />
     <ClCompile Include="Source\Engine\AI\NavMesh\NavMeshPath.cpp" />
     <ClCompile Include="Source\Engine\AnimationController.cpp" />
-    <ClCompile Include="imgui\crude_json.cpp" />
-    <ClCompile Include="imgui\extra_fonts\binary_to_compressed_c.cpp" />
-    <ClCompile Include="imgui\imgui_canvas.cpp" />
-    <ClCompile Include="imgui\imgui_impl.cpp" />
-    <ClCompile Include="imgui\imgui_node_editor.cpp" />
-    <ClCompile Include="imgui\imgui_node_editor_api.cpp" />
-    <ClCompile Include="imgui\implot.cpp" />
-    <ClCompile Include="imgui\implot_demo.cpp" />
-    <ClCompile Include="imgui\implot_items.cpp" />
     <ClCompile Include="Source\Engine\AI\BehaviorTrees\Behaviors.cpp" />
     <ClCompile Include="Source\Engine\AI\BehaviorTrees\BehaviorTree.cpp" />
     <ClCompile Include="Source\Engine\AI\BehaviorTrees\BehaviorTreeBuilder.cpp" />
@@ -196,12 +202,6 @@
     <ClCompile Include="Source\Engine\Physics\PhysicsUtility.cpp" />
     <ClCompile Include="Source\Game\PlayerMovement.cpp" />
     <ClCompile Include="Source\Engine\EntityInspector.cpp" />
-    <ClCompile Include="imgui\imgui-SFML.cpp" />
-    <ClCompile Include="imgui\imgui.cpp" />
-    <ClCompile Include="imgui\imgui_demo.cpp" />
-    <ClCompile Include="imgui\imgui_draw.cpp" />
-    <ClCompile Include="imgui\imgui_tables.cpp" />
-    <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Engine\Inspectable.cpp" />
     <ClCompile Include="Source\Engine\Inspector.cpp" />
     <ClCompile Include="Source\Game\CameraComponent.cpp" />
@@ -216,7 +216,27 @@
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="imgui\imgui_stdlib.h" />
+    <ClInclude Include="External\imgui\crude_json.h" />
+    <ClInclude Include="External\imgui\IconsFontAwesome.h" />
+    <ClInclude Include="External\imgui\imconfig-SFML.h" />
+    <ClInclude Include="External\imgui\imconfig.h" />
+    <ClInclude Include="External\imgui\imgui-SFML.h" />
+    <ClInclude Include="External\imgui\imgui-SFML_export.h" />
+    <ClInclude Include="External\imgui\imgui.h" />
+    <ClInclude Include="External\imgui\ImGuizmo.h" />
+    <ClInclude Include="External\imgui\imgui_bezier_math.h" />
+    <ClInclude Include="External\imgui\imgui_canvas.h" />
+    <ClInclude Include="External\imgui\imgui_extra_math.h" />
+    <ClInclude Include="External\imgui\imgui_impl.h" />
+    <ClInclude Include="External\imgui\imgui_internal.h" />
+    <ClInclude Include="External\imgui\imgui_node_editor.h" />
+    <ClInclude Include="External\imgui\imgui_node_editor_internal.h" />
+    <ClInclude Include="External\imgui\imgui_stdlib.h" />
+    <ClInclude Include="External\imgui\implot.h" />
+    <ClInclude Include="External\imgui\implot_internal.h" />
+    <ClInclude Include="External\imgui\imstb_rectpack.h" />
+    <ClInclude Include="External\imgui\imstb_textedit.h" />
+    <ClInclude Include="External\imgui\imstb_truetype.h" />
     <ClInclude Include="Include\Engine\AssetExplorer.h" />
     <ClInclude Include="Include\Game\DestroyOnDeathComponent.h" />
     <ClInclude Include="Include\Game\Health.h" />
@@ -246,16 +266,6 @@
     <ClInclude Include="Include\Engine\AI\NavMesh\NavMesh.hpp" />
     <ClInclude Include="Include\Engine\AI\NavMesh\NavMeshPath.hpp" />
     <ClInclude Include="Include\Engine\AnimationController.h" />
-    <ClInclude Include="imgui\crude_json.h" />
-    <ClInclude Include="imgui\IconsFontAwesome.h" />
-    <ClInclude Include="imgui\imgui_bezier_math.h" />
-    <ClInclude Include="imgui\imgui_canvas.h" />
-    <ClInclude Include="imgui\imgui_extra_math.h" />
-    <ClInclude Include="imgui\imgui_impl.h" />
-    <ClInclude Include="imgui\imgui_node_editor.h" />
-    <ClInclude Include="imgui\imgui_node_editor_internal.h" />
-    <ClInclude Include="imgui\implot.h" />
-    <ClInclude Include="imgui\implot_internal.h" />
     <ClInclude Include="Include\Engine\AI\BehaviorTrees\Behaviors.hpp" />
     <ClInclude Include="Include\Engine\AI\BehaviorTrees\BehaviorTree.hpp" />
     <ClInclude Include="Include\Engine\AI\BehaviorTrees\BehaviorTreeBuilder.hpp" />
@@ -333,15 +343,6 @@
     <ClInclude Include="External\Visit struct\visit_struct.hpp" />
     <ClInclude Include="External\Visit struct\visit_struct_intrusive.hpp" />
     <ClInclude Include="Include\Engine\EntityInspector.hpp" />
-    <ClInclude Include="imgui\imconfig-SFML.h" />
-    <ClInclude Include="imgui\imconfig.h" />
-    <ClInclude Include="imgui\imgui-SFML.h" />
-    <ClInclude Include="imgui\imgui-SFML_export.h" />
-    <ClInclude Include="imgui\imgui.h" />
-    <ClInclude Include="imgui\imgui_internal.h" />
-    <ClInclude Include="imgui\imstb_rectpack.h" />
-    <ClInclude Include="imgui\imstb_textedit.h" />
-    <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="Include\Engine\Physics\BVH.hpp" />
     <ClInclude Include="Include\Engine\Physics\Collision.hpp" />
     <ClInclude Include="Include\Engine\Physics\geometry2d.hpp" />
@@ -470,6 +471,9 @@
     <ClInclude Include="TileMap.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="External\imgui\imgui_bezier_math.inl" />
+    <None Include="External\imgui\imgui_extra_math.inl" />
+    <None Include="External\imgui\imgui_node_editor_internal.inl" />
     <None Include="External\SFML\include\SFML\Audio\SoundFileFactory.inl" />
     <None Include="External\SFML\include\SFML\Graphics\Glsl.inl" />
     <None Include="External\SFML\include\SFML\Graphics\Rect.inl" />
@@ -479,9 +483,6 @@
     <None Include="External\SFML\include\SFML\System\Utf.inl" />
     <None Include="External\SFML\include\SFML\System\Vector2.inl" />
     <None Include="External\SFML\include\SFML\System\Vector3.inl" />
-    <None Include="imgui\imgui_bezier_math.inl" />
-    <None Include="imgui\imgui_extra_math.inl" />
-    <None Include="imgui\imgui_node_editor_internal.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

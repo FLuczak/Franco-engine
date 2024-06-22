@@ -122,7 +122,7 @@ void AssetExplorer::DisplayFilteredContents()
     }
 }
 
-void AssetExplorer::DisplayOnlyFilesInFolder(std::filesystem::path directory)
+void AssetExplorer::DisplayOnlyFilesInFolder(std::filesystem::path directory) const
 {
     ImGuiTreeNodeFlags file_node_flags = ImGuiTreeNodeFlags_Leaf;
     for (const auto& file : m_files)
@@ -140,7 +140,7 @@ void AssetExplorer::DisplayOnlyFilesInFolder(std::filesystem::path directory)
     }
 }
 
-bool AssetExplorer::IsEntryFiltered(std::filesystem::directory_entry entry)
+bool AssetExplorer::IsEntryFiltered(std::filesystem::directory_entry entry) const
 {
     std::string mainStringLowercase = entry.path().filename().string();
     std::transform(mainStringLowercase.begin(), mainStringLowercase.end(), mainStringLowercase.begin(), ::towlower);
@@ -188,7 +188,7 @@ bool AssetExplorer::SetDragDropTarget(std::filesystem::path& payloadData, const 
     return false;
 }
 
-const std::string AssetExplorer::DetermineIcon(const std::string& extension) const
+const std::string AssetExplorer::DetermineIcon(const std::string& extension)
 {
     if (extension == ".txt")
     {
@@ -208,7 +208,7 @@ const std::string AssetExplorer::DetermineIcon(const std::string& extension) con
     }
     else if (extension == ".ttf")
     {
-        return std::string(reinterpret_cast<const char*>(u8"\uf031 "));
+        return std::string(reinterpret_cast<const char*>(u8"\uf658 "));
     }
     else if (extension == ".json")
     {
@@ -220,7 +220,7 @@ const std::string AssetExplorer::DetermineIcon(const std::string& extension) con
     }
     else if (extension == ".ent")
     {
-        return std::string(reinterpret_cast<const char*>(ICON_FA_CUBE));
+        return std::string(reinterpret_cast<const char*>(u8"\uf1b2 "));
     }
 
     return "";

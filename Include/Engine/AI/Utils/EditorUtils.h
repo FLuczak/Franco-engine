@@ -93,7 +93,7 @@ namespace Dialogs
     file.lpstrFilter = ".txt";
     file.lpstrFile = szFile;
     file.nMaxFile = sizeof(szFile);
-    file.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+    file.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
 
     if (GetSaveFileNameA(&file) == TRUE)
     {
