@@ -1,80 +1,77 @@
 #pragma once
+
 #include <any>
 #include <memory>
 #include <string>
 #include <unordered_map>
-
-#include "Engine/AI/FiniteStateMachines/FiniteStateMachine.hpp"
+#include <filesystem>
+#include <stdexcept>
+#include <fstream>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
 #include "nlohmann/json.hpp"
-
-#include "SFML/Graphics/Sprite.hpp"
-#include "SFML/Graphics/Texture.hpp"
+#include "Engine/AI/FiniteStateMachines/FiniteStateMachine.hpp"
 
 enum class AssetType
 {
-	None,
-	Sprite,
-	EntityTemplate,
-	AnimationFSM
+    None,
+    Texture,
+    Sprite,
+    EntityTemplate,
+    AnimationFSM
 };
 
 struct Asset
 {
-	virtual ~Asset() = default;
-	AssetType Type = AssetType::None;
-	virtual std::any GetAsset() = 0;
+    virtual ~Asset() = default;
+    AssetType Type = AssetType::None;
+    virtual std::any GetAsset() = 0;
 };
 
 struct TextureAsset : Asset
 {
-	std::any GetAsset() override
-	{
-		return &texture;
-	}
+    std::any GetAsset() override { return &texture; }
+    sf::Texture texture;
+};
 
-	sf::Texture texture;
+struct SpriteAsset : Asset
+{
+    SpriteAsset(std::shared_ptr<TextureAsset> textureAsset, sf::IntRect rect)
+    {
+        sprite = sf::Sprite(textureAsset->texture);
+        sprite.setTextureRect(rect);
+    }
+    std::any GetAsset() override { return &sprite; }
+    sf::Sprite sprite;
 };
 
 struct AnimationFSM : Asset
 {
-	AnimationFSM(nlohmann::json json)
-	{
-		auto ss = std::stringstream(json.dump());
-		fsm = AI::FiniteStateMachine::DeserializeFromStringStream(ss);
-	}
-
-	std::any GetAsset() override
-	{
-		return std::any(fsm.get());
-	}
-
-	std::unique_ptr<AI::FiniteStateMachine> fsm;
+    AnimationFSM(nlohmann::json json)
+    {
+        auto ss = std::stringstream(json.dump());
+        fsm = AI::FiniteStateMachine::DeserializeFromStringStream(ss);
+    }
+    std::any GetAsset() override { return fsm.get(); }
+    std::unique_ptr<AI::FiniteStateMachine> fsm;
 };
 
 struct EntityTemplateAsset : Asset
 {
-	EntityTemplateAsset(const nlohmann::json json) : templateJson(json)
-	{
-
-	}
-
-	std::any GetAsset() override
-	{
-		return std::any( &templateJson );
-	}
-
-	const nlohmann::json templateJson;
+    EntityTemplateAsset(nlohmann::json json) : templateJson(json) {}
+    std::any GetAsset() override { return &templateJson; }
+    const nlohmann::json templateJson;
 };
 
 class AssetManager
 {
 public:
-	static std::unique_ptr<sf::Sprite> GetTexture(std::string name, sf::IntRect size);
-	static std::unique_ptr<sf::Sprite> GetTexture(std::filesystem::path path, sf::IntRect size);
-	static const nlohmann::json& GetEntityTemplate(std::string name);
-	static AI::FiniteStateMachine& GetAnimationFSM(std::string name);
-private:
-	static std::filesystem::path GetAssetsPath();
-	static std::unordered_map<std::string, std::unique_ptr<Asset>> assets;
-};
+    static std::shared_ptr<TextureAsset> LoadTexture(const std::filesystem::path& path);
+    static std::shared_ptr<SpriteAsset> LoadSprite(const std::string& name, const sf::IntRect& rect);
+    static const nlohmann::json& GetEntityTemplate(const std::string& name);
+    static AI::FiniteStateMachine& GetAnimationFSM(const std::string& name);
 
+private:
+    static std::unordered_map<std::string, std::shared_ptr<Asset>> assets;
+    static std::filesystem::path GetAssetsPath();
+};

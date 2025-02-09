@@ -13,7 +13,7 @@ SpriteRenderComponent::SpriteRenderComponent(Entity& entityToSet): Component(ent
 void SpriteRenderComponent::Start()
 {
 	Component::Start();
-	sprite = AssetManager::GetTexture(spritePath.path, spriteSize);
+	spriteAsset = AssetManager::LoadSprite(spritePath.path.string(), spriteSize);
 	oldSpritePath = spritePath.path;
 }
 
@@ -23,26 +23,28 @@ void SpriteRenderComponent::Update(float deltaTime)
 
 	if(oldSpritePath != spritePath.path)
 	{
-		sprite = AssetManager::GetTexture(spritePath.path, spriteSize);
+		spriteAsset = AssetManager::LoadSprite(spritePath.path.string(), spriteSize);
+		spriteToDraw = spriteAsset->sprite;
 		oldSpritePath = spritePath.path;
 	}
 
 	if(oldSpriteSize != spriteSize)
 	{
-		sprite = AssetManager::GetTexture(spritePath.path, spriteSize);
+		spriteAsset = AssetManager::LoadSprite(spritePath.path.string(), spriteSize);
+		spriteToDraw = spriteAsset->sprite;
 		oldSpriteSize = spriteSize;
 	}
 
-	if (sprite == nullptr)return;
-	sprite->setPosition(GetTransform().position);
-	sprite->setRotation(GetTransform().rotation);
-	sprite->setScale(GetTransform().scale);
+	if (spriteAsset == nullptr)return;
+	spriteToDraw.setPosition(GetTransform().position);
+	spriteToDraw.setRotation(GetTransform().rotation);
+	spriteToDraw.setScale(GetTransform().scale);
 
 
 	CameraComponent* mainCamera = CameraComponent::GetMainCamera();
 
 	if (mainCamera == nullptr)return;
-	mainCamera->RegisterDrawCall(*sprite,layer);
+	mainCamera->RegisterDrawCall(spriteToDraw,layer);
 }
 
 void SpriteRenderComponent::OnDestroy()

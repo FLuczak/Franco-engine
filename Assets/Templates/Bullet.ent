@@ -26,7 +26,7 @@
         {
             "ComponentName": "class Bullet",
             "SerializedValues": {
-                "lifeTime": "3.000000"
+                "lifeTime": "10.000000"
             }
         }
     ],

@@ -47,7 +47,7 @@ public:
 				currentFrame = startIndex.x;
 			}
 			sf::IntRect rectangle = sf::IntRect(currentFrame * width, startIndex.y*height,width,height);
-			context.blackboard->GetData<SpriteRenderComponent*>("Sprite")->sprite->setTextureRect(rectangle);
+			context.blackboard->GetData<SpriteRenderComponent*>("Sprite")->spriteToDraw.setTextureRect(rectangle);
 		}
 	}
 

@@ -1,125 +1,137 @@
 #include "Engine/Core/AssetManager.hpp"
-#include <iostream>
 #include <filesystem>
+#include <stdexcept>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 #include <fstream>
-#include "Engine/Editor/EditorUtility.h"
 
-std::unordered_map<std::string, std::unique_ptr<Asset>> AssetManager::assets{};
+std::unordered_map<std::string, std::shared_ptr<Asset>> AssetManager::assets;
 
-std::unique_ptr<sf::Sprite> AssetManager::GetTexture(std::string name, sf::IntRect size)
+std::shared_ptr<TextureAsset> AssetManager::LoadTexture(const std::filesystem::path& path)
 {
-	size_t pos = name.find("Assets");
-	if (pos != std::string::npos)
-	{
-		name = name.substr(pos + std::string("Assets/").length());
-	}
+    std::string key = path.string();
+    size_t pos = key.find("Assets");
+    if (pos != std::string::npos)
+    {
+        key = key.substr(pos + std::string("Assets/").length());
+    }
 
-	const auto tempName = std::string(GetAssetsPath().string()) + '\\' + name;
 
-	if (!assets.contains(name))
-	{
-		std::unique_ptr<TextureAsset> textureAsset = std::make_unique<TextureAsset>();
+    auto it = assets.find(key);
+    if (it != assets.end())
+        return std::dynamic_pointer_cast<TextureAsset>(it->second);
 
-		textureAsset->texture.loadFromFile(tempName);
-		assets[tempName] = std::move(textureAsset);
-	}
+    auto textureAsset = std::make_shared<TextureAsset>();
+    if (!textureAsset->texture.loadFromFile(key))
+        throw std::runtime_error("Failed to load texture: " + key);
 
-	const auto textureAsset = (std::any_cast<sf::Texture*>(assets[tempName]->GetAsset()));
-
-	if (size.height == 0 || size.width == 0)
-	{
-		return std::make_unique<sf::Sprite>(*textureAsset);
-	}
-	else
-	{
-		return std::make_unique<sf::Sprite>(*textureAsset, size);
-	}
+    textureAsset->Type = AssetType::Texture;
+    assets[key] = textureAsset;
+    return textureAsset;
 }
 
-std::unique_ptr<sf::Sprite> AssetManager::GetTexture(std::filesystem::path path, sf::IntRect size)
+std::shared_ptr<SpriteAsset> AssetManager::LoadSprite(const std::string& name, const sf::IntRect& rect)
 {
-	return GetTexture(path.string(), size);
+    auto textureAsset = LoadTexture(GetAssetsPath() / name);
+
+    std::string key = name + std::to_string(rect.left) + std::to_string(rect.top) + std::to_string(rect.width) + std::to_string(rect.height);
+    size_t pos = key.find("Assets");
+    if (pos != std::string::npos)
+    {
+        key = key.substr(pos + std::string("Assets/").length());
+    }
+
+    auto it = assets.find(key);
+    if (it != assets.end())
+        return std::dynamic_pointer_cast<SpriteAsset>(it->second);
+
+    auto spriteAsset = std::make_shared<SpriteAsset>(textureAsset, rect);
+    spriteAsset->Type = AssetType::Sprite;
+    assets[key] = spriteAsset;
+    return spriteAsset;
 }
 
-const nlohmann::json& AssetManager::GetEntityTemplate(std::string name)
+const nlohmann::json& AssetManager::GetEntityTemplate(const std::string& name)
 {
-	size_t pos = name.find("Assets");
-	if (pos != std::string::npos)
-	{
-		name = name.substr(pos + std::string("Assets/").length());
-	}
+    size_t pos = name.find("Assets");
+    auto key = name;
 
-	if (!assets.contains(name))
-	{
-		const auto tempName = std::string(GetAssetsPath().string()) + '\\' + name;
-		std::ifstream inputFile(tempName);
+    if (pos != std::string::npos)
+    {
+        key = name.substr(pos + std::string("Assets/").length());
+    }
 
-		if (inputFile.is_open())
-		{
-			nlohmann::json jsonData;
-			inputFile >> jsonData;
-			std::unique_ptr<EntityTemplateAsset> entityAsset = std::make_unique<EntityTemplateAsset>(jsonData);
-			assets[name] = std::move(entityAsset);
+    if (!assets.contains(key))
+    {
+        const auto tempName = std::string(GetAssetsPath().string()) + '\\' + key;
+        std::ifstream inputFile(tempName);
 
-			inputFile.close();
-		}
-		else
-		{
-			std::cerr << "Error opening the file:" << tempName << std::endl;
-		}
+        if (inputFile.is_open())
+        {
+            nlohmann::json jsonData;
+            inputFile >> jsonData;
+            std::unique_ptr<EntityTemplateAsset> entityAsset = std::make_unique<EntityTemplateAsset>(jsonData);
+            assets[key] = std::move(entityAsset);
 
-	}
+            inputFile.close();
+        }
+        else
+        {
+            std::cerr << "Error opening the file:" << tempName << std::endl;
+        }
 
-	auto asset = assets[name]->GetAsset();
-	const auto json = std::any_cast<const nlohmann::json*>(asset);
-	return *json;
+    }
+
+    auto asset = assets[key]->GetAsset();
+    const auto json = std::any_cast<const nlohmann::json*>(asset);
+    return *json;
 }
 
-AI::FiniteStateMachine& AssetManager::GetAnimationFSM(std::string name)
+AI::FiniteStateMachine& AssetManager::GetAnimationFSM(const std::string& name)
 {
-	size_t pos = name.find("Assets");
-	if (pos != std::string::npos)
-	{
-		name = name.substr(pos + std::string("Assets/").length());
-	}
+    size_t pos = name.find("Assets");
+    auto key = name;
+    if (pos != std::string::npos)
+    {
+        key = name.substr(pos + std::string("Assets/").length());
+    }
 
-	if (!assets.contains(name))
-	{
-		const auto tempName = std::string(GetAssetsPath().string()) + '\\' + name;
-		std::ifstream inputFile(tempName);
+    if (!assets.contains(key))
+    {
+        const auto tempName = std::string(GetAssetsPath().string()) + '\\' + key;
+        std::ifstream inputFile(tempName);
 
-		if (inputFile.is_open())
-		{
-			nlohmann::json jsonData;
-			inputFile >> jsonData;
-			std::unique_ptr<AnimationFSM> animationFSM = std::make_unique<AnimationFSM>(jsonData);
-			assets[name] = std::move(animationFSM);
+        if (inputFile.is_open())
+        {
+            nlohmann::json jsonData;
+            inputFile >> jsonData;
+            std::unique_ptr<AnimationFSM> animationFSM = std::make_unique<AnimationFSM>(jsonData);
+            assets[key] = std::move(animationFSM);
 
-			inputFile.close();
-		}
-		else
-		{
-			std::cerr << "Error opening the file:" << tempName << std::endl;
-		}
-	}
+            inputFile.close();
+        }
+        else
+        {
+            std::cerr << "Error opening the file:" << tempName << std::endl;
+        }
+    }
 
-	auto asset = assets[name]->GetAsset();
-	const auto json = std::any_cast<AI::FiniteStateMachine*>(asset);
-	return *json;
+    auto asset = assets[key]->GetAsset();
+    const auto json = std::any_cast<AI::FiniteStateMachine*>(asset);
+    return *json;
 }
 
 std::filesystem::path AssetManager::GetAssetsPath()
 {
-	std::filesystem::path assetsPath1 = std::filesystem::current_path() / "Assets" ;
-	std::filesystem::path assetsPath2 = std::filesystem::current_path().parent_path().parent_path() / "Assets";
+    std::filesystem::path assetsPath1 = std::filesystem::current_path() / "Assets";
+    std::filesystem::path assetsPath2 = std::filesystem::current_path().parent_path().parent_path() / "Assets";
 
-	if (std::filesystem::exists(assetsPath1)) 
-	{
-		return assetsPath1;
-	}
-	else 
-	{
-		return assetsPath2;
-	}
+    if (std::filesystem::exists(assetsPath1))
+    {
+        return assetsPath1;
+    }
+    else
+    {
+        return assetsPath2;
+    }
 }
-

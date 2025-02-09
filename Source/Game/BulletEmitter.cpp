@@ -102,8 +102,8 @@ void PatternEmitter::Start()
 	BulletEmitter::Start();
 	for (auto path : templates)
 	{
-		auto tex = AssetManager::GetTexture(path, { 0,0,0,0 });
-		patterns.emplace_back(*tex->getTexture());
+		sf::Sprite& tex = AssetManager::LoadSprite(path, {0, 0, 0, 0})->sprite;
+		patterns.emplace_back(*tex.getTexture());
 	}
 }
 

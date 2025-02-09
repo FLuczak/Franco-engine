@@ -6,7 +6,8 @@
 #include "Engine/Editor/EditorVariables.h"
 #include "SFML/Graphics/Sprite.hpp"
 
-VISITABLE_STRUCT(sf::IntRect, left, top, width,height);
+struct SpriteAsset;
+VISITABLE_STRUCT(sf::IntRect, left, top, width, height);
 VISITABLE_STRUCT(sf::FloatRect, left, top, width,height);
 
 class SpriteRenderComponent : public Component
@@ -17,11 +18,12 @@ public:
 	void Update(float deltaTime) override;
 	void OnDestroy() override;
 
-	std::unique_ptr<sf::Sprite> sprite{};
+	std::shared_ptr<SpriteAsset> spriteAsset{};
 	SERIALIZE_FILE_PATH(.png, spritePath);
 	SERIALIZE_FIELD(sf::IntRect, spriteSize)
 	SERIALIZE_FIELD(int, layer)
 	~SpriteRenderComponent() override;
+	sf::Sprite spriteToDraw;
 private:
 	std::filesystem::path oldSpritePath;
 	sf::IntRect oldSpriteSize;

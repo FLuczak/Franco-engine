@@ -180,6 +180,25 @@ public:
     T height; //!< Height of the rectangle
 };
 
+struct RectHash {
+    template <typename T>
+    std::size_t operator()(const sf::Rect<T>& rect) const {
+	    const std::size_t h1 = std::hash<T>{}(rect.left);
+	    const std::size_t h2 = std::hash<T>{}(rect.top);
+	    const std::size_t h3 = std::hash<T>{}(rect.width);
+	    const std::size_t h4 = std::hash<T>{}(rect.height);
+
+        // Combine the hash values (a common way to mix hashes)
+        return h1 ^ (h2 << 1) ^ (h3 << 2) ^ (h4 << 3);
+    }
+};
+
+template <typename T>
+struct RectEqual {
+    bool operator()(const sf::Rect<T>& lhs, const sf::Rect<T>& rhs) const {
+        return lhs == rhs;
+    }
+};
 ////////////////////////////////////////////////////////////
 /// \relates Rect
 /// \brief Overload of binary operator ==
@@ -214,6 +233,7 @@ bool operator !=(const Rect<T>& left, const Rect<T>& right);
 
 // Create typedefs for the most common types
 typedef Rect<int>   IntRect;
+
 typedef Rect<float> FloatRect;
 
 } // namespace sf

@@ -1,0 +1,96 @@
+{
+ "Entities": [
+  {
+   "Components": [
+    {
+     "ComponentName": "class CameraComponent"
+    }
+   ],
+   "Name": "MainCamera",
+   "Tag": -842150451,
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "0",
+      "spritePath": "{\"format\":\".png\",\"path\":\"Assets\\\\Sprites\\\\tiny_ship9.png\"}",
+      "spriteSize": "left:0 top:0 width:32 height:64 "
+     }
+    },
+    {
+     "ComponentName": "class PlayerMovement",
+     "SerializedValues": {
+      "moveSpeedHorizontal": "100.000000",
+      "moveSpeedVertical": "0.000000"
+     }
+    },
+    {
+     "ComponentName": "class PlayerShooting",
+     "SerializedValues": {
+      "bulletPrefab": "{\"format\":\".ent\",\"path\":\"Assets\\\\Templates\\\\Bullet.ent\"}",
+      "bulletSpeed": "400.000000",
+      "distanceFromPlayer": "10.000000",
+      "shootingSpeed": "1.000000"
+     }
+    }
+   ],
+   "Name": "Player",
+   "Tag": -842150451,
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     2.0,
+     2.0
+    ],
+    "Translation": [
+     640.0,
+     660.0
+    ]
+   }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class SpriteRenderComponent",
+     "SerializedValues": {
+      "layer": "-2",
+      "spritePath": "{\"format\":\".png\",\"path\":\"Assets\\\\Sprites\\\\Background.png\"}",
+      "spriteSize": "left:0 top:0 width:0 height:0 "
+     }
+    }
+   ],
+   "Name": "Backgr",
+   "Tag": -842150451,
+   "Transform": {
+    "Rotation": [
+     0.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     0.0,
+     0.0
+    ]
+   }
+  }
+ ]
+}
