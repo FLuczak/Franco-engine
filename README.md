@@ -23,3 +23,6 @@ Franco engine is a small game engine developed by me in my free time as a passio
 
 ![](/Readme/Engine%202.png)
 Edited scene with editable component properties
+
+![](/Readme/PlatformerFSM-ezgif.com-crop.gif)
+Frame by frame animations + Finite State Machine preview
