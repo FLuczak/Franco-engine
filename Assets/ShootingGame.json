@@ -91,6 +91,39 @@
      0.0
     ]
    }
+  },
+  {
+   "Components": [
+    {
+     "ComponentName": "class SpiralEmitter",
+     "SerializedValues": {
+      "active": "1",
+      "bulletSpeed": "0.000000",
+      "bulletTemplate": "{\"format\":\".ent\",\"path\":\"Assets\\\\Templates\\\\EnemySpaceship.ent\"}",
+      "delay": "0.000000",
+      "fireRate": "1.000000",
+      "numberOfBullets": "5",
+      "offset": "x:0 y:0 ",
+      "radius": "10.000000",
+      "rotationSpeed": "0.000000"
+     }
+    }
+   ],
+   "Name": "EnemyE",
+   "Tag": -842150451,
+   "Transform": {
+    "Rotation": [
+     90.0
+    ],
+    "Scale": [
+     1.0,
+     1.0
+    ],
+    "Translation": [
+     640.0,
+     0.0
+    ]
+   }
   }
  ]
 }
