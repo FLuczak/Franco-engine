@@ -5,9 +5,9 @@
 #include <queue>
 #include <string>
 
-#include "Engine/Entity.hpp"
-#include "Engine/EntityInspector.hpp"
-#include "Engine/Inspectable.hpp"
+#include "Engine/Core/Entity.hpp"
+#include "Engine/Editor/EntityInspector.hpp"
+#include "Engine/Editor/Inspectable.hpp"
 #include "nlohmann/json.hpp"
 
 class World : public Inspectable 

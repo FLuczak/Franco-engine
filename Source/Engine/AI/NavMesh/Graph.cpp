@@ -1,6 +1,6 @@
 #include "Engine/AI/NavMesh/Graph.hpp"
 
-#include "Engine/DebugRenderer.hpp"
+#include "Engine/Editor/DebugRenderer.hpp"
 #include "SFML/SFMLMath.hpp"
 
 AI::Node::Node(Node* node)

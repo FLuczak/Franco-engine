@@ -1,7 +1,7 @@
 #include "Game/Health.h"
 
-#include "Engine/BaseCollider.h"
-#include "Engine/Entity.hpp"
+#include "Engine/Physics/BaseCollider.h"
+#include "Engine/Core/Entity.hpp"
 #include "Engine/Physics/Collision.hpp"
 #include "Game/Bullet.h"
 

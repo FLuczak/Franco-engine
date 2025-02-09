@@ -3,7 +3,8 @@
 #include <string>
 
 #include "windows.h"
-#include "Engine/EditorVariables.h"
+#include "Engine/Editor/EditorVariables.h"
+#include "imgui.h"
 
 namespace AI
 {

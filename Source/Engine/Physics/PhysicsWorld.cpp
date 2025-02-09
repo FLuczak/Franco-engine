@@ -2,8 +2,8 @@
 
 #include <execution>
 
-#include "Engine/Engine.hpp"
-#include "Engine/Entity.hpp"
+#include "Engine/Core/Engine.hpp"
+#include "Engine/Core/Entity.hpp"
 #include "Engine/Physics/Collision.hpp"
 #include "Engine/Physics/DiskCollider.hpp"
 #include "Engine/Physics/PolygonCollider.h"
@@ -308,14 +308,17 @@ void PhysicsWorld::Simulate(float dt)
     	m_executedFrame = true;
     }
 
-    for (size_t i = physicsBodies.size()-1; i > 0 ;i--)
+    if (!physicsBodies.empty())
     {
-        auto& body = physicsBodies[i];
-        auto& physicsBody = body.get();
+        for (size_t i = physicsBodies.size() - 1; i > 0; i--)
+        {
+            auto& body = physicsBodies[i];
+            auto& physicsBody = body.get();
 
-        if (physicsBody.GetEntity().active == false)continue;
-        if (physicsBody.collisionEvents.empty())continue;
-        physicsBody.HandleCollisionEvents();
+            if (physicsBody.GetEntity().active == false)continue;
+            if (physicsBody.collisionEvents.empty())continue;
+            physicsBody.HandleCollisionEvents();
+        }
     }
 
     bvh.DebugDraw(bvh.GetRootIndex(),Engine.debugRenderer);

@@ -8,7 +8,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "GenericFactory.hpp"
+#include "Engine/Core/GenericFactory.hpp"
 #include "imgui.h"
 #include "Engine/AI/FiniteStateMachines/FiniteStateMachine.hpp"
 #include "Engine/AI/Utils/EditorUtils.h"

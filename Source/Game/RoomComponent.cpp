@@ -1,7 +1,8 @@
 #include "Game/RoomComponent.h"
 
-#include "Engine/Engine.hpp"
-#include "Engine/Entity.hpp"
+#include <Engine/Editor/DebugRenderer.hpp>
+#include "Engine/Core/Engine.hpp"
+#include "Engine/Core./Entity.hpp"
 #include "Game/CameraComponent.hpp"
 #include "Game/DoorComponent.h"
 

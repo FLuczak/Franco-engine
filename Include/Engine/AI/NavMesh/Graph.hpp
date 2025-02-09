@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "Engine/DebugRenderer.hpp"
+#include "Engine/Editor/DebugRenderer.hpp"
 #include "SFML/System/Vector2.hpp"
 
 namespace AI

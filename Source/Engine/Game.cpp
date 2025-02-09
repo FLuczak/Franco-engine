@@ -5,11 +5,11 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 
-#include "Engine/EngineGame.hpp"
-#include "Engine/Inspector.hpp"
+#include "Engine/Core/EngineGame.hpp"
+#include "Engine/Editor/Inspector.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/Window/Event.hpp"
-#include "Engine/Engine.hpp"
+#include "Engine/Core/Engine.hpp"
 #include "IconsFontAwesome.h"
 
 int main()

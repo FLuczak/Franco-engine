@@ -9,7 +9,6 @@
 #include "imgui.h"
 #include "Engine/AI/FiniteStateMachines/FiniteStateMachine.hpp"
 #include "Engine/AI/Utils/EditorUtils.h"
-#include "Engine/EditorVariables.h"
 
 
 namespace AI

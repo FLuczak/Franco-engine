@@ -4,7 +4,7 @@
 #include "BVH.hpp"
 #include "Collision.hpp"
 #include "PhysicsBody.hpp"
-#include "Engine/Entity.hpp"
+#include "Engine/Core/Entity.hpp"
 #include "SFML/System/Vector2.hpp"
 
 struct BroadPhaseCollisionPair

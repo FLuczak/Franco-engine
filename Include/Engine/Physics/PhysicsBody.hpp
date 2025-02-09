@@ -1,11 +1,11 @@
 #pragma once
+#include <Engine/Core/Component.hpp>
+#include <Engine/Core/Entity.hpp>
+#include <Engine/Core/SimpleDelegates.h>
+#include <Engine/Editor/EditorVariables.h>
+
+#include "BaseCollider.h"
 #include "Collision.hpp"
-#include "GenericFactory.hpp"
-#include "SimpleDelegates.h"
-#include "Engine/BaseCollider.h"
-#include "Engine/Component.hpp"
-#include "Engine/EditorVariables.h"
-#include "Engine/Entity.hpp"
 #include "SFML/System/Vector2.hpp"
 
 class BaseCollider;

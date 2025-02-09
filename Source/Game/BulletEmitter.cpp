@@ -1,9 +1,9 @@
 #include "Game/BulletEmitter.h"
 
-#include "Engine/AssetManager.hpp"
-#include "Engine/Engine.hpp"
+#include "Engine/Core/AssetManager.hpp"
+#include "Engine/Core/Engine.hpp"
 #include "Game/PlayerMovement.hpp"
-#include "Engine/SpriteRenderComponent.hpp"
+#include "Engine/Core/SpriteRenderComponent.hpp"
 
 sf::Vector2f BulletEmitter::GetDirectionToPlayer() const
 {
@@ -41,8 +41,15 @@ void SingleEmitter::Fire()
 	BulletEmitter::Fire();
 	auto& bullet = Engine.world.InstantiateTemplate(bulletTemplate.path.string());
 	sf::Vector2f direction = GetDirectionToPlayer();
-	const auto spriteSize = GetEntity().GetComponent<SpriteRenderComponent>()->spriteSize;
-	bullet.GetTransform().position = GetTransform().position + sf::Vector2f(static_cast<float>(spriteSize.width) / 2.0f, static_cast<float>(spriteSize.height) / 2.0f) + direction * 64;
+
+	const auto sprite = GetEntity().GetComponent<SpriteRenderComponent>();
+	if(sprite != nullptr)
+	{
+		const auto spriteSize = sprite->spriteSize;
+		bullet.GetTransform().position = GetTransform().position + sf::Vector2f(static_cast<float>(spriteSize.width) / 2.0f, static_cast<float>(spriteSize.height) / 2.0f) +direction * 64;
+
+	}
+
 	const auto body = bullet.GetComponent<PhysicsBody>();
 	if (body == nullptr)return;
 	body->velocity = sf::normalize(direction) * bulletSpeed;

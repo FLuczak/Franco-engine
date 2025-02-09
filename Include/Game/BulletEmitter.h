@@ -1,6 +1,6 @@
 #pragma once
-#include "Engine/Component.hpp"
-#include "Engine/EditorVariables.h"
+#include "Engine/Core/Component.hpp"
+#include "Engine/Editor/EditorVariables.h"
 #include "SFML/SFMLMath.hpp"
 #include "SFML/Graphics/Texture.hpp"
 

@@ -1,7 +1,7 @@
 #include "Game/DestroyOnDeathComponent.h"
 
-#include "Engine/Engine.hpp"
-#include "Engine/Entity.hpp"
+#include "Engine/Core/Engine.hpp"
+#include "Engine/Core/Entity.hpp"
 #include "Game/Health.h"
 
 void DestroyOnDeathComponent::Start()

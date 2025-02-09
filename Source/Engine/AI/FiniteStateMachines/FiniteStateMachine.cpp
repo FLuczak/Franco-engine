@@ -1,7 +1,7 @@
 #include "Engine/AI/FiniteStateMachines/FiniteStateMachine.hpp"
 #include <sstream>
-#include "GenericFactory.hpp"
-#include "Engine/EditorVariables.h"
+#include "Engine/Core/GenericFactory.hpp"
+#include "Engine/Editor/EditorVariables.h"
 #include "Engine/AI/Blackboards/Comparator.hpp"
 
 bool AI::TransitionData::CanTransition(const StateMachineContext& context)const

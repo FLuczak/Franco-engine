@@ -1,7 +1,6 @@
 #include "Engine/Physics/DiskCollider.hpp"
 
-#include "Engine/Engine.hpp"
-#include "Engine/Entity.hpp"
+#include <Engine/Core/Engine.hpp>
 
 void DiskCollider::Start()
 {

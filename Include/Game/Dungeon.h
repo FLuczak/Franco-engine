@@ -1,9 +1,9 @@
 #pragma once
 #include <random>
 
-#include "Engine/Component.hpp"
+#include "Engine/Core/Component.hpp"
 #include "Visit struct/visit_struct.hpp"
-#include "Engine/EditorVariables.h"
+#include "Engine/Editor/EditorVariables.h"
 
 class Dungeon : public Component
 {

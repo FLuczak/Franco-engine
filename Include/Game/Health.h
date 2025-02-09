@@ -1,7 +1,7 @@
 #pragma once
-#include "SimpleDelegates.h"
-#include "Engine/Component.hpp"
-#include "Engine/EditorVariables.h"
+#include "Engine/Core/SimpleDelegates.h"
+#include "Engine/Core/Component.hpp"
+#include "Engine/Editor/EditorVariables.h"
 
 class Health : public Component
 {

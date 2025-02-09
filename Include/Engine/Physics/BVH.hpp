@@ -1,8 +1,8 @@
 #pragma once
 #include "geometry2d.hpp"
-#include "Engine/BaseCollider.h"
-#include "Engine/DebugRenderer.hpp"
-#include "Engine/Entity.hpp"
+#include "Engine/Physics/BaseCollider.h"
+#include "Engine/Editor/DebugRenderer.hpp"
+#include "Engine/Core/Entity.hpp"
 
 namespace Physics
 {

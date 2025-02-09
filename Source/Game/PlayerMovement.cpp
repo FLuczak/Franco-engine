@@ -1,6 +1,6 @@
 #include "Game/PlayerMovement.hpp"
 
-#include "Engine/Entity.hpp"
+#include "Engine/Core/Entity.hpp"
 #include "SFML/Window/Keyboard.hpp"
 #include "SFML/SFMLMath.hpp"
 
@@ -18,7 +18,10 @@ void PlayerMovement::Update(float deltaTime)
 	inputs = { horizontal,vertical };
 
 	if (horizontal == 0 && vertical == 0)return;
-	inputs = sf::normalize(inputs) * moveSpeed;
+	inputs = sf::normalize(inputs) ;
+
+	inputs.x *= moveSpeedHorizontal;
+	inputs.y *= moveSpeedVertical;
 
 	GetTransform().position += inputs*deltaTime;
 }

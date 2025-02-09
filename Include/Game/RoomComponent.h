@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/Component.hpp"
+#include "Engine/Core/Component.hpp"
 
 class DoorComponent;
 

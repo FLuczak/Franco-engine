@@ -1,5 +1,8 @@
 #pragma once
-#include "Engine/BaseCollider.h"
+#include <Engine/Core/Entity.hpp>
+#include <Engine/Core/GenericFactory.hpp>
+#include <Engine/Editor/EditorVariables.h>
+#include "Engine/Physics/BaseCollider.h"
 
 class DiskCollider : public BaseCollider
 {

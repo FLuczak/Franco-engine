@@ -1,0 +1,58 @@
+{
+    "Components": [
+        {
+            "ComponentName": "class SpriteRenderComponent",
+            "SerializedValues": {
+                "layer": "0",
+                "spritePath": "{\"format\":\".png\",\"path\":\"Assets\\\\Sprites\\\\tiny_ship1.png\"}",
+                "spriteSize": "left:0 top:0 width:0 height:0 "
+            }
+        },
+        {
+            "ComponentName": "class PlayerShooting",
+            "SerializedValues": {
+                "bulletPrefab": "{\"format\":\".ent\",\"path\":\"Assets\\\\Templates\\\\Bullet.ent\"}",
+                "bulletSpeed": "200.000000",
+                "distanceFromPlayer": "40.000000",
+                "shootingSpeed": "1.000000"
+            }
+        },
+        {
+            "ComponentName": "class PlayerMovement",
+            "SerializedValues": {
+                "moveSpeedHorizontal": "150.000000",
+                "moveSpeedVertical": "0.000000"
+            }
+        },
+        {
+            "ComponentName": "class PhysicsBody",
+            "SerializedValues": {
+                "bodyType": "KINEMATIC",
+                "mass": "1000.000000",
+                "restitution": "0.000000"
+            }
+        },
+        {
+            "ComponentName": "class DiskCollider",
+            "SerializedValues": {
+                "offset": "x:24 y:30 ",
+                "radius": "22.000000"
+            }
+        }
+    ],
+    "Name": "Entity",
+    "Tag": -842150451,
+    "Transform": {
+        "Rotation": [
+            0.0
+        ],
+        "Scale": [
+            2.0,
+            2.0
+        ],
+        "Translation": [
+            535.2523803710938,
+            554.7339477539063
+        ]
+    }
+}

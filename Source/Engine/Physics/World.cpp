@@ -3,9 +3,9 @@
 #include <fstream>
 #include <iostream>
 
-#include "Engine/AssetManager.hpp"
-#include "Engine/EditorUtility.h"
-#include "Engine/Entity.hpp"
+#include "Engine/Core/AssetManager.hpp"
+#include "Engine/Editor/EditorUtility.h"
+#include "Engine/Core/Entity.hpp"
 
 World::World() : Inspectable()
 {

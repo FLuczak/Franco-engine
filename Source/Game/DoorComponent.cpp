@@ -1,7 +1,9 @@
 #include "Game/DoorComponent.h"
 
-#include "Engine/Engine.hpp"
-#include "Engine/Entity.hpp"
+#include <Engine/Core/Engine.hpp>
+
+#include "Engine/Physics/BaseCollider.h"
+#include "Engine/Core/Entity.hpp"
 #include "Engine/Physics/Collision.hpp"
 #include "Game/PlayerMovement.hpp"
 

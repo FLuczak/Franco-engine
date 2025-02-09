@@ -1,6 +1,6 @@
 #pragma once
 #include "geometry2d.hpp"
-#include "Engine/Entity.hpp"
+#include "Engine/Core/Entity.hpp"
 
 namespace Physics
 {

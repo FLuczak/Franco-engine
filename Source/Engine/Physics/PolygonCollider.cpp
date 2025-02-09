@@ -1,7 +1,6 @@
 #include "Engine/Physics/PolygonCollider.h"
+#include "Engine/Core/Engine.hpp"
 
-#include "Engine/Engine.hpp"
-#include "Engine/Entity.hpp"
 
 void PolygonCollider::Start()
 {

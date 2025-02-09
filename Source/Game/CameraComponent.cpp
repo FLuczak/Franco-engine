@@ -1,7 +1,5 @@
 #include "Game/CameraComponent.hpp"
-
-#include "Engine/EngineGame.hpp"
-#include "Engine/Entity.hpp"
+#include "Engine/Core/EngineGame.hpp"
 
 CameraComponent::CameraComponent(Entity& entityToSet): Component(entityToSet)
 {

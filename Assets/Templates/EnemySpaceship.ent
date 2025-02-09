@@ -1,0 +1,42 @@
+{
+    "Components": [
+        {
+            "ComponentName": "class SpriteRenderComponent",
+            "SerializedValues": {
+                "layer": "0",
+                "spritePath": "{\"format\":\".png\",\"path\":\"Assets\\\\Sprites\\\\tiny_ship10.png\"}",
+                "spriteSize": "left:0 top:0 width:0 height:0 "
+            }
+        },
+        {
+            "ComponentName": "class PhysicsBody",
+            "SerializedValues": {
+                "bodyType": "KINEMATIC",
+                "mass": "1000.000000",
+                "restitution": "0.000000"
+            }
+        },
+        {
+            "ComponentName": "class DiskCollider",
+            "SerializedValues": {
+                "offset": "x:24 y:30 ",
+                "radius": "22.000000"
+            }
+        }
+    ],
+    "Name": "enemyS",
+    "Tag": -842150451,
+    "Transform": {
+        "Rotation": [
+            180.0
+        ],
+        "Scale": [
+            2.0,
+            2.0
+        ],
+        "Translation": [
+            535.2523803710938,
+            554.7339477539063
+        ]
+    }
+}

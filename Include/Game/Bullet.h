@@ -1,6 +1,6 @@
 #pragma once
-#include "Engine/Component.hpp"
-#include "Engine/EditorVariables.h"
+#include "Engine/Core/Component.hpp"
+#include "Engine/Editor/EditorVariables.h"
 
 class Bullet : public Component
 {

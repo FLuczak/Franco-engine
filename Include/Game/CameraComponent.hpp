@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "Engine/Component.hpp"
+#include "Engine/Core/Component.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 

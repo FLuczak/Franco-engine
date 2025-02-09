@@ -1,46 +1,48 @@
 {
-   "Components": [
-      {
-         "ComponentName": "class PhysicsBody",
-         "SerializedValues": {
-            "bodyType": "KINEMATIC",
-            "mass": "100.000000",
-            "restitution": "0.000000"
-         }
-      },
-      {
-         "ComponentName": "class DiskCollider",
-         "SerializedValues": {
-            "offset": "x:4 y:4 ",
-            "radius": "8.000000"
-         }
-      },
-      {
-         "ComponentName": "class SpriteRenderComponent",
-         "SerializedValues": {
-            "spritePath": "{\"format\":\".png\",\"path\":\"C:\\\\Users\\\\kenar\\\\source\\\\repos\\\\C++\\\\Franco-engine\\\\Assets\\\\Sprites\\\\Bullets.png\"}",
-            "spriteSize": "left:180 top:132 width:8 height:8 "
-         }
-      },
-      {
-         "ComponentName": "class Bullet",
-         "SerializedValues": {
-            "lifeTime": "3.000000"
-         }
-      }
-   ],
-   "Name": "Bullet",
-   "Transform": {
-      "Rotation": [
-         0.0
-      ],
-      "Scale": [
-         2.0,
-         2.0
-      ],
-      "Translation": [
-         0.0,
-         0.0
-      ]
-   }
+    "Components": [
+        {
+            "ComponentName": "class PhysicsBody",
+            "SerializedValues": {
+                "bodyType": "KINEMATIC",
+                "mass": "100.000000",
+                "restitution": "0.000000"
+            }
+        },
+        {
+            "ComponentName": "class DiskCollider",
+            "SerializedValues": {
+                "offset": "x:4 y:4 ",
+                "radius": "8.000000"
+            }
+        },
+        {
+            "ComponentName": "class SpriteRenderComponent",
+            "SerializedValues": {
+                "layer": "0",
+                "spritePath": "{\"format\":\".png\",\"path\":\"Assets\\\\Sprites\\\\Bullets.png\"}",
+                "spriteSize": "left:180 top:132 width:8 height:8 "
+            }
+        },
+        {
+            "ComponentName": "class Bullet",
+            "SerializedValues": {
+                "lifeTime": "3.000000"
+            }
+        }
+    ],
+    "Name": "Bullet",
+    "Tag": -842150451,
+    "Transform": {
+        "Rotation": [
+            0.0
+        ],
+        "Scale": [
+            2.0,
+            2.0
+        ],
+        "Translation": [
+            0.0,
+            0.0
+        ]
+    }
 }
