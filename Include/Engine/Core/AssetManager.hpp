@@ -58,8 +58,16 @@ struct AnimationFSM : Asset
 
 struct EntityTemplateAsset : Asset
 {
-    EntityTemplateAsset(nlohmann::json json) : templateJson(json) {}
-    std::any GetAsset() override { return &templateJson; }
+    EntityTemplateAsset(const nlohmann::json json) : templateJson(json)
+    {
+
+    }
+
+    std::any GetAsset() override
+    {
+        return std::any(&templateJson);
+    }
+
     const nlohmann::json templateJson;
 };
 

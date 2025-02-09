@@ -72,7 +72,7 @@
      "SerializedValues": {
       "layer": "-2",
       "spritePath": "{\"format\":\".png\",\"path\":\"Assets\\\\Sprites\\\\Background.png\"}",
-      "spriteSize": "left:0 top:0 width:0 height:0 "
+      "spriteSize": "left:0 top:0 width:1280 height:720 "
      }
     }
    ],
