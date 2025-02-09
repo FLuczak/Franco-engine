@@ -38,10 +38,13 @@ Entity& World::InstantiateTemplate(std::string path)
     entities.emplace_back(GetId(), name);
     auto& entity = entities.back();
 
-    const auto& json = AssetManager::GetEntityTemplate(path);
-    auto& nonConst = const_cast<nlohmann::json&>(json);
+    if (!path.empty())
+    {
+        const auto& json = AssetManager::GetEntityTemplate(path);
+        auto& nonConst = const_cast<nlohmann::json&>(json);
+        entity.Deserialize(nonConst);
+    }
 
-    entity.Deserialize(nonConst);
     entity.Start(true);
     return entity;
 }

@@ -4,8 +4,8 @@
             "ComponentName": "class SpriteRenderComponent",
             "SerializedValues": {
                 "layer": "4",
-                "spritePath": "{\"format\":\".png\",\"path\":\"C:\\\\Users\\\\kenar\\\\source\\\\repos\\\\C++\\\\Franco-engine\\\\Assets\\\\Sprites\\\\map.png\"}",
-                "spriteSize": "left:0 top:0 width:0 height:0 "
+                "spritePath": "{\"format\":\".png\",\"path\":\"Assets\\\\Sprites\\\\map.png\"}",
+                "spriteSize": "left:0 top:0 width:320 height:176 "
             }
         },
         {

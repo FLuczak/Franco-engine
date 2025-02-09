@@ -28,14 +28,15 @@
      "ComponentName": "class SpriteRenderComponent",
      "SerializedValues": {
       "layer": "99",
-      "spritePath": "{\"format\":\".png\",\"path\":\"C:\\\\Users\\\\kenar\\\\source\\\\repos\\\\C++\\\\Franco-engine\\\\Assets\\\\Sprites\\\\Basic4x.png\"}",
+      "spritePath": "{\"format\":\".png\",\"path\":\"Assets\\\\Sprites\\\\Basic4x.png\"}",
       "spriteSize": "left:0 top:0 width:64 height:64 "
      }
     },
     {
      "ComponentName": "class PlayerMovement",
      "SerializedValues": {
-      "moveSpeed": "250.000000"
+      "moveSpeedHorizontal": "50.000000",
+      "moveSpeedVertical": "50.000000"
      }
     },
     {
@@ -56,6 +57,7 @@
     {
      "ComponentName": "class PlayerShooting",
      "SerializedValues": {
+      "bulletPrefab": "{\"format\":\".ent\",\"path\":\"Assets\\\\Templates\\\\Bullet.ent\"}",
       "bulletSpeed": "450.000000",
       "distanceFromPlayer": "50.000000",
       "shootingSpeed": "1.000000"

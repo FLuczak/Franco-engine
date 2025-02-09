@@ -17,8 +17,9 @@ void PlayerShooting::Update(float deltaTime)
 	timer -= deltaTime;
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && timer <= 0.0f)
 	{
+		const auto mousePos = sf::Mouse::getPosition(Engine.window);
 		auto& bullet =Engine.world.InstantiateTemplate(bulletPrefab.path.string());
-		const sf::Vector2f direction = { 0,-1 };
+		sf::Vector2f direction = sf::Vector2f(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)) - GetTransform().position + CameraComponent::GetMainCamera()->GetTransform().position;
 		bullet.GetTransform().position = GetTransform().position + sf::Vector2f(16, 16) + direction * distanceFromPlayer;
 		bullet.GetComponent<PhysicsBody>()->velocity = direction * bulletSpeed;
 		bullet.tag = Tag::Player;
